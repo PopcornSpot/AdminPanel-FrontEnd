@@ -5,7 +5,6 @@ import { ImSearch } from "react-icons/im";
 import { Link, useLocation } from "react-router-dom";
 import HeaderLogo from "../../assets/website_logo.png"
 
-
 const NavBar = () => {
 
   const location = useLocation();
