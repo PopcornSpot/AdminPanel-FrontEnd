@@ -1,4 +1,5 @@
 import React from "react";
+import { FaEdit } from "react-icons/fa";
 
 const ProfilePage = () => {
   const adminDetail = {
@@ -18,10 +19,15 @@ const ProfilePage = () => {
     },
   };
 
+  const handleEdit = () => {
+    alert("Edit button clicked");
+  };
+
   return (
     <div className="p-8 bg-gradient-to-b from-gray-100 to-gray-200 min-h-screen">
-      <h1 className="text-3xl font-extrabold text-gray-800 mb-8">
+      <h1 className="text-3xl font-extrabold text-gray-800 mb-8 flex justify-between items-center">
         Admin Profile
+        <FaEdit className="text-2xl text-gray-600 cursor-pointer" onClick={handleEdit} />
       </h1>
 
       <div className="flex flex-col lg:flex-row bg-white shadow-lg rounded-lg overflow-hidden">
