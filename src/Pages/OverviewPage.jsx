@@ -20,7 +20,7 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend,
+  Legend
 );
 
 const OverviewPage = () => {
@@ -38,8 +38,9 @@ const OverviewPage = () => {
         label: "Revenue",
         data: [5000, 7000, 8000, 9000, 11000, 12345],
         borderColor: "#F97316",
-        backgroundColor: "rgb(217, 119, 6)",
+        backgroundColor: "rgba(249, 115, 22, 0.2)",
         tension: 0.4,
+        pointBackgroundColor: "#F97316",
       },
     ],
   };
@@ -51,75 +52,80 @@ const OverviewPage = () => {
         label: "Tickets Sold",
         data: [300, 400, 450, 500, 550, 567],
         backgroundColor: "#F97316",
-        borderColor: "rgb(217, 119, 6)",
+        borderColor: "#EA580C",
         borderWidth: 1,
+        hoverBackgroundColor: "#EA580C",
       },
     ],
   };
 
   return (
-    <div className="p-6 bg-gray-800 min-h-screen font-sans w-full">
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-200">Dashboard Overview</h1>
-      </header>
+    <div className="p-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 min-h-screen font-sans text-gray-200">
 
-      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+      <div className="mb-8">
+        <h1 className="text-4xl font-extrabold">Dashboard Overview</h1>
+
+      </div>
+
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="p-6 bg-gray-200 rounded-lg shadow hover:shadow-lg transition-transform transform hover:scale-105"
+            className="p-6 bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105"
           >
-            <h3 className="text-gray-600 text-lg font-medium">{stat.title}</h3>
-            <p className="text-3xl font-bold text-gray-800">{stat.value}</p>
+            <h3 className="text-lg font-semibold text-gray-400">{stat.title}</h3>
+            <p className="text-4xl font-bold text-gray-100">{stat.value}</p>
             <p
-              className={`text-sm font-medium ${
-                stat.change.startsWith("+") ? "text-green-500" : "text-red-500"
-              }`}
+              className={`text-sm mt-2 font-medium ${stat.change.startsWith("+") ? "text-green-400" : "text-red-400"
+                }`}
             >
               {stat.change} since last month
             </p>
           </div>
         ))}
-      </section>
+      </div>
 
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div className="p-6 bg-gray-200 rounded-lg shadow">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
+          <h2 className="text-xl font-semibold text-gray-300 mb-4">
             Revenue Trend
           </h2>
-          <Line data={revenueData}/>
+          <Line data={revenueData} />
         </div>
-        <div className="p-6 bg-gray-200 rounded-lg shadow">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">
+        <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
+          <h2 className="text-xl font-semibold text-gray-300 mb-4">
             Tickets Sold
           </h2>
           <Bar data={ticketsData} />
         </div>
-      </section>
+      </div>
 
-      <section>
-        <h2 className="text-xl font-semibold text-gray-200 mb-4">
+
+      <div>
+        <h2 className="text-xl font-semibold mb-6 text-gray-300">
           Recent Activity
         </h2>
         <ul className="space-y-4">
-          <li className="p-4 bg-gray-200 rounded-lg shadow">
-            <p className="text-gray-800 font-medium">
+          <li className="p-4 bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
+            <p className="text-gray-100 font-medium">
               Subhashini purchased tickets for Amaran
             </p>
             <span className="text-gray-500 text-sm">5 minutes ago</span>
           </li>
-          <li className="p-4 bg-gray-200 rounded-lg shadow">
-            <p className="text-gray-800 font-medium">New user registered.</p>
+          <li className="p-4 bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
+            <p className="text-gray-100 font-medium">New user registered.</p>
             <span className="text-gray-500 text-sm">10 minutes ago</span>
           </li>
-          <li className="p-4 bg-gray-200 rounded-lg shadow">
-            <p className="text-gray-800 font-medium">
+          <li className="p-4 bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
+            <p className="text-gray-100 font-medium">
               Revenue increased by 15% this week.
             </p>
             <span className="text-gray-500 text-sm">2 hours ago</span>
           </li>
         </ul>
-      </section>
+      </div>
     </div>
   );
 };

@@ -24,84 +24,63 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="p-8 bg-gradient-to-b from-gray-800 to-gray-900 min-h-screen ">
-      <div className="max-w-4xl mx-auto">
-        <header className="text-3xl font-extrabold text-gray-200 mb-8 flex justify-between items-center">
+    <div className="p-8 bg-gradient-to-b from-gray-700 via-gray-800 to-gray-900 min-h-screen">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-4xl font-extrabold text-gray-200 mb-8 flex justify-between items-center">
           Admin Profile
           <button
             onClick={handleEdit}
             className="flex items-center bg-orange-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-orange-400 transition duration-300"
           >
-            <FaEdit className="w-3 h-3"/>
+            <FaEdit className="w-4 h-4" />
             
           </button>
-        </header>
+        </div>
 
-        <div className="flex flex-col lg:flex-row bg-gray-200 shadow-lg rounded-lg overflow-hidden">
-          
-          <div className="lg:w-1/3 flex items-center justify-center bg-gray-200 p-8 hover:scale-105 transition duration-300">
+        <div className="flex flex-col lg:flex-row bg-gray-700 shadow-xl rounded-xl overflow-hidden">
+          <div className="lg:w-1/3 flex items-center justify-center bg-gray-700 p-8 hover:scale-105 transition duration-300 transform">
             <img
               src={adminDetail.image}
               alt={`${adminDetail.name}'s profile`}
-              className="w-48 h-48 object-cover rounded-full border-4 border-yellow-400 shadow-lg"
+              className="w-48 h-48 object-cover rounded-full border-4 border-yellow-500 shadow-lg"
             />
           </div>
 
-          
-          <div className="lg:w-2/3 p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              {adminDetail.name}
-            </h2>
-            <div className="space-y-3 text-gray-700">
+          <div className="lg:w-2/3 p-8 bg-gray-700 rounded-r-xl">
+            <h2 className="text-3xl font-bold text-gray-200 mb-4">{adminDetail.name}</h2>
+            <div className="space-y-4 text-gray-300">
               <p>
-                <span className="font-semibold">Role:</span> {adminDetail.role}
+                <span className="font-semibold text-gray-100">Role:</span> {adminDetail.role}
               </p>
               <p>
-                <span className="font-semibold">Email:</span> {adminDetail.email}
+                <span className="font-semibold text-gray-100">Email:</span> {adminDetail.email}
               </p>
               <p>
-                <span className="font-semibold">Contact:</span>{" "}
-                {adminDetail.contact}
+                <span className="font-semibold text-gray-100">Contact:</span> {adminDetail.contact}
               </p>
               <p>
-                <span className="font-semibold">Theater Name:</span>{" "}
-                {adminDetail.theaterName}
+                <span className="font-semibold text-gray-100">Theater Name:</span> {adminDetail.theaterName}
               </p>
               <p>
-                <span className="font-semibold">Theater Id:</span>{" "}
-                {adminDetail.theaterId}
+                <span className="font-semibold text-gray-100">Theater Id:</span> {adminDetail.theaterId}
               </p>
               <p>
-                <span className="font-semibold">Theater Location:</span>{" "}
-                {adminDetail.theaterLocation}
+                <span className="font-semibold text-gray-100">Theater Location:</span> {adminDetail.theaterLocation}
               </p>
             </div>
 
-        
-            <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-blue-50 border border-blue-300 rounded-lg p-4 text-center shadow-md hover:scale-105 transition duration-300">
-                <h3 className="text-blue-600 text-lg font-semibold">
-                  Total Theaters
-                </h3>
-                <p className="text-2xl font-bold text-blue-800">
-                  {adminDetail.stats.totaltheater}
-                </p>
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-blue-50 border border-blue-300 rounded-lg p-5 text-center shadow-md hover:scale-105 transition duration-300 transform">
+                <h3 className="text-blue-600 text-lg font-semibold">Total Theaters</h3>
+                <p className="text-3xl font-bold text-blue-800">{adminDetail.stats.totaltheater}</p>
               </div>
-              <div className="bg-green-50 border border-green-300 rounded-lg p-4 text-center shadow-md hover:scale-105 transition duration-300">
-                <h3 className="text-green-600 text-lg font-semibold">
-                  Active Theaters
-                </h3>
-                <p className="text-2xl font-bold text-green-800">
-                  {adminDetail.stats.activeTheater}
-                </p>
+              <div className="bg-green-50 border border-green-300 rounded-lg p-5 text-center shadow-md hover:scale-105 transition duration-300 transform">
+                <h3 className="text-green-600 text-lg font-semibold">Active Theaters</h3>
+                <p className="text-3xl font-bold text-green-800">{adminDetail.stats.activeTheater}</p>
               </div>
-              <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-4 text-center shadow-md hover:scale-105 transition duration-300">
-                <h3 className="text-yellow-600 text-lg font-semibold">
-                  Reports
-                </h3>
-                <p className="text-2xl font-bold text-yellow-800">
-                  {adminDetail.stats.reports || "N/A"}
-                </p>
+              <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-5 text-center shadow-md hover:scale-105 transition duration-300 transform">
+                <h3 className="text-yellow-600 text-lg font-semibold">Reports</h3>
+                <p className="text-3xl font-bold text-yellow-800">{adminDetail.stats.reports || "N/A"}</p>
               </div>
             </div>
           </div>

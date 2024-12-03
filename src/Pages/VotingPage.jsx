@@ -23,65 +23,59 @@ const VotingPage = () => {
   };
 
   return (
-<div className="p-6 bg-gradient-to-b from-gray-800 to-gray-900 min-h-screen flex flex-col items-center gap-5">
-  <div className="mb-0 content-start"> 
-    <h1 className="text-3xl font-bold text-gray-200 mb-2 mt-0"> 
-      Create Movie Poll
-    </h1>
-  </div>
+    <div className="p-6 bg-gradient-to-b from-gray-800 to-gray-900 min-h-screen flex flex-col items-center gap-8">
+      <div className="w-full  mb-6">
+        <h1 className="text-4xl font-extrabold text-gray-200">Create Movie Poll</h1>
+      </div>
 
-  <div className="bg-gray-200 w-full max-w-4xl p-6 rounded-lg shadow-lg flex flex-col items-center">
-    <div className="mb-6 w-full">
-      <label className="block text-lg font-medium text-gray-800 mb-2">
-        Poll Name
-      </label>
-      <input
-        type="text"
-        placeholder="Enter poll name"
-        className="w-full p-3 border-none rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-      />
-    </div>
-
-    <div className="w-full mb-8">
-      <h3 className="text-xl font-semibold text-gray-800 mb-4">
-        Add Movies to Poll
-      </h3>
-      {movies.map((movie, index) => (
-        <div
-          key={index}
-          className="flex items-center mb-4 bg-gray-50 p-3 rounded-lg shadow-sm"
-        >
+      <div className="bg-gray-800 w-full max-w-3xl p-8 rounded-2xl shadow-lg flex flex-col items-center">
+        <div className="mb-6 w-full">
+          <label className="block text-lg font-medium text-gray-200 mb-2">Poll Name</label>
           <input
             type="text"
-            value={movie.movieName}
-            onChange={(e) => handleMovieChange(index, e.target.value)}
-            placeholder="Movie Name"
-            className="flex-1 p-3 border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+            placeholder="Enter poll name"
+            className="w-full p-4 bg-gray-700 text-white border-none rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
           />
+        </div>
+
+        <div className="w-full mb-8">
+          <h3 className="text-2xl font-semibold text-gray-200 mb-4">Add Movies to Poll</h3>
+          {movies.map((movie, index) => (
+            <div
+              key={index}
+              className="flex items-center mb-4 bg-gray-700 p-4 rounded-xl shadow-md"
+            >
+              <input
+                type="text"
+                value={movie.movieName}
+                onChange={(e) => handleMovieChange(index, e.target.value)}
+                placeholder="Movie Name"
+                className="flex-1 p-4 bg-gray-600 text-white border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+              />
+              <button
+                onClick={() => handleRemoveMovie(index)}
+                className="ml-4 bg-red-500 text-white p-3 rounded-full shadow-md hover:bg-red-600 transition"
+                title="Remove Movie"
+              >
+                <FaTrash />
+              </button>
+            </div>
+          ))}
           <button
-            onClick={() => handleRemoveMovie(index)}
-            className="ml-4 bg-red-300 text-white p-3 rounded-full shadow-md hover:bg-red-400 transition"
-            title="Remove Movie"
+            onClick={handleAddMovie}
+            className="flex items-center justify-center w-full px-6 py-3 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition duration-200"
           >
-            <FaTrash />
+            <FaPlus className="mr-2" /> Add Movie
           </button>
         </div>
-      ))}
-      <button
-        onClick={handleAddMovie}
-        className="flex items-center justify-center w-full px-4 py-3 bg-orange-400 text-white rounded-lg shadow hover:bg-orange-500 transition"
-      >
-        <FaPlus className="mr-2" /> Add Movie
-      </button>
-    </div>
 
-    <div>
-      <button className="px-6 py-3 bg-gray-800 text-white font-semibold text-lg rounded-lg shadow hover:bg-gray-900 transition">
-        Create Poll
-      </button>
+        <div>
+          <button className="px-6 py-3 bg-gray-900 text-white font-semibold text-lg rounded-xl shadow-md hover:bg-gray-800 transition duration-200">
+            Create Poll
+          </button>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   );
 };
 
