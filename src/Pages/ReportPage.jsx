@@ -33,8 +33,8 @@ const ReportPage = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="max-w-6xl mx-auto bg-white p-6 rounded-md shadow-md">
+    <div className="p-6 bg-gray-800 min-h-screen">
+      <div className="max-w-6xl mx-auto bg-gray-200 p-6 rounded-md shadow-md">
         <h1 className="text-2xl font-semibold mb-6">Report Page</h1>
 
         <div className="overflow-x-auto">
@@ -67,7 +67,7 @@ const ReportPage = () => {
 
                   <td className="p-3 text-sm">
                     <button
-                      className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+                      className="bg-gray-800 text-white p-2 rounded-md hover:bg-gray-900"
                       onClick={() => handleStatusChange(report.id)}
                     >
                       {report.status === "Pending" ? "Resolve" : "Reopen"}

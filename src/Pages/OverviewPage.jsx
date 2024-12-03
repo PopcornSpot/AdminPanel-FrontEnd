@@ -20,7 +20,7 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
 const OverviewPage = () => {
@@ -37,8 +37,8 @@ const OverviewPage = () => {
       {
         label: "Revenue",
         data: [5000, 7000, 8000, 9000, 11000, 12345],
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
+        borderColor: "#F97316",
+        backgroundColor: "rgb(217, 119, 6)",
         tension: 0.4,
       },
     ],
@@ -50,27 +50,27 @@ const OverviewPage = () => {
       {
         label: "Tickets Sold",
         data: [300, 400, 450, 500, 550, 567],
-        backgroundColor: "rgba(153, 102, 255, 0.6)",
-        borderColor: "rgba(153, 102, 255, 1)",
+        backgroundColor: "#F97316",
+        borderColor: "rgb(217, 119, 6)",
         borderWidth: 1,
       },
     ],
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Dashboard Overview</h1>
-      </div>
+    <div className="p-6 bg-gray-800 min-h-screen font-sans w-full">
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-200">Dashboard Overview</h1>
+      </header>
 
-      <div className="w-full flex items-center justify-center gap-10 flex-wrap">
+      <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-8">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="w-[200px] h-[200px] bg-white flex items-center justify-center flex-col gap-4 shadow-lg hover:scale-105 duration-100"
+            className="p-6 bg-gray-200 rounded-lg shadow hover:shadow-lg transition-transform transform hover:scale-105"
           >
-            <h3 className="text-gray-600 text-sm font-medium">{stat.title}</h3>
-            <p className="text-2xl font-bold text-gray-800">{stat.value}</p>
+            <h3 className="text-gray-600 text-lg font-medium">{stat.title}</h3>
+            <p className="text-3xl font-bold text-gray-800">{stat.value}</p>
             <p
               className={`text-sm font-medium ${
                 stat.change.startsWith("+") ? "text-green-500" : "text-red-500"
@@ -80,46 +80,46 @@ const OverviewPage = () => {
             </p>
           </div>
         ))}
-      </div>
+      </section>
 
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white shadow p-6 rounded-lg">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div className="p-6 bg-gray-200 rounded-lg shadow">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">
             Revenue Trend
           </h2>
-          <Line data={revenueData} />
+          <Line data={revenueData}/>
         </div>
-
-        <div className="bg-white shadow p-6 rounded-lg">
+        <div className="p-6 bg-gray-200 rounded-lg shadow">
           <h2 className="text-xl font-semibold text-gray-800 mb-4">
             Tickets Sold
           </h2>
           <Bar data={ticketsData} />
         </div>
-      </div>
-      <div className="mt-8">
-        <h2 className="text-xl font-semibold text-gray-800 mb-4">
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold text-gray-200 mb-4">
           Recent Activity
         </h2>
         <ul className="space-y-4">
-          <li className="bg-white shadow p-4 rounded-lg">
+          <li className="p-4 bg-gray-200 rounded-lg shadow">
             <p className="text-gray-800 font-medium">
               Subhashini purchased tickets for Amaran
             </p>
             <span className="text-gray-500 text-sm">5 minutes ago</span>
           </li>
-          <li className="bg-white shadow p-4 rounded-lg">
+          <li className="p-4 bg-gray-200 rounded-lg shadow">
             <p className="text-gray-800 font-medium">New user registered.</p>
             <span className="text-gray-500 text-sm">10 minutes ago</span>
           </li>
-          <li className="bg-white shadow p-4 rounded-lg">
+          <li className="p-4 bg-gray-200 rounded-lg shadow">
             <p className="text-gray-800 font-medium">
               Revenue increased by 15% this week.
             </p>
             <span className="text-gray-500 text-sm">2 hours ago</span>
           </li>
         </ul>
-      </div>
+      </section>
     </div>
   );
 };

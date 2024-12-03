@@ -12,11 +12,11 @@ import ReportPage from "../Pages/ReportPage";
 const RouterComponent = () => {
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="w-64 bg-gray-800 text-white fixed h-full">
+      <div className="w-64 fixed h-full">
         <SidebarComponent />
       </div>
 
-      <div className="flex-1 ml-64 overflow-y-auto p-4">
+      <div className="flex-1 ml-64 overflow-y-auto">
         <Routes>
           <Route path="/" element={<OverviewPage />} />
           <Route path="/movies" element={<MoviesPage />} />

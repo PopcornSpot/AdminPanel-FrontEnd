@@ -14,15 +14,15 @@ const ScreensPage = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen shadow-md">
+    <div className="p-6 bg-gray-800 min-h-screen shadow-md">
       <div className="mb-6 flex justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-800">Manage Screens</h1>
-        <button className="flex items-center px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+        <button className="flex items-center px-4 py-2 bg-orange-400 text-white rounded hover:bg-orange-500">
           <FaPlus className="mr-2" /> Add Screen
         </button>
       </div>
 
-      <div className="bg-white shadow rounded-lg overflow-x-auto">
+      <div className="bg-gray-200 shadow rounded-lg overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-gray-200">
@@ -46,12 +46,12 @@ const ScreensPage = () => {
                   <td className="p-4 border-b">{screen.availableSeats}</td>
                   <td className="p-4 border-b">{screen.soldSeats}</td>
                   <td className="p-4 border-b flex space-x-2">
-                    <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 flex items-center">
+                    <button className="px-3 py-1 bg-blue-400 text-white rounded hover:bg-blue-500 flex items-center">
                       <FaEdit className="mr-1" /> Edit
                     </button>
                     <button
                       onClick={() => handleDelete(screen.id)}
-                      className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600 flex items-center"
+                      className="px-3 py-1 bg-red-400 text-white rounded hover:bg-red-500 flex items-center"
                     >
                       <FaTrash className="mr-1" /> Delete
                     </button>

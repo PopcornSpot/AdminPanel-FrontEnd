@@ -7,6 +7,7 @@ import { MdEventSeat } from "react-icons/md";
 import { FaVoteYea } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { MdReportProblem } from "react-icons/md";
+import logo from "../assets/logo.png";
 
 const SidebarComponent = () => {
   const location = useLocation();
@@ -22,43 +23,26 @@ const SidebarComponent = () => {
   ];
 
   return (
-    <div className="w-64 h-screen bg-white">
-      {/* Branding */}
-      <div className="p-4 text-2xl font-bold flex items-center space-x-2 h-[10%]">
-        <span className="bg-white text-black p-2 rounded">PopcornSpot</span>
+    <div className="w-64 h-screen bg-gradient-to-r from-gray-900 to-gray-800 shadow-xl">
+
+      <div className="p-4 text-2xl font-bold flex items-center space-x-2 h-[15%]">
+        <img src={logo} alt="logo" className="w-50 h-20" />
       </div>
 
-      {/* Sidebar Menu */}
-      <ul className="mt-4 space-y-2">
+
+      <ul className="mt-6 space-y-4">
         {SidebarDetail.map((item, index) => (
           <li key={index}>
             <Link
               to={item.path}
-              className={`flex items-center p-3 text-sm font-medium transition-colors rounded-md ${
-                location.pathname === item.path
-                  ? "bg-yellow-400 text-black"
-                  : "hover:bg-black hover:text-yellow-400 text-black"
-              }`}
-              style={{
-                transition: "transform 0.2s ease, background-color 0.2s ease",
-              }}
-              onMouseEnter={(e) => {
-                if (location.pathname !== item.path) {
-                  e.target.style.transform = "scale(1.05)";
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (location.pathname !== item.path) {
-                  e.target.style.transform = "scale(1)";
-                }
-              }}
+              className={`flex items-center p-3 text-sm font-medium rounded-md ${location.pathname === item.path
+                  ? "bg-gradient-to-r from-orange-500 to-orange-400 text-white"
+                  : "hover:bg-gradient-to-r from-orange-500 to-orange-400 hover:text-white text-gray-200"
+                }`}
             >
               <span
-                className={`mr-3 text-lg ${
-                  location.pathname === item.path
-                    ? "text-black"
-                    : "hover:text-yellow-400"
-                }`}
+                className={`mr-3 text-xl ${location.pathname === item.path ? "text-white" : "text-gray-200"
+                  }`}
               >
                 {item.icon}
               </span>
