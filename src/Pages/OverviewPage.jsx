@@ -63,11 +63,11 @@ const OverviewPage = () => {
         <h1 className="text-2xl font-bold text-gray-800">Dashboard Overview</h1>
       </div>
 
-      <div className="w-full h-[200px] flex items-center justify-center gap-10">
+      <div className="w-full flex items-center justify-center gap-10 flex-wrap">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="w-[200px] h-[200px] bg-white flex items-center justify-center flex-col gap-4"
+            className="w-[200px] h-[200px] bg-white flex items-center justify-center flex-col gap-4 shadow-lg hover:scale-105 duration-100"
           >
             <h3 className="text-gray-600 text-sm font-medium">{stat.title}</h3>
             <p className="text-2xl font-bold text-gray-800">{stat.value}</p>

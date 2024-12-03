@@ -22,7 +22,7 @@ const SidebarComponent = () => {
   ];
 
   return (
-    <div className="w-64 h-screen bg-white text-white">
+    <div className="w-64 h-screen bg-white">
       {/* Branding */}
       <div className="p-4 text-2xl font-bold flex items-center space-x-2 h-[10%]">
         <span className="bg-white text-black p-2 rounded">PopcornSpot</span>
