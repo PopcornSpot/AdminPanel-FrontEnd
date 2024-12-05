@@ -4,6 +4,7 @@ import { MdPublish } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const MoviesPage = () => {
+  const authToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([
     {
       poster: "https://i0.wp.com/moviegalleri.net/wp-content/uploads/2024/07/Ajith-Kumar-Vidaamuyarchi-Movie-2nd-Look-Posters-HD.jpg?resize=696%2C1044&ssl=1",
@@ -34,10 +35,30 @@ const MoviesPage = () => {
     alert(`Edit Movie at Index: ${index}`);
   };
 
-  const handleDelete = (index) => {
-    setMovies(movies.filter((_, i) => i !== index));
-    alert(`Deleted Movie at Index: ${index}`);
+  const handleDelete = async (_id) => {
+    setMovies(movies.filter((_, i) => i !== _id));
+    alert(`Deleted Movie at Index: ${_id}`);
+    try {
+      await axios
+        .delete(`http://localhost:7000/movie/delete/?_id=${_id}`,
+          {
+              headers: { Authorization: `Bearer ${authToken}` }
+            }
+        )
+        .then((res) => {
+          toast.success(res.data.Message);
+          setMovies((prevState) =>
+            prevState.filter((value) => value._id !== _id)
+          );
+        })
+        .catch((err) => {
+          toast.error(err.response.data.Message)
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
 
 
   return (

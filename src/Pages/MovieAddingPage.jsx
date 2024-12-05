@@ -52,7 +52,7 @@ const AddMovieForm = () => {
         console.log("tryyyy");
         
         await axios
-          .post("http://localhost:7000/movie/movie", uploadData, {
+          .post("http://localhost:7000/movie/add", uploadData, {
             headers: {
               "Content-Type": "multipart/form-data",
               Authorization: `Bearer ${authToken}`,
@@ -63,7 +63,7 @@ const AddMovieForm = () => {
             console.log(res.data);
             toast.success(res.data.Message);
             setFormData(initialState);
-            navigate("/");
+            navigate("/movies");
           
           })
           .catch((err) => {
