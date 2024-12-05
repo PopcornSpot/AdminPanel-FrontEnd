@@ -166,6 +166,8 @@ const AddMovieForm = () => {
             <option value="PG">PG</option>
             <option value="PG-13">PG-13</option>
             <option value="R">R</option>
+            <option value="UA">UA</option>
+            <option value="A">A</option>
           </select>
         </div>
 

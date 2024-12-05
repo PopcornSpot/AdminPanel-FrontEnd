@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
+import { MdPublish } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 const MoviesPage = () => {
@@ -117,9 +118,9 @@ const MoviesPage = () => {
                     </button>
                     <button
                       className="bg-green-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition duration-300 flex items-center gap-2"
-                      onClick={() => handleDelete(movie._id)}
+                      onClick={() => handlePublish(movie._id)}
                     >
-                      <FaTrashAlt />
+                      <MdPublish/>
                       Publish
                     </button>
                   </div>
