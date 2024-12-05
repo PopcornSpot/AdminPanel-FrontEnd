@@ -44,16 +44,18 @@ const MoviesPage = () => {
       <div className="max-w-6xl mx-auto">
         <div className="text-4xl font-bold text-gray-100 mb-10 flex justify-between items-center">
           <span>Movies List</span>
+          <Link to={"/addmovie"}>
           <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-medium flex items-center gap-2 hover:scale-105 transform transition duration-300">
             Add Movie
             <FaPlus className="text-white" />
           </button>
+          </Link>
         </div>
 
         <div className="space-y-8">
-          {movies.map((movie, index) => (
+          {movies.map((movie) => (
             <div
-              key={index}
+              key={movie._id}
               className="flex flex-row bg-gray-700 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-6 gap-8"
             >
 
@@ -100,18 +102,25 @@ const MoviesPage = () => {
                 <div className="flex items-center justify-between mt-6">
                   <div className="flex gap-6">
                     <button
-                      className="bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg font-medium hover:bg-yellow-300 transition duration-300 flex items-center gap-2"
-                      onClick={() => handleEdit(index)}
+                      className="bg-blue-500 text-gray-900 px-4 py-2 rounded-lg font-medium hover:bg-blue-400 transition duration-300 flex items-center gap-2"
+                      onClick={() => handleEdit(movie._id)}
                     >
                       <FaEdit className="text-gray-900" />
                       Edit
                     </button>
                     <button
                       className="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-400 transition duration-300 flex items-center gap-2"
-                      onClick={() => handleDelete(index)}
+                      onClick={() => handleDelete(movie._id)}
                     >
                       <FaTrashAlt />
                       Delete
+                    </button>
+                    <button
+                      className="bg-green-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition duration-300 flex items-center gap-2"
+                      onClick={() => handleDelete(movie._id)}
+                    >
+                      <FaTrashAlt />
+                      Publish
                     </button>
                   </div>
                   {movie.trailerURL && (

@@ -9,6 +9,7 @@ import ScreenPage from "../Pages/ScreenPage";
 import ProfilePage from "../Pages/ProfilePage";
 import ReportPage from "../Pages/ReportPage";
 import LoginPage from "../Pages/LoginPage";
+import AddMovieForm from "../Pages/MovieAddingPage";
 
 const RouterComponent = () => {
   return (
@@ -27,6 +28,7 @@ const RouterComponent = () => {
           <Route path="/profile" element={<ProfilePage/>} />
           <Route path="/report" element={<ReportPage/>} />
           <Route path="/login" element={<LoginPage/>} />
+          <Route path="/addmovie" element={<AddMovieForm/>}/>
         </Routes>
       </div>
     </div>
