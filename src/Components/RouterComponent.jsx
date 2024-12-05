@@ -8,6 +8,7 @@ import VotingPage from "../Pages/VotingPage";
 import ScreenPage from "../Pages/ScreenPage";
 import ProfilePage from "../Pages/ProfilePage";
 import ReportPage from "../Pages/ReportPage";
+import LoginPage from "../Pages/LoginPage";
 
 const RouterComponent = () => {
   return (
@@ -25,6 +26,7 @@ const RouterComponent = () => {
           <Route path="/voting" element={<VotingPage />} />
           <Route path="/profile" element={<ProfilePage/>} />
           <Route path="/report" element={<ReportPage/>} />
+          <Route path="/login" element={<LoginPage/>} />
         </Routes>
       </div>
     </div>
