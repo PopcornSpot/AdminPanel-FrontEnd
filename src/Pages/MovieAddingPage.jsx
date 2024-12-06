@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const initialState={
@@ -25,10 +25,39 @@ const initialState={
 
 
 
+
+
+const fetchMovieForUpdate = async (_id,setMovie) => {
+  try {
+    const authToken = localStorage.getItem("token");
+    await axios
+      .get(`http://localhost:7000/movie/getmovieforupdate/?_id=${_id}`,
+        {
+          headers: { Authorization: `Bearer ${authToken}` }
+        }
+      )
+      .then((res) => {
+        // console.log(res.data);
+        toast.success(res.data.Message); 
+        setMovie(res.data.movie);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.Message)
+      });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+
 const AddMovieForm = () => {
   const [formData, setFormData] = useState(initialState);
+  const [movieEdit,setMovieEdit]=useState(false);
   const navigate = useNavigate();
-  const handleChange = (e) => {
+  const {_id} = useParams();
+
+const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     setFormData({
       ...formData,
@@ -38,19 +67,36 @@ const AddMovieForm = () => {
 
   const handleSubmit =async (e) => {
     const authToken=localStorage.getItem("token");
-    console.log(authToken); 
     e.preventDefault();
-    console.log("Form submitted:", formData);
 
-
-    const uploadData = new FormData();
+    let uploadData = new FormData();
     Object.keys(formData).forEach((key) => {
       uploadData.append(key, formData[key]);
     });
 
+    console.log(uploadData);
+    console.log(formData);
+    
+    
+
     try {
-        console.log("tryyyy");
-        
+      movieEdit?  
+      await axios.put(`http://localhost:7000/movie/updatemovie/?_id=${_id}`, uploadData,
+       { headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${authToken}`,
+        },}
+      )
+      .then((res)=>{
+        console.log(res.data);
+        toast.success(res.data.Message);
+        // setFormData(initialState);
+        // navigate("/movies") 
+      })
+      .catch((err)=>{
+        toast.error(err.response.data.Message);
+
+      }):
         await axios
           .post("http://localhost:7000/movie/add", uploadData, {
             headers: {
@@ -59,12 +105,10 @@ const AddMovieForm = () => {
             },
           })
           .then((res) => {
-           
             console.log(res.data);
             toast.success(res.data.Message);
             setFormData(initialState);
             navigate("/movies");
-          
           })
           .catch((err) => {
             console.log(err);
@@ -73,15 +117,31 @@ const AddMovieForm = () => {
       } catch (error) {
         console.log(error);
       }
-  
-
-
-
   };
+console.log(movieEdit);
+
+
+
+  useEffect (()=>{
+    if(_id) {
+      setMovieEdit(true);
+      fetchMovieForUpdate(_id,setFormData)
+    }
+    else{
+      setMovieEdit(false);
+    }
+  },[_id])
+
+console.log("jhhdf", formData);
+
+
+
 
   return (
     <div className="max-w-5xl mx-auto p-6 bg-gray-500 rounded-md shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Add a New Movie</h2>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">
+      {movieEdit? "Update Movie" : "Add Movie"}
+      </h2>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block font-medium text-gray-700">Title</label>
@@ -301,6 +361,11 @@ const AddMovieForm = () => {
             accept="image/*"
             required
           />
+          {movieEdit &&
+            <p>{formData.fileOriginalName}</p>     
+           
+          }
+         
         </div>
 
         <div>
@@ -324,7 +389,7 @@ const AddMovieForm = () => {
             type="submit"
             className="w-full px-4 py-2 bg-orange-400 text-white font-bold rounded-md hover:bg-orange-500"
           >
-            Add Movie
+            {movieEdit? "Update" : "Submit"}
           </button>
         </div>
       </form>

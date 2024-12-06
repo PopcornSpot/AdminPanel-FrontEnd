@@ -1,46 +1,99 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
 import { MdPublish } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const MoviesPage = () => {
   const authToken = localStorage.getItem("token");
-  const [movies, setMovies] = useState([
-    {
-      poster: "https://i0.wp.com/moviegalleri.net/wp-content/uploads/2024/07/Ajith-Kumar-Vidaamuyarchi-Movie-2nd-Look-Posters-HD.jpg?resize=696%2C1044&ssl=1",
-      title: "Vidamuyarchi",
-      genre: "Action",
-      language: "Tamil",
-      duration: "2h 15m",
-      releaseDate: "2025-01-15",
-      certificate: "U/A",
-      synopsis: "A thrilling adventure of to finding wife",
-      director: "Magizh Thirumeni",
-      hero: "Ajith Kumar",
-      heroine: "Thrisha",
-      musicDirector: "Aniruth Ravichandher",
-      trailerURL: "https://youtu.be/Wtq3RRORVx4?si=BO300FJEu0cSxp5f",
-      screenNumber: "Screen 1",
-      ticketPrices: {
-        firstClass: "RS 200",
-        secondClass: "RS 150",
-      },
-      screen: "IMAX",
-      formatType: "3D",
-    },
+  const [movies, setMovies] = useState([]);
+    // {
+    //   poster: "https://i0.wp.com/moviegalleri.net/wp-content/uploads/2024/07/Ajith-Kumar-Vidaamuyarchi-Movie-2nd-Look-Posters-HD.jpg?resize=696%2C1044&ssl=1",
+    //   title: "Vidamuyarchi",
+    //   genre: "Action",
+    //   language: "Tamil",
+    //   duration: "2h 15m",
+    //   releaseDate: "2025-01-15",
+    //   certificate: "U/A",
+    //   synopsis: "A thrilling adventure of to finding wife",
+    //   director: "Magizh Thirumeni",
+    //   hero: "Ajith Kumar",
+    //   heroine: "Thrisha",
+    //   musicDirector: "Aniruth Ravichandher",
+    //   trailerURL: "https://youtu.be/Wtq3RRORVx4?si=BO300FJEu0cSxp5f",
+    //   screenNumber: "Screen 1",
+    //   ticketPrices: {
+    //     firstClass: "RS 200",
+    //     secondClass: "RS 150",
+    //   },
+    //   screen: "IMAX",
+    //   formatType: "3D",
+    // },
 
-  ]);
+  const fetchMovie = async () => {
+    try {
+      await axios
+        .get("http://localhost:7000/movie/getallmovie",
+           {
+              headers: { Authorization: `Bearer ${authToken}` }
+            }
+        )
+        .then((res) => {
+          console.log(res.data.findAllMovies);
+          toast.error(res.data.Error)
+          toast.success(res.data.Message) 
+          setMovies(res.data.findAllMovies);
 
-  const handleEdit = (index) => {
-    alert(`Edit Movie at Index: ${index}`);
+        })
+        .catch((err) =>{
+          if (err.status === 401) {
+              return toast.error("Request to Login Again")
+                }
+          toast.error(err.response.data.Error)
+        });
+    } catch (error) {
+      toast.error(error.message)
+    }
   };
 
-  const handleDelete = async (_id) => {
+  useEffect(() => {
+    fetchMovie();
+  }, []);
+
+
+  const handleDelete = async (_id , title) => {
     setMovies(movies.filter((_, i) => i !== _id));
-    alert(`Deleted Movie at Index: ${_id}`);
+    alert(`Deleted : ${title}`);
     try {
       await axios
         .delete(`http://localhost:7000/movie/delete/?_id=${_id}`,
+          {
+              headers: { Authorization: `Bearer ${authToken}` }
+            }
+        )
+        .then((res) => {
+          toast.success(res.data.Message);
+          setMovies((prevState) =>
+            prevState.filter((value) => value._id !== _id)
+          );
+        })
+        .catch((err) => {
+          toast.error(err.response.data.Message)
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+
+  const handlePublish = async (_id,title) => {
+    setMovies(movies.filter((_, i) => i !== _id));
+    alert(`Published : ${title}`);
+    try {
+      const status = "publish"
+      await axios
+        .put(`http://localhost:7000/movie/publish/?_id=${_id}`,status,
           {
               headers: { Authorization: `Bearer ${authToken}` }
             }
@@ -82,7 +135,7 @@ const MoviesPage = () => {
             >
 
               <img
-                src={movie.poster}
+                src={"http://localhost:7000/upload/"+movie.fileName}
                 alt={`${movie.title} Poster`}
                 className="w-48 h-72 object-cover rounded-xl border-4 border-gray-200"
               />
@@ -123,13 +176,14 @@ const MoviesPage = () => {
 
                 <div className="flex items-center justify-between mt-6">
                   <div className="flex gap-6">
+                  <Link to={`/updatemovie/${movie._id}`} >
                     <button
                       className="bg-blue-500 text-gray-900 px-4 py-2 rounded-lg font-medium hover:bg-blue-400 transition duration-300 flex items-center gap-2"
-                      onClick={() => handleEdit(movie._id)}
                     >
                       <FaEdit className="text-gray-900" />
                       Edit
                     </button>
+                    </Link>
                     <button
                       className="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-400 transition duration-300 flex items-center gap-2"
                       onClick={() => handleDelete(movie._id)}
@@ -139,14 +193,14 @@ const MoviesPage = () => {
                     </button>
                     <button
                       className="bg-green-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition duration-300 flex items-center gap-2"
-                      onClick={() => handlePublish(movie._id)}
+                      onClick={() => handlePublish(movie._id,movie.title)}
                     >
                       <MdPublish/>
                       Publish
                     </button>
                   </div>
-                  {movie.trailerURL && (
-                    <Link to={movie.trailerURL} target="_blank">
+                  {movie.trailerUrl && (
+                    <Link to={movie.trailerUrl} target="_blank">
                       <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-md font-medium hover:scale-105 transform transition duration-300">
                         Watch Trailer
                       </button>

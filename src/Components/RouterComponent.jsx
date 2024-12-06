@@ -29,6 +29,7 @@ const RouterComponent = () => {
           <Route path="/report" element={<ReportPage/>} />
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/addmovie" element={<AddMovieForm/>}/>
+          <Route path="/updatemovie/:_id" element={<AddMovieForm />}/>
         </Routes>
       </div>
     </div>
