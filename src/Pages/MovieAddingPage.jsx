@@ -18,14 +18,10 @@ const initialState={
   trailerUrl: "",
   firstClassTicketPrice: "",
   secondClassTicketPrice:"",
-  poster: null,
+  image: null,
   format: "",
   screenNo: "", 
 }
-
-
-
-
 
 const fetchMovieForUpdate = async (_id,setMovie) => {
   try {
@@ -37,7 +33,6 @@ const fetchMovieForUpdate = async (_id,setMovie) => {
         }
       )
       .then((res) => {
-        // console.log(res.data);
         toast.success(res.data.Message); 
         setMovie(res.data.movie);
       })
@@ -57,13 +52,17 @@ const AddMovieForm = () => {
   const navigate = useNavigate();
   const {_id} = useParams();
 
-const handleChange = (e) => {
-    const { name, value, type, files } = e.target;
-    setFormData({
-      ...formData,
-      [name]: type === "file" ? files[0] : value,
-    });
-  };
+ const handleChange = (e) => {
+  const { name, value, type, files } = e.target;
+
+  setFormData((prevData) => ({
+    ...prevData,
+    [name]: type === "file" ? files[0] : value,
+    ...(type === "file" && { fileOriginalName: files[0]?.name || "" }),
+  }));
+};
+
+
 
   const handleSubmit =async (e) => {
     const authToken=localStorage.getItem("token");
@@ -73,10 +72,6 @@ const handleChange = (e) => {
     Object.keys(formData).forEach((key) => {
       uploadData.append(key, formData[key]);
     });
-
-    console.log(uploadData);
-    console.log(formData);
-    
     
 
     try {
@@ -90,8 +85,8 @@ const handleChange = (e) => {
       .then((res)=>{
         console.log(res.data);
         toast.success(res.data.Message);
-        // setFormData(initialState);
-        // navigate("/movies") 
+        setFormData(initialState);
+        navigate("/movies") 
       })
       .catch((err)=>{
         toast.error(err.response.data.Message);
@@ -118,9 +113,6 @@ const handleChange = (e) => {
         console.log(error);
       }
   };
-console.log(movieEdit);
-
-
 
   useEffect (()=>{
     if(_id) {
@@ -132,7 +124,6 @@ console.log(movieEdit);
     }
   },[_id])
 
-console.log("jhhdf", formData);
 
 
 
@@ -355,17 +346,14 @@ console.log("jhhdf", formData);
           <label className="block font-medium text-gray-700">Poster</label>
           <input
             type="file"
-            name="poster"
+            name="image"
             onChange={handleChange}
             className="w-full mt-1"
             accept="image/*"
             required
           />
-          {movieEdit &&
-            <p>{formData.fileOriginalName}</p>     
-           
-          }
-         
+          {formData.fileOriginalName && <p className="text-lg mt-4 ">
+          {formData.fileOriginalName}</p>}
         </div>
 
         <div>

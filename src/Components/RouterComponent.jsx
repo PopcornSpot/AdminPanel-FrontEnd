@@ -10,6 +10,8 @@ import ProfilePage from "../Pages/ProfilePage";
 import ReportPage from "../Pages/ReportPage";
 import LoginPage from "../Pages/LoginPage";
 import AddMovieForm from "../Pages/MovieAddingPage";
+import ProfileEditPage from "../Pages/ProfileEditPage";
+// import ProfileEditPage from "../Pages/ProfileEditPage";
 
 const RouterComponent = () => {
   return (
@@ -30,6 +32,7 @@ const RouterComponent = () => {
           <Route path="/login" element={<LoginPage/>} />
           <Route path="/addmovie" element={<AddMovieForm/>}/>
           <Route path="/updatemovie/:_id" element={<AddMovieForm />}/>
+          <Route path="/editprofile/:_id" element={<ProfileEditPage />}/>
         </Routes>
       </div>
     </div>
