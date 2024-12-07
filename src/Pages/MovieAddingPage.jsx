@@ -33,7 +33,8 @@ const fetchMovieForUpdate = async (_id,setMovie) => {
         }
       )
       .then((res) => {
-        toast.success(res.data.Message); 
+        toast.success(res.data.Message);
+        toast.error(res.data.Error)  
         setMovie(res.data.movie);
       })
       .catch((err) => {
@@ -85,6 +86,7 @@ const AddMovieForm = () => {
       .then((res)=>{
         console.log(res.data);
         toast.success(res.data.Message);
+        toast.error(res.data.Error) 
         setFormData(initialState);
         navigate("/movies") 
       })
@@ -102,6 +104,7 @@ const AddMovieForm = () => {
           .then((res) => {
             console.log(res.data);
             toast.success(res.data.Message);
+            toast.error(res.data.Error) 
             setFormData(initialState);
             navigate("/movies");
           })

@@ -18,22 +18,7 @@ const ProfilePage = () => {
         reports: "2",
       };
 
-  // const adminDetail = {
-  //   name: "Admin",
-  //   email: "admin@example.com",
-  //   contact: "1234567890",
-  //   role: "Admin",
-  //   theaterName: "Theater Name",
-  //   theaterId: "123456",
-  //   theaterLocation: "Location",
-  //   image:
-  //     "https://media.istockphoto.com/id/1335941248/photo/shot-of-a-handsome-young-man-standing-against-a-grey-background.jpg?s=2048x2048&w=is&k=20&c=ZtS0t5PnIsdIvpLQ67zrmW6uKwQKwayRqh4GLuAlupA=",
-  //   
-  // };
-
-  // const handleEdit = () => {
-  //   alert("Edit button clicked");
-  // };
+  
   const getAdminDetails = async () => {
     try {
        await axios
@@ -43,9 +28,8 @@ const ProfilePage = () => {
           }
         )
         .then((res) => {
-          console.log(res.data);
-          
           toast.success(res.data.Message)
+          toast.error(res.data.Error);
           setAdmin(res.data.singleAdmin)
         })
         .catch((err) => {

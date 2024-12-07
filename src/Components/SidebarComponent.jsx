@@ -25,12 +25,12 @@ const SidebarComponent = () => {
   return (
     <div className="w-64 h-screen bg-gradient-to-r from-gray-900 to-gray-800 shadow-xl">
 
-      <div className="p-4 text-2xl font-bold flex items-center space-x-2 h-[15%]">
-        <img src={logo} alt="logo" className="w-50 h-20" />
+      <div className=" flex items-center justify-center h-[15%]">
+        <img src={logo} alt="logo" className="w-40 h-16" />
       </div>
 
 
-      <ul className="mt-6 space-y-4">
+      <ul className="mt-1 space-y-4">
         {SidebarDetail.map((item, index) => (
           <li key={index}>
             <Link
