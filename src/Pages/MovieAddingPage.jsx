@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import SidebarComponent from "../Components/SidebarComponent";
 
 const initialState={
   title: "",
@@ -132,6 +133,12 @@ const AddMovieForm = () => {
 
 
   return (
+    <div className="flex h-screen overflow-hidden">
+      <div className="w-56 fixed h-full">
+        <SidebarComponent />
+      </div>
+
+    <div className="flex-1 ml-56 overflow-y-auto">
     <div className="max-w-5xl mx-auto p-6 bg-gray-500 rounded-md shadow-md">
       <h2 className="text-2xl font-bold mb-6 text-gray-800">
       {movieEdit? "Update Movie" : "Add Movie"}
@@ -384,6 +391,8 @@ const AddMovieForm = () => {
           </button>
         </div>
       </form>
+    </div>
+    </div>
     </div>
   );
 };

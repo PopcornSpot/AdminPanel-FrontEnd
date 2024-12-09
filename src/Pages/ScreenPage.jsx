@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
+import SidebarComponent from "../Components/SidebarComponent";
 
 const ScreensPage = () => {
   const [screens, setScreens] = useState([
@@ -13,6 +14,12 @@ const ScreensPage = () => {
   };
 
   return (
+    <div className="flex h-screen overflow-hidden">
+      <div className="w-56 fixed h-full">
+        <SidebarComponent/>
+      </div>
+
+      <div className="flex-1 ml-56 overflow-y-auto">
     <div className="p-6 bg-gray-900 min-h-screen text-gray-200">
       <div className="mb-8 flex justify-between items-center">
         <h1 className="text-4xl font-extrabold text-gray-200">Manage Screens</h1>
@@ -70,6 +77,8 @@ const ScreensPage = () => {
           </tbody>
         </table>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

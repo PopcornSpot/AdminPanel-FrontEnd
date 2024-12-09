@@ -4,6 +4,7 @@ import { FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
 import { MdPublish } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import SidebarComponent from "../Components/SidebarComponent";
 
 const MoviesPage = () => {
   const authToken = localStorage.getItem("token");
@@ -115,6 +116,12 @@ const MoviesPage = () => {
 
 
   return (
+    <div className="flex h-screen overflow-hidden">
+      <div className="w-56 fixed h-full">
+        <SidebarComponent/>
+      </div>
+
+      <div className="flex-1 ml-56 overflow-y-auto">
     <div className="p-8 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 min-h-screen">
       <div className="max-w-6xl mx-auto">
         <div className="text-4xl font-bold text-gray-100 mb-10 flex justify-between items-center">
@@ -212,6 +219,8 @@ const MoviesPage = () => {
           ))}
         </div>
       </div>
+    </div>
+    </div>
     </div>
 
   );

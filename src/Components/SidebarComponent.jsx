@@ -13,7 +13,7 @@ const SidebarComponent = () => {
   const location = useLocation();
 
   const SidebarDetail = [
-    { value: "Overview", icon: <FaTachometerAlt />, path: "/" },
+    { value: "Overview", icon: <FaTachometerAlt />, path: "/home" },
     { value: "Movies", icon: <RiMovie2Fill />, path: "/movies" },
     { value: "Screens", icon: <PiScreencastFill />, path: "/screen" },
     { value: "Seats", icon: <MdEventSeat />, path: "/seat" },
@@ -23,7 +23,7 @@ const SidebarComponent = () => {
   ];
 
   return (
-    <div className="w-64 h-screen bg-gradient-to-r from-gray-900 to-gray-800 shadow-xl">
+    <div className="w-56 h-screen bg-gradient-to-r from-gray-900 to-gray-800 shadow-xl">
 
       <div className=" flex items-center justify-center h-[15%]">
         <img src={logo} alt="logo" className="w-40 h-16" />

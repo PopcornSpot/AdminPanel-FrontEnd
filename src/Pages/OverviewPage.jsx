@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line, Bar } from "react-chartjs-2";
+import SidebarComponent from "../Components/SidebarComponent";
 
 ChartJS.register(
   CategoryScale,
@@ -60,6 +61,11 @@ const OverviewPage = () => {
   };
 
   return (
+    <div className="flex h-screen overflow-hidden">
+      <div className="w-56 fixed h-full">
+        <SidebarComponent/>
+      </div>
+      <div className="flex-1 ml-56 overflow-y-auto">
     <div className="p-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 min-h-screen font-sans text-gray-200">
 
       <div className="mb-8">
@@ -126,6 +132,8 @@ const OverviewPage = () => {
           </li>
         </ul>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

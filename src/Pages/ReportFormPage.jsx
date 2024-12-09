@@ -65,6 +65,12 @@ const ReportForm = () => {
 };
 
   return (
+    <div className="flex h-screen overflow-hidden">
+      <div className="w-56 fixed h-full">
+        <SidebarComponent />
+      </div>
+
+      <div className="flex-1 ml-56 overflow-y-auto">
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg mt-10">
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Submit a Report</h2>
 
@@ -174,6 +180,8 @@ const ReportForm = () => {
           Submit Report
         </button>
       </form>
+    </div>
+    </div>
     </div>
   );
 };

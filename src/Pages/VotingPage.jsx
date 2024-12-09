@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa";
+import SidebarComponent from "../Components/SidebarComponent";
 
 const VotingPage = () => {
   const [movies, setMovies] = useState([
@@ -23,6 +24,12 @@ const VotingPage = () => {
   };
 
   return (
+    <div className="flex h-screen overflow-hidden">
+      <div className="w-56 fixed h-full">
+        <SidebarComponent/>
+      </div>
+
+      <div className="flex-1 ml-56 overflow-y-auto">
     <div className="p-6 bg-gradient-to-b from-gray-800 to-gray-900 min-h-screen flex flex-col items-center gap-8">
       <div className="w-full  mb-6">
         <h1 className="text-4xl font-extrabold text-gray-200">Create Movie Poll</h1>
@@ -75,6 +82,8 @@ const VotingPage = () => {
           </button>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

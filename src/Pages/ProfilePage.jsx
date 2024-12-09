@@ -4,6 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import profileImage from "../assets/AdminImage.jpg"
+import SidebarComponent from "../Components/SidebarComponent";
 
 const ProfilePage = () => {
    const backendURL= "http://localhost:7000"
@@ -50,6 +51,12 @@ const ProfilePage = () => {
 
 
   return (
+    <div className="flex h-screen overflow-hidden">
+      <div className="w-56 fixed h-full">
+        <SidebarComponent/>
+      </div>
+
+      <div className="flex-1 ml-56 overflow-y-auto">
     <div className="p-8 bg-gradient-to-b from-gray-700 via-gray-800 to-gray-900 min-h-screen">
       <div className="max-w-6xl mx-auto">
         <div className="text-3xl font-extrabold text-gray-200 mb-8 flex justify-between items-center">
@@ -115,6 +122,8 @@ const ProfilePage = () => {
           </div>
         </div>
       </div>
+    </div>
+    </div>
     </div>
   );
 };

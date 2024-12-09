@@ -30,7 +30,7 @@ const LoginPage = () => {
           toast.success(res.data.Message);
           localStorage.setItem("token", res.data.token);
           setFormData(initialState);
-          navigate("/");
+          navigate("/home");
         })
         .catch((err) => {
           console.log(err);

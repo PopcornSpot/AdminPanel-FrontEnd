@@ -89,6 +89,12 @@ const ProfileEditPage = () => {
   }, [_id]);
 
   return (
+    <div className="flex h-screen overflow-hidden">
+      <div className="w-56 fixed h-full">
+        <SidebarComponent />
+      </div>
+
+      <div className="flex-1 ml-56 overflow-y-auto">
     <div
       className={`bg-slate-100 min-h-screen flex flex-col justify-center items-center`}
     >
@@ -217,6 +223,8 @@ const ProfileEditPage = () => {
           Submit
         </button>
       </form>
+    </div>
+    </div>
     </div>
   );
 };
