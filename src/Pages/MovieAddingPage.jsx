@@ -229,6 +229,7 @@ const AddMovieForm = () => {
             <option value="R">R</option>
             <option value="UA">UA</option>
             <option value="A">A</option>
+            <option value="A">N/A</option>
           </select>
         </div>
 
