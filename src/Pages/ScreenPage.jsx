@@ -84,7 +84,7 @@ const ScreensPage = () => {
                     <strong>Movie:</strong>{screen.movieName}
                   </p>
 
-                  <p className="mt-4 text-gray-400">
+                  <p className="mt-2 text-gray-400">
                     <strong>Capacity:</strong> {screen.capacity}
                   </p>
 

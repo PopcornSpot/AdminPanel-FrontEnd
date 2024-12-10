@@ -223,13 +223,11 @@ const AddMovieForm = () => {
             required
           >
             <option value="">Select Certificate</option>
-            <option value="G">G</option>
-            <option value="PG">PG</option>
-            <option value="PG-13">PG-13</option>
-            <option value="R">R</option>
+            <option value="U">U</option>
             <option value="UA">UA</option>
             <option value="A">A</option>
-            <option value="NA">N/A</option>
+            <option value="S">S</option>
+            <option value="NA">NA</option>
           </select>
         </div>
 
