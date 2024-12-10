@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import SidebarComponent from "../Components/SidebarComponent";
+import {} from "../Components/ReusableComponents/Theaterlayout"
+import { Link, useNavigate } from "react-router-dom";
 
 const ScreensPage = () => {
   const [screens, setScreens] = useState([
@@ -40,6 +42,8 @@ const ScreensPage = () => {
     setScreens((prevScreens) => prevScreens.filter((screen) => screen.id !== id));
   };
 
+  const navigate = useNavigate();
+
   return (
     <div className="flex h-screen overflow-hidden">
       <div className="w-56 fixed h-full">
@@ -52,9 +56,12 @@ const ScreensPage = () => {
             <h1 className="text-4xl font-extrabold text-gray-200 tracking-wide">
               Manage Screens
             </h1>
-            <button className="flex items-center px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-all duration-300 shadow-md transform hover:scale-105">
+            <Link to={"/addscreen"}>
+            <span className="flex items-center px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-all duration-300 shadow-md transform hover:scale-105">
               <FaPlus className="mr-2" /> Add Screen
-            </button>
+            </span>
+            </Link>
+            
           </div>
 
           {screens.length > 0 ? (
@@ -112,7 +119,9 @@ const ScreensPage = () => {
                   </div>
 
                   <div className="mt-6">
-                    <button className="w-full py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition duration-200">
+                    <button className="w-full py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition duration-200"
+                    onClick={() => navigate("/theaterlayout")}
+                    >
                       View Screen
                     </button>
                   </div>
