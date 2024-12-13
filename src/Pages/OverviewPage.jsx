@@ -61,79 +61,57 @@ const OverviewPage = () => {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden">
-      <div className="w-56 fixed h-full">
-        <SidebarComponent/>
+    <div className="flex flex-col md:flex-row h-screen overflow-hidden">
+      <div className="w-full md:w-56 fixed h-full">
+        <SidebarComponent />
       </div>
-      <div className="flex-1 ml-56 overflow-y-auto">
-    <div className="p-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 min-h-screen font-sans text-gray-200">
-
-      <div className="mb-8">
-        <h1 className="text-4xl font-extrabold">Dashboard Overview</h1>
-
-      </div>
-
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
-        {stats.map((stat, index) => (
-          <div
-            key={index}
-            className="p-6 bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105"
-          >
-            <h3 className="text-lg font-semibold text-gray-400">{stat.title}</h3>
-            <p className="text-4xl font-bold text-gray-100">{stat.value}</p>
-            <p
-              className={`text-sm mt-2 font-medium ${stat.change.startsWith("+") ? "text-green-400" : "text-red-400"
-                }`}
-            >
-              {stat.change} since last month
-            </p>
+      
+      <div className="flex-1 md:ml-56 overflow-y-auto">
+        <div className="p-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 min-h-screen font-sans text-gray-200">
+          <div className="mb-8">
+            <h1 className="text-4xl font-extrabold">Dashboard Overview</h1>
           </div>
-        ))}
-      </div>
 
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+            {stats.map((stat, index) => (
+              <div key={index} className="p-6 bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+                <h3 className="text-lg font-semibold text-gray-400">{stat.title}</h3>
+                <p className="text-4xl font-bold text-gray-100">{stat.value}</p>
+                <p className={`text-sm mt-2 font-medium ${stat.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>{stat.change} since last month</p>
+              </div>
+            ))}
+          </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-        <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-          <h2 className="text-xl font-semibold text-gray-300 mb-4">
-            Revenue Trend
-          </h2>
-          <Line data={revenueData} />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
+              <h2 className="text-xl font-semibold text-gray-300 mb-4">Revenue Trend</h2>
+              <Line data={revenueData} />
+            </div>
+            <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
+              <h2 className="text-xl font-semibold text-gray-300 mb-4">Tickets Sold</h2>
+              <Bar data={ticketsData} />
+            </div>
+          </div>
+
+          <div>
+            <h2 className="text-xl font-semibold mb-6 text-gray-300">Recent Activity</h2>
+            <ul className="space-y-4">
+              <li className="p-4 bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
+                <p className="text-gray-100 font-medium">Subhashini purchased tickets for Amaran</p>
+                <span className="text-gray-500 text-sm">5 minutes ago</span>
+              </li>
+              <li className="p-4 bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
+                <p className="text-gray-100 font-medium">New user registered.</p>
+                <span className="text-gray-500 text-sm">10 minutes ago</span>
+              </li>
+              <li className="p-4 bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
+                <p className="text-gray-100 font-medium">Revenue increased by 15% this week.</p>
+                <span className="text-gray-500 text-sm">2 hours ago</span>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div className="p-6 bg-gray-800 rounded-lg shadow-lg">
-          <h2 className="text-xl font-semibold text-gray-300 mb-4">
-            Tickets Sold
-          </h2>
-          <Bar data={ticketsData} />
-        </div>
       </div>
-
-
-      <div>
-        <h2 className="text-xl font-semibold mb-6 text-gray-300">
-          Recent Activity
-        </h2>
-        <ul className="space-y-4">
-          <li className="p-4 bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
-            <p className="text-gray-100 font-medium">
-              Subhashini purchased tickets for Amaran
-            </p>
-            <span className="text-gray-500 text-sm">5 minutes ago</span>
-          </li>
-          <li className="p-4 bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
-            <p className="text-gray-100 font-medium">New user registered.</p>
-            <span className="text-gray-500 text-sm">10 minutes ago</span>
-          </li>
-          <li className="p-4 bg-gray-800 rounded-lg shadow hover:shadow-lg transition">
-            <p className="text-gray-100 font-medium">
-              Revenue increased by 15% this week.
-            </p>
-            <span className="text-gray-500 text-sm">2 hours ago</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    </div>
     </div>
   );
 };
