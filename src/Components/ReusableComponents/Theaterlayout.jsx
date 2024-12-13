@@ -23,7 +23,6 @@ const TheaterLayout = () => {
 
   return (
     <div className={`p-6 flex items-center justify-center flex-col bg-gray-800`}>
-      
       <div className={`space-y-10`}>
         {rows.map((section, sectionIndex) => (
           <div key={sectionIndex} className="space-y-6">

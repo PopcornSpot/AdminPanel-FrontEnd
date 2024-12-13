@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import SidebarComponent from "../Components/SidebarComponent";
-import {} from "../Components/ReusableComponents/Theaterlayout"
 import { Link, useNavigate } from "react-router-dom";
 
 const ScreensPage = () => {
@@ -36,13 +35,14 @@ const ScreensPage = () => {
       showTimings: ["11:00AM to 1:00PM", "2:00PM to 5:00PM", "6:00PM to 9:00PM", "10:00PM to 1:00AM"], 
       showLastDate: "25-01-2025" 
     }
+
   ]);
+
+    const navigate = useNavigate("/theaterlayout");
 
   const handleDelete = (id) => {
     setScreens((prevScreens) => prevScreens.filter((screen) => screen.id !== id));
   };
-
-  const navigate = useNavigate();
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -57,11 +57,13 @@ const ScreensPage = () => {
               Manage Screens
             </h1>
             <Link to={"/addscreen"}>
-            <span className="flex items-center px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-all duration-300 shadow-md transform hover:scale-105">
+            <button 
+               
+              className="flex items-center px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-all duration-300 shadow-md transform hover:scale-105"
+            >
               <FaPlus className="mr-2" /> Add Screen
-            </span>
+            </button>
             </Link>
-            
           </div>
 
           {screens.length > 0 ? (
@@ -88,7 +90,7 @@ const ScreensPage = () => {
                     </div>
                   </div>
                   <p className="mt-4 text-gray-400">
-                    <strong>Movie:</strong>{screen.movieName}
+                    <strong>Movie:</strong> {screen.movieName}
                   </p>
 
                   <p className="mt-2 text-gray-400">
@@ -119,8 +121,9 @@ const ScreensPage = () => {
                   </div>
 
                   <div className="mt-6">
-                    <button className="w-full py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition duration-200"
-                    onClick={() => navigate("/theaterlayout")}
+                    <button 
+                      className="w-full py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition duration-200"
+                      onClick={() => navigate("/theaterlayout")}
                     >
                       View Screen
                     </button>
