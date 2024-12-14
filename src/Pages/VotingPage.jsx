@@ -4,8 +4,8 @@ import SidebarComponent from "../Components/SidebarComponent";
 
 const VotingPage = () => {
   const [movies, setMovies] = useState([
-    { movieName: "", votes: 0 },
-    { movieName: "", votes: 0 },
+    { movieName: "qwerwer", votes: 3 },
+    { movieName: "23423werwe", votes: 0 },
   ]);
 
   const handleMovieChange = (index, value) => {

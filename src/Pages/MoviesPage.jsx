@@ -9,28 +9,7 @@ import SidebarComponent from "../Components/SidebarComponent";
 const MoviesPage = () => {
   const authToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
-    // {
-    //   poster: "https://i0.wp.com/moviegalleri.net/wp-content/uploads/2024/07/Ajith-Kumar-Vidaamuyarchi-Movie-2nd-Look-Posters-HD.jpg?resize=696%2C1044&ssl=1",
-    //   title: "Vidamuyarchi",
-    //   genre: "Action",
-    //   language: "Tamil",
-    //   duration: "2h 15m",
-    //   releaseDate: "2025-01-15",
-    //   certificate: "U/A",
-    //   synopsis: "A thrilling adventure of to finding wife",
-    //   director: "Magizh Thirumeni",
-    //   hero: "Ajith Kumar",
-    //   heroine: "Thrisha",
-    //   musicDirector: "Aniruth Ravichandher",
-    //   trailerURL: "https://youtu.be/Wtq3RRORVx4?si=BO300FJEu0cSxp5f",
-    //   screenNumber: "Screen 1",
-    //   ticketPrices: {
-    //     firstClass: "RS 200",
-    //     secondClass: "RS 150",
-    //   },
-    //   screen: "IMAX",
-    //   formatType: "3D",
-    // },
+   
 
   const fetchMovie = async () => {
     try {
@@ -90,11 +69,11 @@ const MoviesPage = () => {
 
   const handlePublish = async (_id,title) => {
     setMovies(movies.filter((_, i) => i !== _id));
-    alert(`Published : ${title}`);
+    alert(`Publish : ${title}`);
     try {
-      const status = "publish"
+      const status = {status:"publish"}
       await axios
-        .put(`http://localhost:7000/movie/publish/?_id=${_id}`,status,
+        .put(`http://localhost:7000/movie/updatemovie/?_id=${_id}`,status,
           {
               headers: { Authorization: `Bearer ${authToken}` }
             }
@@ -185,26 +164,40 @@ const MoviesPage = () => {
                   <div className="flex gap-6">
                   <Link to={`/updatemovie/${movie._id}`} >
                     <button
-                      className="bg-blue-500 text-gray-900 px-4 py-2 rounded-lg font-medium hover:bg-blue-400 transition duration-300 flex items-center gap-2"
+                      className="bg-blue-500 text-gray-900 px-4 h-10 rounded-lg font-medium hover:bg-blue-400 transition duration-300 flex items-center gap-2"
                     >
                       <FaEdit className="text-gray-900" />
                       Edit
                     </button>
                     </Link>
                     <button
-                      className="bg-red-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-red-400 transition duration-300 flex items-center gap-2"
+                      className="bg-red-500 text-white px-4 h-10 rounded-lg font-medium hover:bg-red-400 transition duration-300 flex items-center gap-2"
                       onClick={() => handleDelete(movie._id)}
                     >
                       <FaTrashAlt />
                       Delete
                     </button>
-                    <button
+                    <span
+                        className={`flex items-center h-10 px-6 text-base text-white font-medium transition-colors rounded-md ${
+                          movie.status==="pending"
+                            ? "bg-orange-400"
+                            : "bg-green-500"
+                        }`}
+                       >
+                      {movie.status}
+                     </span>
+                    {/* {
+                      movie.status==="pending"?
+                      <button
                       className="bg-green-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-green-400 transition duration-300 flex items-center gap-2"
                       onClick={() => handlePublish(movie._id,movie.title)}
                     >
                       <MdPublish/>
                       Publish
-                    </button>
+                    </button>:
+                    <></>
+                    } */}
+                   
                   </div>
                   {movie.trailerUrl && (
                     <Link to={movie.trailerUrl} target="_blank">

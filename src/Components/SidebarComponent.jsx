@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaTachometerAlt } from "react-icons/fa";
 import { RiMovie2Fill } from "react-icons/ri";
 import { PiScreencastFill } from "react-icons/pi";
@@ -8,8 +8,10 @@ import { FaVoteYea } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { MdReportProblem } from "react-icons/md";
 import logo from "../assets/logo.png";
+import { BiMoviePlay, BiSolidLogOut } from "react-icons/bi";
 
 const SidebarComponent = () => {
+  const navigate = useNavigate();
   const location = useLocation();
 
   const SidebarDetail = [
@@ -17,11 +19,17 @@ const SidebarComponent = () => {
     { value: "Movies", icon: <RiMovie2Fill />, path: "/movies" },
     { value: "Screens", icon: <PiScreencastFill />, path: "/screen" },
     { value: "Seats", icon: <MdEventSeat />, path: "/seat" },
+    { value: "Theatre", icon: <MdEventSeat />, path: "/theatre" },
+    { value: "Show", icon: <BiMoviePlay/>, path: "/show" },
     { value: "Voting", icon: <FaVoteYea />, path: "/voting" },
     { value: "Profile", icon: <CgProfile />, path: "/profile" },
     { value: "Report", icon: <MdReportProblem />, path: "/report" },
   ];
-
+  
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
   return (
     <div className="w-56 h-screen bg-gradient-to-r from-gray-900 to-gray-800 shadow-xl">
 
@@ -50,6 +58,15 @@ const SidebarComponent = () => {
             </Link>
           </li>
         ))}
+         <li
+                onClick={handleLogout}
+                className="flex items-center cursor-pointer p-3 text-sm font-medium transition-colors rounded-md hover:bg-gradient-to-r from-orange-500 to-orange-400 hover:text-white text-gray-200"
+              >
+                <span className="mr-3 text-lg">
+                  <BiSolidLogOut />
+                </span>
+                Logout
+              </li>
       </ul>
     </div>
   );

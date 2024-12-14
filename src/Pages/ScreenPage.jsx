@@ -1,48 +1,70 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 import SidebarComponent from "../Components/SidebarComponent";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const ScreensPage = () => {
-  const [screens, setScreens] = useState([
-    { 
-      id: 1, 
-      movieName: "Kanguva",
-      type: "2D", 
-      capacity: 150, 
-      firstClassPrice: 50, 
-      secondClassPrice: 100, 
-      showTimings: ["11:00AM to 1:00PM", "2:00PM to 5:00PM", "6:00PM to 9:00PM", "10:00PM to 1:00AM"], 
-      showLastDate: "25-01-2025" 
-    },
-    { 
-      id: 2,
-      movieName: "Sorgavaasal",
-      type: "IMAX 3D", 
-      capacity: 250, 
-      firstClassPrice: 70, 
-      secondClassPrice: 120, 
-      showTimings: ["11:00AM to 1:00PM", "2:00PM to 5:00PM", "6:00PM to 9:00PM", "10:00PM to 1:00AM"], 
-      showLastDate: "25-01-2025" 
-    },
-    { 
-      id: 3, 
-      movieName: "Lucky Bhasker", 
-      type: "4DX", 
-      capacity: 120, 
-      firstClassPrice: 100, 
-      secondClassPrice: 150, 
-      showTimings: ["11:00AM to 1:00PM", "2:00PM to 5:00PM", "6:00PM to 9:00PM", "10:00PM to 1:00AM"], 
-      showLastDate: "25-01-2025" 
+  const [screens, setScreens] = useState([]);
+  const navigate = useNavigate("/theaterlayout");
+  const authToken = localStorage.getItem("token");
+
+  const fetchScreen = async () => {
+    try {
+      await axios
+        .get("http://localhost:7000/screen/getallscreen",
+           {
+              headers: { Authorization: `Bearer ${authToken}` }
+            }
+        )
+        .then((res) => {
+          toast.error(res.data.Error)
+          toast.success(res.data.Message) 
+          setScreens(res.data.allScreens);
+
+        })
+        .catch((err) =>{
+          toast.error(err.response.data.Error)
+        });
+    } catch (error) {
+      console.log(error.message);
+      
+      toast.error(error.message)
     }
-
-  ]);
-
-    const navigate = useNavigate("/theaterlayout");
-
-  const handleDelete = (id) => {
-    setScreens((prevScreens) => prevScreens.filter((screen) => screen.id !== id));
   };
+
+ 
+  const handleDelete = async (_id) => {
+  
+    try {
+        await axios
+          .delete(`http://localhost:7000/screen/delete/?_id=${_id}`,
+            {
+                headers: { Authorization: `Bearer ${authToken}` }
+              }
+          )
+          .then( async (res) => {
+            toast.success(res.data.Message);
+            toast.error(res.data.Error);
+            await fetchScreen();
+          })
+          .catch((err) => {
+            toast.error(err.response.data.Message)
+          });
+      } catch (error) {
+        console.log(error.message);
+      }
+
+
+  };
+
+
+
+  useEffect(() => {
+    fetchScreen();
+  }, []);
+
 
   return (
     <div className="flex h-screen overflow-hidden">
@@ -70,55 +92,39 @@ const ScreensPage = () => {
             <div className="flex flex-wrap gap-6">
               {screens.map((screen) => (
                 <div 
-                  key={screen.id} 
+                  key={screen._id} 
                   className="flex flex-col bg-gray-800 p-6 rounded-lg shadow-lg w-full sm:w-[48%] lg:w-[30%] transition-transform transform hover:scale-105"
                 >
                   <div className="flex justify-between items-center">
-                    <h2 className="text-2xl font-bold text-orange-500">Screen: {screen.id}</h2>
+                    <h2 className="text-2xl font-bold text-orange-500">Screen: {screen.screenNo}</h2>
                     <div className="flex space-x-2">
+                       <Link to={`/editscreen/${screen._id}`} >
                       <button 
                         className="p-2 bg-green-500 rounded-full hover:bg-green-600 transition duration-200"
                       >
                         <FaEdit className="text-white" />
                       </button>
+                      </Link>
                       <button 
                         className="p-2 bg-red-500 rounded-full hover:bg-red-600 transition duration-200"
-                        onClick={() => handleDelete(screen.id)}
+                        onClick={() => handleDelete(screen._id)}
                       >
                         <FaTrash className="text-white" />
                       </button>
                     </div>
                   </div>
                   <p className="mt-4 text-gray-400">
-                    <strong>Movie:</strong> {screen.movieName}
+                    <strong>Total Capacity:</strong> {screen.totalSeats}
                   </p>
 
-                  <p className="mt-2 text-gray-400">
-                    <strong>Capacity:</strong> {screen.capacity}
+                  <p className="mt-4 text-gray-400">
+                    <strong>1st Class Seats:</strong> {screen.firstClassSeats}
                   </p>
 
-                  <p className="mt-2 text-gray-400">
-                    <strong>1st Class Price:</strong> ₹{screen.firstClassPrice}
+                  <p className="mt-4 text-gray-400">
+                    <strong>2nd Class Seats:</strong> {screen.secondClassSeats}
                   </p>
 
-                  <p className="mt-2 text-gray-400">
-                    <strong>2nd Class Price:</strong> ₹{screen.secondClassPrice}
-                  </p>
-
-                  <p className="mt-2 text-gray-400">
-                    <strong>Show End Date:</strong> {screen.showLastDate}
-                  </p>
-
-                  <div className="mt-4">
-                    <p className="text-gray-400 font-semibold">Show Timings:</p>
-                    <ul className="list-disc list-inside space-y-1 mt-2">
-                      {screen.showTimings.map((time, i) => (
-                        <li key={i} className="text-sm text-gray-300 list-none">
-                          {time}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
 
                   <div className="mt-6">
                     <button 
