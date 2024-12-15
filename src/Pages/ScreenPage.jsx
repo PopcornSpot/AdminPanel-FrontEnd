@@ -72,7 +72,7 @@ const ScreensPage = () => {
         <SidebarComponent />
       </div>
 
-      <div className="flex-1 ml-56 overflow-y-auto">
+      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
         <div className="p-6 bg-gray-900 min-h-screen text-gray-200">
           <div className="mb-8 flex justify-between items-center">
             <h1 className="text-4xl font-extrabold text-gray-200 tracking-wide">

@@ -94,7 +94,7 @@ const ProfileEditPage = () => {
         <SidebarComponent />
       </div>
 
-      <div className="flex-1 ml-56 overflow-y-auto">
+      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
     <div
       className={`bg-slate-100 min-h-screen flex flex-col justify-center items-center`}
     >

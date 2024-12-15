@@ -23,7 +23,8 @@ const TheatreCard = ({ theatres, onDelete }) => {
           <p className="text-sm text-gray-600"><strong>Zip Code:</strong> {theatre.zipCode}</p>
           <p className="text-sm text-gray-600"><strong>Phone:</strong> {theatre.phone}</p>
           <p className="text-sm text-gray-600"><strong>Email:</strong> {theatre.email}</p>
-          <p className="text-sm text-gray-600"><strong>Screens:</strong> {theatre.screens}</p>
+          <p className="text-sm text-gray-600"><strong>No of Screens:</strong> {theatre.screens}</p>
+          <p className="text-sm text-gray-600"><strong>Screen Type:</strong> {theatre.screenType}</p>
           <p className="text-sm text-gray-600"><strong>Facilities:</strong> {theatre.facilities.join(", ")}</p>
           <div className="flex justify-between mt-4">
             <Link to={`/edittheatre/${theatre._id}`} >

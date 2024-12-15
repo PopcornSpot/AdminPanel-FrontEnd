@@ -71,7 +71,7 @@ const AddShow = () => {
         .then((res) => {
           toast.error(res.data.Error);
           const allMovies =res.data.findAllMovies
-          const filteredMovies = allMovies.filter((movies) => movies.status == "publish");
+          const filteredMovies = allMovies.filter((movies) => movies.status == "Published");
           console.log(filteredMovies);
           const movies = filteredMovies.map((movieItem) => movieItem.title);
           setMovieList(movies)
@@ -168,7 +168,7 @@ const AddShow = () => {
     <div className="w-56 fixed h-full">
       <SidebarComponent/>
     </div>
-    <div className="flex-1 ml-56 overflow-y-auto">
+    <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
       <h2 className="text-2xl font-semibold mb-4">{editShow ? 'Update Show' : 'Add New Show'}</h2>
       <form onSubmit={handleSubmit}>

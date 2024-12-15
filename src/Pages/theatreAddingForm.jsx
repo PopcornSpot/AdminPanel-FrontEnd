@@ -12,6 +12,7 @@ const initialState = {
   country: '',
   zipCode: '',
   phone: '',
+  screenType: '',
   email: '',
   screens: '',
   facilities: [],
@@ -131,7 +132,7 @@ const AddTheatreForm = () => {
         <div className="w-56 fixed h-full">
           <SidebarComponent />
         </div>
-        <div className="flex-1 ml-56 overflow-y-auto">
+        <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
         <div className="min-h-screen bg-gray-100 flex items-center justify-center">
             <form
                 className="bg-white p-6 rounded-lg shadow-md w-full max-w-5xl"
@@ -260,20 +261,43 @@ const AddTheatreForm = () => {
                     />
                 </div>
 
-                <div className="mb-4">
-                    <label className="block font-bold mb-2" htmlFor="screens">
-                        Number of Screens
-                    </label>
-                    <input
-                        type="number"
-                        id="screens"
-                        name="screens"
-                        value={formData.screens}
-                        onChange={handleChange}
-                        className="w-full border border-gray-300 rounded-lg p-2"
-                        required
-                    />
-                </div>
+                <div className="flex gap-4 mb-4">
+
+  <div className="flex-1">
+    <label className="block font-bold mb-2" htmlFor="screenType">
+      Screen Type
+    </label>
+    <select
+      id="screenType"
+      name="screenType"
+      value={formData.screenType}
+      onChange={handleChange}
+      className="w-full border border-gray-300 rounded-lg p-2"
+      required
+    >
+      <option value="">Select Screen Type</option>
+      <option value="3D">3D</option>
+      <option value="2D">2D</option>
+      <option value="IMAX">IMAX</option>
+    </select>
+  </div>
+
+  <div className="flex-1">
+    <label className="block font-bold mb-2" htmlFor="screens">
+      Number of Screens
+    </label>
+    <input
+      type="number"
+      id="screens"
+      name="screens"
+      value={formData.screens}
+      onChange={handleChange}
+      className="w-full border border-gray-300 rounded-lg p-2"
+      required
+    />
+  </div>
+</div>
+
 
                 <div className="mb-4">
                     <label className="block font-bold mb-2">Facilities</label>

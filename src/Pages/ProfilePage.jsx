@@ -9,17 +9,70 @@ import SidebarComponent from "../Components/SidebarComponent";
 const ProfilePage = () => {
    const backendURL= "http://localhost:7000"
   const [admin, setAdmin] = useState({});
+  const [theatre, setTheatre] = useState({});
+  const [totalScreens, setTotalScreens] = useState(0);
+  const [totalReports, setTotalReports] = useState(0);
   const role ="Admin"
   const authToken = localStorage.getItem("token");
+  const lengthOfTheatre = Object.keys(theatre).length;
 
 
-  const stats = {
-        totaltheater: 3,
-        activeTheater: 1,
-        reports: "2",
-      };
+  const fetchTheatre = async () => {
+    try {
+      await axios
+        .get("http://localhost:7000/theatre/get",
+           {
+              headers: { Authorization: `Bearer ${authToken}` }
+            }
+        )
+        .then((res) => {
+          toast.error(res.data.Error)
+          toast.success(res.data.Message) 
+          const fetchedTheatres = res.data.theatres;
+          setTheatre(fetchedTheatres);
+          const screensCount = fetchedTheatres.reduce((total, theatre) => {
+            const screens = parseInt(theatre.screens || "0", 10);
+            return total + screens;
+          }, 0);
+          setTotalScreens(screensCount);
+        })
+        .catch((err) =>{
+          if (err.status === 401) {
+              return toast.error("Request to Login Again")
+                }
+          toast.error(err.response.data.Error)
+        });
+    } catch (error) {
+      toast.error(error.message)
+    }
+  };
 
   
+const fetchAllReports = async (setReports) => {
+  try {
+    const authToken = localStorage.getItem("token");
+    await axios
+      .get(`http://localhost:7000/report/getallreports`,
+        {
+          headers: { Authorization: `Bearer ${authToken}` }
+        }
+      )
+      .then((res) => {
+        toast.error(res.data.Error);
+        const allreports =res.data.allReports
+        const filteredReports = allreports.filter((report) => report.role == "admin");
+        const lengthOfReports = Object.keys(filteredReports).length;
+        setTotalReports(lengthOfReports);
+      })
+      .catch((err) => {
+        toast.error(err.response.data.Message)
+      });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
   const getAdminDetails = async () => {
     try {
        await axios
@@ -43,6 +96,8 @@ const ProfilePage = () => {
 
   useEffect(() => {
     getAdminDetails();
+    fetchTheatre();
+    fetchAllReports()
   }, []);
 
 
@@ -56,7 +111,7 @@ const ProfilePage = () => {
         <SidebarComponent/>
       </div>
 
-      <div className="flex-1 ml-56 overflow-y-auto">
+      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
     <div className="p-8 bg-gradient-to-b from-gray-700 via-gray-800 to-gray-900 min-h-screen">
       <div className="max-w-6xl mx-auto">
         <div className="text-3xl font-extrabold text-gray-200 mb-8 flex justify-between items-center">
@@ -108,15 +163,15 @@ const ProfilePage = () => {
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-blue-50 border border-blue-300 rounded-lg p-5 text-center shadow-md hover:scale-105 transition duration-300 transform">
                 <h3 className="text-blue-600 text-lg font-semibold">Total Theatres</h3>
-                <p className="text-3xl font-bold text-blue-800">{admin.noOfTheatres}</p>
+                <p className="text-3xl font-bold text-blue-800">{lengthOfTheatre || 0}</p>
               </div>
               <div className="bg-green-50 border border-green-300 rounded-lg p-5 text-center shadow-md hover:scale-105 transition duration-300 transform">
                 <h3 className="text-green-600 text-lg font-semibold">Total Screens</h3>
-                <p className="text-3xl font-bold text-green-800">{admin.noOfTheatres}</p>
+                <p className="text-3xl font-bold text-green-800">{totalScreens||0}</p>
               </div>
               <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-5 text-center shadow-md hover:scale-105 transition duration-300 transform">
                 <h3 className="text-yellow-600 text-lg font-semibold">Reports</h3>
-                <p className="text-3xl font-bold text-yellow-800">{stats.reports || "N/A"}</p>
+                <p className="text-3xl font-bold text-yellow-800">{totalReports || 0}</p>
               </div>
             </div>
           </div>

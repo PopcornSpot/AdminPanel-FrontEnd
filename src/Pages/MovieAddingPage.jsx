@@ -140,7 +140,7 @@ const AddMovieForm = () => {
         <SidebarComponent />
       </div>
 
-      <div className="flex-1 ml-56 overflow-y-auto">
+      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
         <div className="max-w-5xl mx-auto p-6 bg-gray-500 rounded-md shadow-md">
           <h2 className="text-2xl font-bold mb-6 text-gray-800">
             {movieEdit ? "Update Movie" : "Add Movie"}

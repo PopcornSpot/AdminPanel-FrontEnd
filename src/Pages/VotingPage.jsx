@@ -1,86 +1,79 @@
-import React, { useState } from "react";
-import { FaPlus, FaTrash } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 import SidebarComponent from "../Components/SidebarComponent";
+import { Link } from "react-router-dom";
 
-const VotingPage = () => {
-  const [movies, setMovies] = useState([
-    { movieName: "qwerwer", votes: 3 },
-    { movieName: "23423werwe", votes: 0 },
-  ]);
+const VotingResultsCard = () => {
+  const authToken = localStorage.getItem("token");
+  const [pollData, setPollData] = useState([]);
 
-  const handleMovieChange = (index, value) => {
-    const updatedMovies = [...movies];
-    updatedMovies[index].movieName = value;
-    setMovies(updatedMovies);
+  const fetchPolls = async () => {
+    try {
+      await axios
+        .get("http://localhost:7000/poll/getallpoll", {
+          headers: { Authorization: `Bearer ${authToken}` },
+        })
+        .then((res) => {
+          console.log(res.data.allPolls);
+          toast.success(res.data.Message);
+          setPollData(res.data.allPolls);
+        })
+        .catch((err) => {
+          if (err.response?.status === 401) {
+            toast.error("Request to Login Again");
+            return;
+          }
+          toast.error(err.response?.data?.Error || "Error fetching polls");
+        });
+    } catch (error) {
+      toast.error(error.message || "An error occurred");
+    }
   };
 
-  const handleAddMovie = () => {
-    setMovies([...movies, { movieName: "", votes: 0 }]);
-  };
+  useEffect(() => {
+    fetchPolls();
+  }, []);
 
-  const handleRemoveMovie = (index) => {
-    const updatedMovies = movies.filter((_, i) => i !== index);
-    setMovies(updatedMovies);
-  };
+  if (!pollData.length) {
+    return <div>Loading results...</div>;
+  }
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="w-56 fixed h-full">
-        <SidebarComponent/>
-      </div>
-
-      <div className="flex-1 ml-56 overflow-y-auto">
-    <div className="p-6 bg-gradient-to-b from-gray-800 to-gray-900 min-h-screen flex flex-col items-center gap-8">
-      <div className="w-full  mb-6">
-        <h1 className="text-4xl font-extrabold text-gray-200">Create Movie Poll</h1>
-      </div>
-
-      <div className="bg-gray-800 w-full max-w-3xl p-8 rounded-2xl shadow-lg flex flex-col items-center">
-        <div className="mb-6 w-full">
-          <label className="block text-lg font-medium text-gray-200 mb-2">Poll Name</label>
-          <input
-            type="text"
-            placeholder="Enter poll name"
-            className="w-full p-4 bg-gray-700 text-white border-none rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-          />
-        </div>
-
-        <div className="w-full mb-8">
-          <h3 className="text-2xl font-semibold text-gray-200 mb-4">Add Movies to Poll</h3>
-          {movies.map((movie, index) => (
-            <div
-              key={index}
-              className="flex items-center mb-4 bg-gray-700 p-4 rounded-xl shadow-md"
-            >
-              <input
-                type="text"
-                value={movie.movieName}
-                onChange={(e) => handleMovieChange(index, e.target.value)}
-                placeholder="Movie Name"
-                className="flex-1 p-4 bg-gray-600 text-white border-none rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent"
-              />
-              <button
-                onClick={() => handleRemoveMovie(index)}
-                className="ml-4 bg-red-500 text-white p-3 rounded-full shadow-md hover:bg-red-600 transition"
-                title="Remove Movie"
-              >
-                <FaTrash />
-              </button>
+    <div className="w-56 fixed h-full">
+      <SidebarComponent />
+    </div>
+    <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
+    <div className="w-full max-w-4xl mx-auto mt-10">
+    <div className='flex w-full justify-between pt-6 px-5'>
+            <h1 className="text-3xl font-bold text-center mb-6">Voting Results</h1>
+            <Link
+            className='text-2xl'
+            to={"/addvoting"}>
+            Create poll
+            </Link>
             </div>
-          ))}
-          <button
-            onClick={handleAddMovie}
-            className="flex items-center justify-center w-full px-6 py-3 bg-orange-500 text-white rounded-lg shadow-md hover:bg-orange-600 transition duration-200"
+      <div className="space-y-8">
+        {pollData.map((poll) => (
+          <div
+            key={poll._id}
+            className="bg-white rounded-lg shadow-md p-6"
           >
-            <FaPlus className="mr-2" /> Add Movie
-          </button>
-        </div>
-
-        <div>
-          <button className="px-6 py-3 bg-gray-900 text-white font-semibold text-lg rounded-xl shadow-md hover:bg-gray-800 transition duration-200">
-            Create Poll
-          </button>
-        </div>
+            <h2 className="text-2xl font-semibold mb-4">{poll.pollName}</h2>
+            <div className="space-y-4">
+              {poll.movies.map((movie) => (
+                <div
+                  key={movie._id}
+                  className="flex justify-between items-center p-4 bg-gray-100 rounded-md shadow-sm"
+                >
+                  <span className="font-semibold">{movie.movieName}</span>
+                  <span className="text-orange-600 font-bold">{movie.votes} Votes</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
     </div>
@@ -88,4 +81,4 @@ const VotingPage = () => {
   );
 };
 
-export default VotingPage;
+export default VotingResultsCard;

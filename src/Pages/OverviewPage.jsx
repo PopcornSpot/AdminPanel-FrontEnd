@@ -66,7 +66,7 @@ const OverviewPage = () => {
         <SidebarComponent />
       </div>
       
-      <div className="flex-1 md:ml-56 overflow-y-auto">
+      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
         <div className="p-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 min-h-screen font-sans text-gray-200">
           <div className="mb-8">
             <h1 className="text-4xl font-extrabold">Dashboard Overview</h1>

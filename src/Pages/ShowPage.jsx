@@ -64,7 +64,7 @@ const ShowPage = () => {
     <div className="w-56 fixed h-full">
       <SidebarComponent/>
     </div>
-    <div className="flex-1 ml-56 overflow-y-auto">
+    <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
     <div className="min-h-screen bg-gray-100 p-6">
       <div className='flex w-full justify-between'>
       <h1 className="text-3xl font-bold text-center mb-6">Shows List</h1>

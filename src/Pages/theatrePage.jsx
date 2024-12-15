@@ -72,7 +72,7 @@ const TheatrePage = () => {
     <div className="w-56 fixed h-full">
       <SidebarComponent />
     </div>
-    <div className="flex-1 ml-56 overflow-y-auto">
+    <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
     <div className="min-h-screen bg-gray-100">
       
       <div className='flex w-full justify-between pt-6 px-5'>
