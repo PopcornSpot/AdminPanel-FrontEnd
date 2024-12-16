@@ -44,7 +44,7 @@ const MoviesPage = () => {
 
   const handleDelete = async (_id , title) => {
     setMovies(movies.filter((_, i) => i !== _id));
-    alert(`Deleted : ${title}`);
+    alert(`Delete : ${title}`);
     try {
       await axios
         .delete(`http://localhost:7000/movie/delete/?_id=${_id}`,
@@ -172,7 +172,7 @@ const MoviesPage = () => {
                     </Link>
                     <button
                       className="bg-red-500 text-white px-4 h-10 rounded-lg font-medium hover:bg-red-400 transition duration-300 flex items-center gap-2"
-                      onClick={() => handleDelete(movie._id)}
+                      onClick={() => handleDelete(movie._id,movie.title)}
                     >
                       <FaTrashAlt />
                       Delete
