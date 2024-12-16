@@ -361,7 +361,6 @@ const AddMovieForm = () => {
                 onChange={handleChange}
                 className="w-full mt-1"
                 accept="image/*"
-                required
               />
               {formData.fileOriginalName && <p className="text-lg mt-4 ">
                 {formData.fileOriginalName}</p>}
