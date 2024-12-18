@@ -11,6 +11,7 @@ import {
   Legend,
 } from "chart.js";
 import { Line, Bar } from "react-chartjs-2";
+import { FaUsers, FaTicketAlt, FaDollarSign, FaFilm } from "react-icons/fa";
 import SidebarComponent from "../Components/SidebarComponent";
 
 ChartJS.register(
@@ -26,10 +27,10 @@ ChartJS.register(
 
 const OverviewPage = () => {
   const stats = [
-    { title: "Total Users", value: "1,234", change: "+12%" },
-    { title: "Tickets Sold", value: "567", change: "+8%" },
-    { title: "Revenue", value: "$12,345", change: "+15%" },
-    { title: "Movies", value: "45", change: "-2%" },
+    { title: "Total Users", value: "1,234", change: "+12%", icon: <FaUsers className="text-3xl text-blue-500" /> },
+    { title: "Tickets Sold", value: "567", change: "+8%", icon: <FaTicketAlt className="text-3xl text-green-500" /> },
+    { title: "Revenue", value: "$12,345", change: "+15%", icon: <FaDollarSign className="text-3xl text-orange-500" /> },
+    { title: "Movies", value: "45", change: "-2%", icon: <FaFilm className="text-3xl text-red-500" /> },
   ];
 
   const revenueData = {
@@ -65,7 +66,7 @@ const OverviewPage = () => {
       <div className="w-full md:w-56 fixed h-full">
         <SidebarComponent />
       </div>
-      
+
       <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
         <div className="p-6 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 min-h-screen font-sans text-gray-200">
           <div className="mb-8">
@@ -74,11 +75,23 @@ const OverviewPage = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
             {stats.map((stat, index) => (
-              <div key={index} className="p-6 bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105">
+              <div
+                key={index}
+                className="p-6 bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-transform transform hover:scale-105 flex flex-col items-center justify-center text-center space-y-4"
+              >
+                <div className="text-4xl text-gray-400 flex justify-center items-center">
+                  {stat.icon}
+                </div>
                 <h3 className="text-lg font-semibold text-gray-400">{stat.title}</h3>
                 <p className="text-4xl font-bold text-gray-100">{stat.value}</p>
-                <p className={`text-sm mt-2 font-medium ${stat.change.startsWith("+") ? "text-green-400" : "text-red-400"}`}>{stat.change} since last month</p>
+                <p
+                  className={`text-sm font-medium ${stat.change.startsWith("+") ? "text-green-400" : "text-red-400"
+                    }`}
+                >
+                  {stat.change} since last month
+                </p>
               </div>
+
             ))}
           </div>
 
