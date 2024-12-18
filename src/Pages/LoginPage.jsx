@@ -28,6 +28,7 @@ const LoginPage = () => {
         .post("http://localhost:7000/admin/login", formData)
         .then((res) => {
           toast.success(res.data.Message);
+          localStorage.clear();
           localStorage.setItem("token", res.data.token);
           setFormData(initialState);
           navigate("/home");
