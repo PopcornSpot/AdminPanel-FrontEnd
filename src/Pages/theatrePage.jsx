@@ -5,7 +5,6 @@ import axios from "axios";
 import SidebarComponent from "../Components/SidebarComponent";
 import { Link } from "react-router-dom";
 
-
 const TheatrePage = () => {
   const [theatres, setTheatres] = useState([]);
   const authToken = localStorage.getItem("token");
@@ -13,79 +12,69 @@ const TheatrePage = () => {
   const fetchTheatre = async () => {
     try {
       await axios
-        .get("http://localhost:7000/theatre/get",
-           {
-              headers: { Authorization: `Bearer ${authToken}` }
-            }
-        )
-        .then((res) => {
-          toast.error(res.data.Error)
-          toast.success(res.data.Message) 
-          setTheatres(res.data.theatres);
-
+        .get("http://localhost:7000/theatre/get", {
+          headers: { Authorization: `Bearer ${authToken}` },
         })
-        .catch((err) =>{
+        .then((res) => {
+          toast.error(res.data.Error);
+          toast.success(res.data.Message);
+          setTheatres(res.data.theatres);
+        })
+        .catch((err) => {
           if (err.status === 401) {
-              return toast.error("Request to Login Again")
-                }
-          toast.error(err.response.data.Error)
+            return toast.error("Request to Login Again");
+          }
+          toast.error(err.response.data.Error);
         });
     } catch (error) {
-      toast.error(error.message)
+      toast.error(error.message);
     }
   };
 
- 
   const handleDelete = async (_id) => {
-  
     try {
-        await axios
-          .delete(`http://localhost:7000/theatre/delete/?_id=${_id}`,
-            {
-                headers: { Authorization: `Bearer ${authToken}` }
-              }
-          )
-          .then( async (res) => {
-            toast.success(res.data.Message);
-            toast.error(res.data.Error);
-            await fetchTheatre();
-          })
-          .catch((err) => {
-            toast.error(err.response.data.Message)
-          });
-      } catch (error) {
-        console.log(error.message);
-      }
-
-
+      await axios
+        .delete(`http://localhost:7000/theatre/delete/?_id=${_id}`, {
+          headers: { Authorization: `Bearer ${authToken}` },
+        })
+        .then(async (res) => {
+          toast.success(res.data.Message);
+          toast.error(res.data.Error);
+          await fetchTheatre();
+        })
+        .catch((err) => {
+          toast.error(err.response.data.Message);
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
   };
-
-
 
   useEffect(() => {
     fetchTheatre();
   }, []);
 
-
   return (
-    <div className="flex h-screen overflow-hidden">
-    <div className="w-56 fixed h-full">
-      <SidebarComponent />
-    </div>
-    <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
-    <div className="min-h-screen bg-gray-100">
-      
-      <div className='flex w-full justify-between pt-6 px-5'>
-            <h1 className="text-3xl font-bold text-center mb-6">Theatre List</h1>
+    <div className="flex h-screen overflow-hidden bg-gray-900">
+      {/* Sidebar */}
+      <div className="w-56 fixed h-full bg-gray-800">
+        <SidebarComponent />
+      </div>
+      {/* Main Content */}
+      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
+        <div className="min-h-screen bg-gray-900 text-white px-4 py-6">
+          <div className="flex w-full justify-between items-center mb-6">
+            <h1 className="text-3xl font-bold pl-5">Theatre List</h1>
             <Link
-            className='text-2xl'
-            to={"/addtheatre"}>
-            Add Theatre
+              className="text-lg px-4 py-2 bg-orange-600 hover:bg-orange-700 rounded-md mr-10"
+              to={"/addtheatre"}
+            >
+              Add Theatre
             </Link>
-            </div>
-      <TheatreCard theatres={theatres} onDelete={handleDelete} />
-    </div>
-    </div>
+          </div>
+          <TheatreCard theatres={theatres} onDelete={handleDelete} />
+        </div>
+      </div>
     </div>
   );
 };

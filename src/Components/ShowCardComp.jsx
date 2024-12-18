@@ -7,29 +7,29 @@ const ShowCard = ({ shows, onDelete }) => {
       {shows.map((show, index) => (
         <div
           key={show._id}
-          className="max-w-md bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200"
+          className="max-w-md bg-gray-800 shadow-lg rounded-lg overflow-hidden border border-gray-200"
         >
           <div className="px-6 py-4">
-            <h2 className="text-xl font-bold text-gray-800 mb-2">
+            <h2 className="text-xl font-bold text-gray-100 mb-2">
               {show.movie || 'Movie Name'}
             </h2>
-            <p className="text-gray-600">
+            <p className="text-gray-300">
               <strong>Show Date:</strong> {show.showDate || 'Not specified'}
             </p>
-            <p className="text-gray-600">
+            <p className="text-gray-300">
               <strong>Show Times:</strong>{' '}
               {show.showTime.length > 0 ? show.showTime.join(', ') : 'Not specified'}
             </p>
-            <p className="text-gray-600">
+            <p className="text-gray-300">
               <strong>Last Date:</strong> {show.lastDate || 'Not specified'}
             </p>
-            <p className="text-gray-600">
+            <p className="text-gray-300">
               <strong>Screen:</strong> {show.screen || 'Not specified'}
             </p>
-            <p className="text-gray-600">
+            <p className="text-gray-300">
               <strong>First Class Price:</strong> {show.firstClassPrice || 'Not specified'}
             </p>
-            <p className="text-gray-600">
+            <p className="text-gray-300">
               <strong>Second Class Price:</strong> {show.secondClassPrice || 'Not specified'}
             </p>
           </div>

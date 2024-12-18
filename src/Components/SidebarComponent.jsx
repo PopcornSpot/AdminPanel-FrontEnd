@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaHome, FaFilm, FaTv, FaChair, FaTheaterMasks, FaCalendarAlt, FaVoteYea, FaUser, FaFileAlt, FaSignOutAlt } from "react-icons/fa";
 import logo from "../assets/logo.png";
 
 const SidebarComponent = () => {
@@ -10,15 +9,15 @@ const SidebarComponent = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const SidebarDetail = [
-    { value: "Overview", path: "/home" },
-    { value: "Movies", path: "/movies" },
-    { value: "Screens", path: "/screen" },
-    { value: "Seats", path: "/seat" },
-    { value: "Theatre", path: "/theatre" },
-    { value: "Show", path: "/show" },
-    { value: "Voting", path: "/voting" },
-    { value: "Profile", path: "/profile" },
-    { value: "Report", path: "/report" },
+    { value: "Overview", path: "/home", icon: <FaHome /> },
+    { value: "Movies", path: "/movies", icon: <FaFilm /> },
+    { value: "Screens", path: "/screen", icon: <FaTv /> },
+    { value: "Seats", path: "/seat", icon: <FaChair /> },
+    { value: "Theatre", path: "/theatre", icon: <FaTheaterMasks /> },
+    { value: "Show", path: "/show", icon: <FaCalendarAlt /> },
+    { value: "Voting", path: "/voting", icon: <FaVoteYea /> },
+    { value: "Profile", path: "/profile", icon: <FaUser /> },
+    { value: "Report", path: "/report", icon: <FaFileAlt /> },
   ];
 
   const handleLogout = () => {
@@ -63,6 +62,7 @@ const SidebarComponent = () => {
                 }`}
                 onClick={() => setIsSidebarOpen(false)} // Close sidebar on link click
               >
+                <span className="mr-3 text-lg">{item.icon}</span>
                 {item.value}
               </Link>
             </li>
@@ -74,6 +74,7 @@ const SidebarComponent = () => {
             }}
             className="flex items-center cursor-pointer p-3 text-sm font-medium transition-colors rounded-md hover:bg-gradient-to-r from-orange-500 to-orange-400 hover:text-white text-gray-200"
           >
+            <span className="mr-3 text-lg"><FaSignOutAlt /></span>
             Logout
           </li>
         </ul>

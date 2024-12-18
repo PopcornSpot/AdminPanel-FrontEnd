@@ -124,7 +124,7 @@ try{
               <div>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-gray-900 text-white font-semibold text-lg rounded-xl shadow-md hover:bg-gray-800 transition duration-200"
+                  className="px-6 py-3 bg-orange-500 text-white font-semibold text-lg rounded-xl shadow-md hover:bg-orange-600 transition duration-200"
                 >
                   Create Poll
                 </button>

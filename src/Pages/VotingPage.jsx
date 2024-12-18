@@ -10,24 +10,17 @@ const VotingResultsCard = () => {
 
   const fetchPolls = async () => {
     try {
-      await axios
-        .get("http://localhost:7000/poll/getallpoll", {
-          headers: { Authorization: `Bearer ${authToken}` },
-        })
-        .then((res) => {
-          console.log(res.data.allPolls);
-          toast.success(res.data.Message);
-          setPollData(res.data.allPolls);
-        })
-        .catch((err) => {
-          if (err.response?.status === 401) {
-            toast.error("Request to Login Again");
-            return;
-          }
-          toast.error(err.response?.data?.Error || "Error fetching polls");
-        });
-    } catch (error) {
-      toast.error(error.message || "An error occurred");
+      const res = await axios.get("http://localhost:7000/poll/getallpoll", {
+        headers: { Authorization: `Bearer ${authToken}` },
+      });
+      setPollData(res.data.allPolls);
+      toast.success(res.data.Message);
+    } catch (err) {
+      if (err.response?.status === 401) {
+        toast.error("Request to Login Again");
+        return;
+      }
+      toast.error(err.response?.data?.Error || "Error fetching polls");
     }
   };
 
@@ -36,47 +29,66 @@ const VotingResultsCard = () => {
   }, []);
 
   if (!pollData.length) {
-    return <div>Loading results...</div>;
+    return (
+      <div className="h-screen flex justify-center items-center bg-gray-900 text-white">
+        <h2 className="text-2xl font-bold">Loading results...</h2>
+      </div>
+    );
   }
 
   return (
-    <div className="flex h-screen overflow-hidden">
-    <div className="w-56 fixed h-full">
-      <SidebarComponent />
-    </div>
-    <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
-    <div className="w-full max-w-4xl mx-auto mt-10">
-    <div className='flex w-full justify-between pt-6 px-5'>
-            <h1 className="text-3xl font-bold text-center mb-6">Voting Results</h1>
-            <Link
-            className='text-2xl'
-            to={"/addvoting"}>
-            Create poll
-            </Link>
-            </div>
-      <div className="space-y-8">
-        {pollData.map((poll) => (
-          <div
-            key={poll._id}
-            className="bg-white rounded-lg shadow-md p-6"
-          >
-            <h2 className="text-2xl font-semibold mb-4">{poll.pollName}</h2>
-            <div className="space-y-4">
-              {poll.movies.map((movie) => (
-                <div
-                  key={movie._id}
-                  className="flex justify-between items-center p-4 bg-gray-100 rounded-md shadow-sm"
-                >
-                  <span className="font-semibold">{movie.movieName}</span>
-                  <span className="text-orange-600 font-bold">{movie.votes} Votes</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
+    <div className="flex h-screen bg-gray-900 text-white">
+      {/* Sidebar */}
+      <div className="w-56 fixed h-full bg-gray-800 hidden md:block">
+        <SidebarComponent />
       </div>
-    </div>
-    </div>
+
+      {/* Main Content */}
+      <div className="flex-1 md:ml-56 overflow-y-auto p-6">
+        <div className="w-full max-w-5xl mx-auto">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+            <h1 className="text-4xl font-bold mb-4 md:mb-0 text-gray-100">
+              Voting Results
+            </h1>
+            <Link
+              to="/addvoting"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-lg text-lg font-semibold transition-transform transform hover:scale-105"
+            >
+              Create Poll
+            </Link>
+          </div>
+
+          {/* Poll Cards */}
+          <div className="space-y-8">
+            {pollData.map((poll) => (
+              <div
+                key={poll._id}
+                className="bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6"
+              >
+                <h2 className="text-2xl font-bold text-gray-100 mb-4 border-b pb-2">
+                  {poll.pollName}
+                </h2>
+                <div className="space-y-4">
+                  {poll.movies.map((movie) => (
+                    <div
+                      key={movie._id}
+                      className="flex justify-between items-center bg-gray-700 p-4 rounded-md hover:bg-gray-600 transition-colors duration-200"
+                    >
+                      <span className="font-semibold text-gray-200">
+                        {movie.movieName}
+                      </span>
+                      <span className="text-orange-400 font-bold text-lg">
+                        {movie.votes} Votes
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
