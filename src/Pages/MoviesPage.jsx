@@ -85,7 +85,7 @@ const MoviesPage = () => {
   return (
     <div className="flex h-screen overflow-hidden">
       {/* Sidebar */}
-      <div className="w-56 fixed h-full max-md:hidden">
+      <div className="w-full md:w-56 fixed h-full">
         <SidebarComponent />
       </div>
 
@@ -188,14 +188,15 @@ const MoviesPage = () => {
                         >
                           {movie.status}
                         </span>
-                      </div>
-                      {movie.trailerUrl && (
+                        {movie.trailerUrl && (
                         <Link to={movie.trailerUrl} target="_blank">
                           <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-md font-medium hover:scale-105 transform transition duration-300">
                             Watch Trailer
                           </button>
                         </Link>
                       )}
+                      </div>
+                      
                     </div>
                   </div>
                 </div>
