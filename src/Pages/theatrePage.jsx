@@ -16,6 +16,8 @@ const TheatrePage = () => {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((res) => {
+          console.log(res.data);
+          
           toast.error(res.data.Error);
           toast.success(res.data.Message);
           setTheatres(res.data.theatres);
