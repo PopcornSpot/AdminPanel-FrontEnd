@@ -167,8 +167,8 @@ const MoviesPage = () => {
                     <div className="flex flex-wrap items-center justify-between mt-6">
                       <div className="flex gap-6 flex-wrap">
                         <Link to={`/updatemovie/${movie._id}`}>
-                          <button className="bg-blue-500 text-gray-900 px-4 py-2 rounded-lg font-medium hover:bg-blue-400 transition duration-300 flex items-center gap-2">
-                            <FaEdit className="text-gray-900" />
+                          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-400 transition duration-300 flex items-center gap-2">
+                            <FaEdit  />
                             Edit
                           </button>
                         </Link>
