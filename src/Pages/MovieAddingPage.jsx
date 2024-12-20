@@ -135,37 +135,37 @@ const AddMovieForm = () => {
 
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden bg-gray-800">
       <div className="w-56 fixed h-full">
         <SidebarComponent />
       </div>
 
-      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
-        <div className="max-w-5xl mx-auto p-6 bg-gray-500 rounded-md shadow-md">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">
+      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto mt-10">
+        <div className="max-w-5xl mx-auto p-6 bg-gray-800 rounded-md shadow-md">
+          <h2 className="text-2xl font-bold mb-6 text-gray-100">
             {movieEdit ? "Update Movie" : "Add Movie"}
           </h2>
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block font-medium text-gray-700">Title</label>
+              <label className="block font-medium text-gray-200">Title</label>
               <input
                 type="text"
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 placeholder="Enter movie title"
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Genre</label>
+              <label className="block font-medium text-gray-200">Genre</label>
               <select
                 name="genre"
                 value={formData.genre}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 required
               >
                 <option value="">Select Genre</option>
@@ -178,50 +178,50 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Language</label>
+              <label className="block font-medium text-gray-200">Language</label>
               <input
                 type="text"
                 name="language"
                 value={formData.language}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 placeholder="Enter language"
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Duration</label>
+              <label className="block font-medium text-gray-200">Duration</label>
               <input
                 type="text"
                 name="duration"
                 value={formData.duration}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 placeholder="e.g., 2h 30m"
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Release Date</label>
+              <label className="block font-medium text-gray-200">Release Date</label>
               <input
                 type="date"
                 name="releaseDate"
                 value={formData.releaseDate}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Certificate</label>
+              <label className="block font-medium text-gray-200">Certificate</label>
               <select
                 name="certificate"
                 value={formData.certificate}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 required
               >
                 <option value="">Select Certificate</option>
@@ -234,12 +234,12 @@ const AddMovieForm = () => {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block font-medium text-gray-700">Synopsis</label>
+              <label className="block font-medium text-gray-200">Synopsis</label>
               <textarea
                 name="synopsis"
                 value={formData.synopsis}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 placeholder="Enter movie synopsis"
                 rows="4"
                 required
@@ -247,77 +247,77 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Hero</label>
+              <label className="block font-medium text-gray-200">Hero</label>
               <input
                 type="text"
                 name="hero"
                 value={formData.hero}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 placeholder="Enter hero name"
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Director</label>
+              <label className="block font-medium text-gray-200">Director</label>
               <input
                 type="text"
                 name="director"
                 value={formData.director}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 placeholder="Enter director's name"
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Heroine</label>
+              <label className="block font-medium text-gray-200">Heroine</label>
               <input
                 type="text"
                 name="heroine"
                 value={formData.heroine}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 placeholder="Enter heroine name"
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Music Director</label>
+              <label className="block font-medium text-gray-200">Music Director</label>
               <input
                 type="text"
                 name="music"
                 value={formData.music}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 placeholder="Enter music director name"
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Trailer URL</label>
+              <label className="block font-medium text-gray-200">Trailer URL</label>
               <input
                 type="url"
                 name="trailerUrl"
                 value={formData.trailerUrl}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 placeholder="Enter trailer URL"
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Screen Number</label>
+              <label className="block font-medium text-gray-200">Screen Number</label>
               <select
                 name="screenNo"
                 value={formData.screenNo}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 required
               >
                 <option value="">Select Screen</option>
@@ -328,33 +328,33 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Ticket Price</label>
+              <label className="block font-medium text-gray-200">Ticket Price</label>
               <input
                 type="number"
                 name="firstClassTicketPrice"
                 value={formData.firstClassTicketPrice}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 placeholder="Enter 1st class ticket price"
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Ticket Price</label>
+              <label className="block font-medium text-gray-200">Ticket Price</label>
               <input
                 type="number"
                 name="secondClassTicketPrice"
                 value={formData.secondClassTicketPrice}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 placeholder="Enter 2nd class ticket price"
                 required
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Poster</label>
+              <label className="block font-medium text-gray-200">Poster</label>
               <input
                 type="file"
                 name="image"
@@ -367,12 +367,12 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-700">Format Types</label>
+              <label className="block font-medium text-gray-200">Format Types</label>
               <select
                 name="format"
                 value={formData.format}
                 onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
                 required
               >
                 <option value="">Select Format</option>

@@ -164,17 +164,17 @@ const AddShow = () => {
   }, [_id]);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden bg-gray-800">
     <div className="w-56 fixed h-full">
       <SidebarComponent/>
     </div>
     <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-2xl font-semibold mb-4">{editShow ? 'Update Show' : 'Add New Show'}</h2>
+    <div className="max-w-2xl mx-auto p-6 bg-gray-800 shadow-md rounded-lg mt-10">
+      <h2 className="text-2xl font-semibold mb-4 text-gray-100">{editShow ? 'Update Show' : 'Add New Show'}</h2>
       <form onSubmit={handleSubmit}>
 
         <div className="mb-4">
-          <label htmlFor="movie" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="movie" className="block text-sm font-medium text-gray-200">
             Movie Selection
           </label>
           <select
@@ -196,7 +196,7 @@ const AddShow = () => {
 
 
         <div className="mb-4">
-          <label htmlFor="showDate" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="showDate" className="block text-sm font-medium text-gray-200">
             Show Date
           </label>
           <input
@@ -212,12 +212,12 @@ const AddShow = () => {
 
 
         <div className="mb-4">
-  <label className="block text-sm font-medium text-gray-700">
+  <label className="block text-sm font-medium text-gray-200">
     Show Time Selection
   </label>
   <div className="mt-1 grid grid-cols-3 gap-2">
     {["10:00 AM", "1:00 PM", "4:00 PM", "7:00 PM", "10:00 PM"].map((time, index) => (
-      <label key={index} className="flex items-center space-x-2">
+      <label key={index} className="flex items-center space-x-2 text-gray-400">
         <input
           type="checkbox"
           value={time}
@@ -231,7 +231,7 @@ const AddShow = () => {
                 : prevData.showTime.filter((t) => t !== value),
             }));
           }}
-          className="form-checkbox h-4 w-4 text-indigo-600"
+          className="form-checkbox h-4 w-4 text-orange-500"
         />
         <span className="text-sm">{time}</span>
       </label>
@@ -242,7 +242,7 @@ const AddShow = () => {
 
 
         <div className="mb-4">
-          <label htmlFor="screen" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="screen" className="block text-sm font-medium text-gray-200">
             Screen Selection
           </label>
           <select
@@ -265,7 +265,7 @@ const AddShow = () => {
 
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div>
-            <label htmlFor="firstClassPrice" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="firstClassPrice" className="block text-sm font-medium text-gray-200">
               First Class Price
             </label>
             <input
@@ -279,7 +279,7 @@ const AddShow = () => {
             />
           </div>
           <div>
-            <label htmlFor="secondClassPrice" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="secondClassPrice" className="block text-sm font-medium text-gray-200">
               Second Class Price
             </label>
             <input
@@ -295,7 +295,7 @@ const AddShow = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="lastDate" className="block text-sm font-medium text-gray-700">
+          <label htmlFor="lastDate" className="block text-sm font-medium text-gray-200">
             Show Last Date
           </label>
           <input
@@ -312,7 +312,7 @@ const AddShow = () => {
         <div className="flex justify-between mt-6">
           <button
             type="submit"
-            className="w-1/2 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="w-1/2 bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
           >
             {editShow? 'Update Show' : 'Add Show'}
           </button> 
