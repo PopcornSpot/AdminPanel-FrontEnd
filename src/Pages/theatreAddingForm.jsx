@@ -129,246 +129,234 @@ const AddTheatreForm = () => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-800">
-    <div className="w-56 fixed h-full">
-      <SidebarComponent />
-    </div>
-    <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto mt-10">
-      <div className="min-h-screen bg-gray-800 flex items-center justify-center">
-        <form
-          className="bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-5xl"
-          onSubmit={handleSubmit}
-        >
-          <h1 className="text-2xl font-bold mb-4 text-gray-100">Add Theatre</h1>
+      <div className="w-56 fixed h-full">
+        <SidebarComponent />
+      </div>
+      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto mt-10">
+        <div className="min-h-screen bg-gray-800 flex items-center justify-center">
+          <form
+            className="bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-5xl space-y-6"
+            onSubmit={handleSubmit}
+          >
+            <h1 className="text-3xl font-bold mb-6 text-orange-400">Add Theatre</h1>
 
-          <div className="mb-4">
-            <label className="block font-bold mb-2 text-gray-200" htmlFor="theatreName">
-              Theatre Name
-            </label>
-            <input
-              type="text"
-              id="theatreName"
-              name="theatreName"
-              value={formData.theatreName}
-              onChange={handleChange}
-              className="w-full border border-orange-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block font-bold mb-2 text-gray-200" htmlFor="address">
-              Address
-            </label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              className="w-full border border-orange-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-              required
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 mb-4 text-gray-200">
-            <div>
-              <label className="block font-bold mb-2" htmlFor="city">
-                City
-              </label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                className="w-full border border-orange-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-                required
-              />
-            </div>
-            <div>
-              <label className="block font-bold mb-2 text-gray-200" htmlFor="state">
-                State
-              </label>
-              <input
-                type="text"
-                id="state"
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                className="w-full border border-orange-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4 mb-4 text-gray-200">
-            <div>
-              <label className="block font-bold mb-2" htmlFor="country">
-                Country
-              </label>
-              <input
-                type="text"
-                id="country"
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-                className="w-full border border-orange-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-                required
-              />
-            </div>
-            <div>
-              <label className="block font-bold mb-2 text-gray-200" htmlFor="zipCode">
-                Zip Code
-              </label>
-              <input
-                type="text"
-                id="zipCode"
-                name="zipCode"
-                value={formData.zipCode}
-                onChange={handleChange}
-                className="w-full border border-orange-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="mb-4">
-            <label className="block font-bold mb-2 text-gray-200" htmlFor="phone">
-              Phone Number
-            </label>
-            <input
-              type="tel"
-              id="phone"
-              name="phone"
-              value={formData.phone}
-              onChange={handleChange}
-              className="w-full border border-orange-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block font-bold mb-2 text-gray-200" htmlFor="email">
-              Email Address
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full border border-orange-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-            />
-          </div>
-
-          <div className="flex gap-4 mb-4">
-
-            <div className="flex-1">
-              <label className="block font-bold mb-2 text-gray-200" htmlFor="screenType">
-                Screen Type
-              </label>
-              <select
-                id="screenType"
-                name="screenType"
-                value={formData.screenType}
-                onChange={handleChange}
-                className="w-full border border-orange-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-                required
-              >
-                <option value="">Select Screen Type</option>
-                <option value="3D">3D</option>
-                <option value="2D">2D</option>
-                <option value="IMAX">IMAX</option>
-              </select>
-            </div>
-
-            <div className="flex-1">
-              <label className="block font-bold mb-2 text-gray-200" htmlFor="screens">
-                Number of Screens
-              </label>
-              <input
-                type="number"
-                id="screens"
-                name="screens"
-                value={formData.screens}
-                onChange={handleChange}
-                className="w-full border border-orange-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-                required
-              />
-            </div>
-          </div>
-
-
-          <div className="mb-4">
-            <label className="block font-bold mb-2 text-gray-200">Facilities</label>
-            <div>
-              <label className="inline-flex items-center text-gray-200">
+            <div className="space-y-4">
+              <div>
+                <label className="block text-lg font-semibold text-gray-300 mb-2" htmlFor="theatreName">
+                  Theatre Name
+                </label>
                 <input
-                  type="checkbox"
-                  name="facilities"
-                  value="Parking"
-                  checked={formData.facilities.includes('Parking')}
+                  type="text"
+                  id="theatreName"
+                  name="theatreName"
+                  value={formData.theatreName}
                   onChange={handleChange}
-                  className="mr-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
+                  className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                  placeholder="Enter theatre name"
+                  required
                 />
-                Parking
-              </label>
-            </div>
-            <div>
-              <label className="inline-flex items-center text-gray-200">
-                <input
-                  type="checkbox"
-                  name="facilities"
-                  value="Food and Beverages"
-                  checked={formData.facilities.includes('Food and Beverages')}
-                  onChange={handleChange}
-                  className="mr-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-                />
-                Food and Beverages
-              </label>
-            </div>
-            <div>
-              <label className="inline-flex items-center text-gray-200">
-                <input
-                  type="checkbox"
-                  name="facilities"
-                  value="Wheelchair Accessibility"
-                  checked={formData.facilities.includes('Wheelchair Accessibility')}
-                  onChange={handleChange}
-                  className="mr-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-                />
-                Wheelchair Accessibility
-              </label>
-            </div>
-          </div>
+              </div>
 
-          <div className="mb-4">
-            <label className="block font-bold mb-2 text-gray-200" htmlFor="images">
-              Upload Image
-            </label>
-            <input
-              type="file"
-              id="images"
-              name="image"
-              accept="image/*"
-              onChange={handleChange}
-              className="w-full border border-orange-500 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-orange-400 transition duration-300"
-              />
-              {
-                theatreEdit ?
-                  formData.fileOriginalName && <p className="text-lg mt-4 ">
-                    {formData.fileOriginalName}</p> :
-                  <></>
-              }
+              <div>
+                <label className="block text-lg font-semibold text-gray-300 mb-2" htmlFor="address">
+                  Address
+                </label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  value={formData.address}
+                  onChange={handleChange}
+                  className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                  placeholder="Enter address"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-lg font-semibold text-gray-300 mb-2" htmlFor="city">
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                    placeholder="Enter city"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-lg font-semibold text-gray-300 mb-2" htmlFor="state">
+                    State
+                  </label>
+                  <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleChange}
+                    className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                    placeholder="Enter state"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-lg font-semibold text-gray-300 mb-2" htmlFor="country">
+                    Country
+                  </label>
+                  <input
+                    type="text"
+                    id="country"
+                    name="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                    className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                    placeholder="Enter country"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-lg font-semibold text-gray-300 mb-2" htmlFor="zipCode">
+                    Zip Code
+                  </label>
+                  <input
+                    type="text"
+                    id="zipCode"
+                    name="zipCode"
+                    value={formData.zipCode}
+                    onChange={handleChange}
+                    className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                    placeholder="Enter zip code"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-lg font-semibold text-gray-300 mb-2" htmlFor="phone">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                  placeholder="Enter phone number"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-lg font-semibold text-gray-300 mb-2" htmlFor="email">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                  placeholder="Enter email address"
+                />
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex-1">
+                  <label className="block text-lg font-semibold text-gray-300 mb-2" htmlFor="screenType">
+                    Screen Type
+                  </label>
+                  <select
+                    id="screenType"
+                    name="screenType"
+                    value={formData.screenType}
+                    onChange={handleChange}
+                    className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                    required
+                  >
+                    <option value="">Select Screen Type</option>
+                    <option value="3D">3D</option>
+                    <option value="2D">2D</option>
+                    <option value="IMAX">IMAX</option>
+                  </select>
+                </div>
+
+                <div className="flex-1">
+                  <label className="block text-lg font-semibold text-gray-300 mb-2" htmlFor="screens">
+                    Number of Screens
+                  </label>
+                  <input
+                    type="number"
+                    id="screens"
+                    name="screens"
+                    value={formData.screens}
+                    onChange={handleChange}
+                    className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                    placeholder="Enter number of screens"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-lg font-semibold text-gray-300">Facilities</label>
+                <div className="flex gap-4 flex-wrap">
+                  {["Parking", "Food and Beverages", "Wheelchair Accessibility"].map((facility) => (
+                    <label
+                      key={facility}
+                      className="flex items-center space-x-2 text-gray-300"
+                    >
+                      <input
+                        type="checkbox"
+                        name="facilities"
+                        value={facility}
+                        checked={formData.facilities.includes(facility)}
+                        onChange={handleChange}
+                        className="form-checkbox h-5 w-5 text-orange-400 rounded-md"
+                      />
+                      <span>{facility}</span>
+                    </label>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-lg font-semibold text-gray-300 mb-2" htmlFor="image">
+                  Upload Image
+                </label>
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  accept="image/*"
+                  onChange={handleChange}
+                  className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                />
+                {theatreEdit && formData.fileOriginalName && (
+                  <p className="text-sm text-gray-400 mt-2">{formData.fileOriginalName}</p>
+                )}
+              </div>
             </div>
 
             <button
               type="submit"
-              className="bg-orange-400 text-white px-4 py-2 rounded-lg hover:bg-orange-500 w-full"
+              className="w-full bg-orange-500 text-white font-bold py-3 rounded-lg hover:bg-orange-600 transition duration-300"
             >
               Submit
             </button>
           </form>
+
         </div>
       </div>
     </div>
