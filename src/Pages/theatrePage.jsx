@@ -58,11 +58,9 @@ const TheatrePage = () => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-900">
-      {/* Sidebar */}
       <div className="w-56 fixed h-full bg-gray-800">
         <SidebarComponent />
       </div>
-      {/* Main Content */}
       <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
         <div className="min-h-screen bg-gray-900 text-white px-4 py-6">
           <div className="flex w-full justify-between items-center mb-6">

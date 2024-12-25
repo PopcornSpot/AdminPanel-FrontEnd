@@ -14,7 +14,6 @@ const VotingResultsCard = () => {
         headers: { Authorization: `Bearer ${authToken}` },
       });
       setPollData(res.data.allPolls);
-      toast.success(res.data.Message);
     } catch (err) {
       if (err.response?.status === 401) {
         toast.error("Request to Login Again");
@@ -38,15 +37,12 @@ const VotingResultsCard = () => {
 
   return (
     <div className="flex h-screen bg-gray-900 text-white">
-      {/* Sidebar */}
       <div className="w-56 fixed h-full bg-gray-800 hidden md:block">
         <SidebarComponent />
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 md:ml-56 overflow-y-auto p-6">
         <div className="w-full max-w-5xl mx-auto">
-          {/* Header */}
           <div className="flex flex-col md:flex-row justify-between items-center mb-8">
             <h1 className="text-4xl font-bold mb-4 md:mb-0 text-gray-100">
               Voting Results
@@ -59,7 +55,6 @@ const VotingResultsCard = () => {
             </Link>
           </div>
 
-          {/* Poll Cards */}
           <div className="space-y-8">
             {pollData.map((poll) => (
               <div

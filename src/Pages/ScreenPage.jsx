@@ -19,8 +19,7 @@ const ScreensPage = () => {
             }
         )
         .then((res) => {
-          toast.error(res.data.Error)
-          toast.success(res.data.Message) 
+          toast.error(res.data.Error) 
           setScreens(res.data.allScreens);
 
         })
@@ -75,7 +74,7 @@ const ScreensPage = () => {
       <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
         <div className="p-6 bg-gray-900 min-h-screen text-gray-200">
           <div className="mb-8 flex justify-between items-center">
-            <h1 className="text-4xl font-extrabold text-gray-200 tracking-wide">
+            <h1 className="text-3xl font-extrabold text-gray-200 tracking-wide">
               Manage Screens
             </h1>
             <Link to={"/addscreen"}>
@@ -119,7 +118,7 @@ const ScreensPage = () => {
 
                   <p className="mt-4 text-gray-400">
                     <strong>1st Class Seats:</strong> {screen.firstClassSeats}
-                  </p>
+                  </p> 
 
                   <p className="mt-4 text-gray-400">
                     <strong>2nd Class Seats:</strong> {screen.secondClassSeats}

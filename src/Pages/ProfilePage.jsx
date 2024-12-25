@@ -11,7 +11,7 @@ const ProfilePage = () => {
   const [admin, setAdmin] = useState({});
   const [theatre, setTheatre] = useState({});
   const [totalScreens, setTotalScreens] = useState(0);
-  const [totalReports, setTotalReports] = useState(0);
+  const [totalShows, setTotalShows] = useState(0);
   const role ="Admin"
   const authToken = localStorage.getItem("token");
   const lengthOfTheatre = Object.keys(theatre).length;
@@ -52,17 +52,16 @@ const fetchAllReports = async (setReports) => {
   try {
     const authToken = localStorage.getItem("token");
     await axios
-      .get(`http://localhost:7000/report/getallreports`,
+      .get(`http://localhost:7000/show/getallshow`,
         {
           headers: { Authorization: `Bearer ${authToken}` }
         }
       )
       .then((res) => {
         toast.error(res.data.Error);
-        const allreports =res.data.allReports
-        const filteredReports = allreports.filter((report) => report.role == "admin");
-        const lengthOfReports = Object.keys(filteredReports).length;
-        setTotalReports(lengthOfReports);
+        const allShow =res.data.allShows
+        const lengthOfShows = Object.keys(allShow).length;
+        setTotalShows(lengthOfShows);
       })
       .catch((err) => {
         toast.error(err.response.data.Message)
@@ -82,7 +81,6 @@ const fetchAllReports = async (setReports) => {
           }
         )
         .then((res) => {
-          toast.success(res.data.Message)
           toast.error(res.data.Error);
           setAdmin(res.data.singleAdmin)
         })
@@ -170,8 +168,8 @@ const fetchAllReports = async (setReports) => {
                 <p className="text-3xl font-bold text-green-800">{totalScreens||0}</p>
               </div>
               <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-5 text-center shadow-md hover:scale-105 transition duration-300 transform">
-                <h3 className="text-yellow-600 text-lg font-semibold">Reports</h3>
-                <p className="text-3xl font-bold text-yellow-800">{totalReports || 0}</p>
+                <h3 className="text-yellow-600 text-lg font-semibold">Shows</h3>
+                <p className="text-3xl font-bold text-yellow-800">{totalShows || 0}</p>
               </div>
             </div>
           </div>

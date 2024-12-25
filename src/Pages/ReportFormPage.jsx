@@ -150,8 +150,7 @@ const ReportForm = () => {
             className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="">Select a subject</option>
-            <option value="Payment Issue">Payment Issue</option>
-            <option value="Booking Error">Booking Error</option>
+            <option value="Booking Error">Movie Creating</option>
             <option value="Screening Schedule">Screening Schedule</option>
             <option value="Technical Issue">Technical Issue</option>
             <option value="Other">Other</option>

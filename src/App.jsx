@@ -38,13 +38,13 @@ const AppComponent = () => {
       <Route path="/seat" element={<SeatPage />} />
       <Route path="/voting" element={<VotingResultsCard />} />
       <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/report" element={<ReportPage />} />
+      {/* <Route path="/report" element={<ReportPage />} /> */}
+      <Route path="/report" element={<ReportForm />} />
       <Route path="/addscreen" element={<AddScreenForm />} />
       <Route path="/editscreen/:_id" element={<AddScreenForm />} />
       <Route path="/addmovie" element={<AddMovieForm />} />
       <Route path="/updatemovie/:_id" element={<AddMovieForm />} />
       <Route path="/editprofile/:_id" element={<ProfileEditPage />} />
-      <Route path="/addreport" element={<ReportForm />} />
       <Route path="/addtheatre" element={<AddTheatreForm />} />
       <Route path="/edittheatre/:_id" element={<AddTheatreForm />} />
       <Route path="/theatre" element={<TheatrePage />} />

@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
-import { MdPublish } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import SidebarComponent from "../Components/SidebarComponent";
@@ -59,42 +58,16 @@ const MoviesPage = () => {
     }
   };
 
-  const handlePublish = async (_id, title) => {
-    setMovies(movies.filter((_, i) => i !== _id));
-    alert(`Publish : ${title}`);
-    try {
-      const status = { status: "publish" };
-      await axios
-        .put(`http://localhost:7000/movie/updatemovie/?_id=${_id}`, status, {
-          headers: { Authorization: `Bearer ${authToken}` },
-        })
-        .then((res) => {
-          toast.success(res.data.Message);
-          setMovies((prevState) =>
-            prevState.filter((value) => value._id !== _id)
-          );
-        })
-        .catch((err) => {
-          toast.error(err.response.data.Message);
-        });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   return (
     <div className="flex h-screen overflow-hidden">
-      {/* Sidebar */}
       <div className="w-full md:w-56 fixed h-full">
         <SidebarComponent />
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
         <div className="p-8 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 min-h-screen">
           <div className="max-w-6xl mx-auto">
-            {/* Header */}
-            <div className="text-4xl font-bold text-gray-100 mb-10 flex justify-between items-center">
+            <div className="text-3xl font-bold text-gray-100 mb-10 flex justify-between items-center">
               <span>Movies List</span>
               <Link to={"/addmovie"}>
                 <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-medium flex items-center gap-2 hover:scale-105 transform transition duration-300">
@@ -104,21 +77,18 @@ const MoviesPage = () => {
               </Link>
             </div>
 
-            {/* Movies List */}
             <div className="space-y-8">
               {movies.map((movie) => (
                 <div
                   key={movie._id}
                   className="flex flex-col sm:flex-row bg-gray-700 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-6 gap-8"
                 >
-                  {/* Movie Poster */}
                   <img
                     src={"http://localhost:7000/upload/" + movie.fileName}
                     alt={`${movie.title} Poster`}
                     className="w-full sm:w-48 sm:h-72 object-cover rounded-xl border-4 border-gray-200 mb-4 sm:mb-0"
                   />
 
-                  {/* Movie Details */}
                   <div className="flex-1 flex flex-col justify-between">
                     <div>
                       <h2 className="text-3xl font-bold text-gray-200 mb-4">
@@ -163,7 +133,6 @@ const MoviesPage = () => {
                       </div>
                     </div>
 
-                    {/* Actions */}
                     <div className="flex flex-wrap items-center justify-between mt-6">
                       <div className="flex gap-6 flex-wrap">
                         <Link to={`/updatemovie/${movie._id}`}>
