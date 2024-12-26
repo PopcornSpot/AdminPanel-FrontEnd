@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import profileImage from "../assets/AdminImage.jpg"
+import SidebarComponent from "../Components/SidebarComponent";
 
 const initialState = {
     adminName: "",
@@ -88,21 +89,23 @@ const ProfileEditPage = () => {
   }, [_id]);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex h-screen overflow-hidden bg-gray-900">
       <div className="w-56 fixed h-full">
         <SidebarComponent />
       </div>
 
-      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
+      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto ">
     <div
-      className={`bg-slate-100 min-h-screen flex flex-col justify-center items-center`}
+      className={`bg-gray-950 py-10 px-2 min-h-screen flex flex-col justify-center items-center`}
     >
-      <div className={`bg-white shadow-lg rounded-lg p-6 w-full max-w-md`}>
-        <h2 className={`text-xl font-bold text-center text-gray-700 mb-4`}>
+       <div className={` rounded-lg p-6 w-full max-w-md`}>
+        <h2 className={`text-2xl font-bold text-center text-gray-200 mb-4`}>
           Profile Page
         </h2>
       </div>
-      <div className="lg:w-1/3 flex items-center justify-center bg-gray-700 p-8 hover:scale-105 transition duration-300 transform">
+     <div className="bg-gray-800 rounded-lg w-[70%] max-sm:w-full px-10 py-10 h-full flex flex-col items-center">
+    
+      <div className="lg:w-1/3 flex items-center justify-center bg-gray-800 p-8 hover:scale-105 transition duration-300 transform">
             <img
              src={
               formData.fileName
@@ -116,26 +119,25 @@ const ProfileEditPage = () => {
 
       <form
       onSubmit={handleSubmit}
-      className={`space-y-4`}>
-      <div className={`flex flex-col items-center mb-6`}>
+      className={`space-y-4 w-full`}>
+      <div className={`w-full ml-10 flex flex-col items-center justify-center mb-6`}>
           <div>
-            <label className="block font-medium text-gray-700">Profile Image</label>
             <input
               type="file"
               name="image"
               onChange={handleChange}
-              className="w-full mt-1"
+              className="w-full mt-1 text-gray-200"
               accept="image/*"
               required
             />
             {formData.fileOriginalName && (
-              <p className="text-lg mt-4 ">{formData.fileOriginalName}</p>
+              <p className="text-lg mt-4 text-gray-100 ">{formData.fileOriginalName}</p>
             )}
           </div>
         </div>
         <div className={`flex flex-col`}>
 
-          <label htmlFor="Name" className={`text-gray-600 mb-1`}>
+          <label htmlFor="Name" className={`text-gray-200 mb-1`}>
             Full Name
           </label>
           <input
@@ -146,12 +148,12 @@ const ProfileEditPage = () => {
             onChange={handleChange}
             placeholder="Enter your full name"
             required
-            className={`border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300`}
+            className={`border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-orange-300`}
           />
         </div>
 
         <div className={`flex flex-col`}>
-          <label htmlFor="email" className={`text-gray-600 mb-1`}>
+          <label htmlFor="email" className={`text-gray-200 mb-1`}>
             Email ID
           </label>
           <input
@@ -162,12 +164,12 @@ const ProfileEditPage = () => {
             onChange={handleChange}
             placeholder="Enter your email ID"
             required
-            className={`border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300`}
+            className={`border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-orange-300`}
           />
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="mobileNumber" className="text-gray-600 mb-1">
+          <label htmlFor="mobileNumber" className="text-gray-200 mb-1">
             Mobile Number
           </label>
           <input
@@ -178,12 +180,12 @@ const ProfileEditPage = () => {
             onChange={handleChange}
             placeholder="Enter your mobile number"
             required
-            className={`border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-blue-400`}
+            className={`border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-orange-400`}
           />
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="theatreName" className="text-gray-600 mb-1">
+          <label htmlFor="theatreName" className="text-gray-200 mb-1">
             Theatre Name
           </label>
           <input
@@ -194,12 +196,12 @@ const ProfileEditPage = () => {
             onChange={handleChange}
             placeholder="Enter your theatre number"
             required
-            className={`border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-blue-400`}
+            className={`border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-orange-400`}
           />
         </div>
 
         <div className="flex flex-col">
-          <label htmlFor="location" className="text-gray-600 mb-1">
+          <label htmlFor="location" className="text-gray-200 mb-1">
             Location
           </label>
           <input
@@ -210,18 +212,19 @@ const ProfileEditPage = () => {
             onChange={handleChange}
             placeholder="Enter your location"
             required
-            className={`border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-blue-400`}
+            className={`border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-orange-400`}
           />
         </div>
 
 
         <button
           type="submit"
-          className={`w-full bg-gray-600 text-white py-2 rounded-md hover:bg-gray-500 transition-colors`}
+          className={`w-full bg-orange-500 text-white py-2 rounded-md hover:bg-orange-600 transition-colors`}
         >
           Submit
         </button>
       </form>
+     </div>
     </div>
     </div>
     </div>
