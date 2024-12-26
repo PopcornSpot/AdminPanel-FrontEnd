@@ -15,28 +15,19 @@ const VotingResultsCard = () => {
         headers: { Authorization: `Bearer ${authToken}` },
       });
       setPollData(res.data.allPolls);
-    }
-     catch (err) {
+    } catch (err) {
       if (err.response?.status === 401) {
         toast.error("Request to Login Again");
-        navigate("/")
+        navigate("/");
         return;
       }
-      console.log(err.message); 
+      console.error(err.message);
     }
   };
 
   useEffect(() => {
     fetchPolls();
   }, []);
-
-  if (!pollData.length) {
-    return (
-      <div className="h-screen flex justify-center items-center bg-gray-900 text-white">
-        <h2 className="text-2xl font-bold">Loading results...</h2>
-      </div>
-    );
-  }
 
   return (
     <div className="flex h-screen bg-gray-900 text-white">
@@ -45,9 +36,9 @@ const VotingResultsCard = () => {
       </div>
 
       <div className="flex-1 md:ml-56 overflow-y-auto p-6">
-        <div className="w-full max-w-5xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-8">
-            <h1 className="text-4xl font-bold mb-4 md:mb-0 text-gray-100">
+        <div className="w-full mx-auto px-6">
+          <div className="flex w-full md:flex-row justify-between items-center mb-8">
+            <h1 className="text-3xl font-bold mb-4 md:mb-0 text-gray-100">
               Voting Results
             </h1>
             <Link
@@ -58,33 +49,39 @@ const VotingResultsCard = () => {
             </Link>
           </div>
 
-          <div className="space-y-8">
-            {pollData.map((poll) => (
-              <div
-                key={poll._id}
-                className="bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6"
-              >
-                <h2 className="text-2xl font-bold text-gray-100 mb-4 border-b pb-2">
-                  {poll.pollName}
-                </h2>
-                <div className="space-y-4">
-                  {poll.movies.map((movie) => (
-                    <div
-                      key={movie._id}
-                      className="flex justify-between items-center bg-gray-700 p-4 rounded-md hover:bg-gray-600 transition-colors duration-200"
-                    >
-                      <span className="font-semibold text-gray-200">
-                        {movie.movieName}
-                      </span>
-                      <span className="text-orange-400 font-bold text-lg">
-                        {movie.votes} Votes
-                      </span>
-                    </div>
-                  ))}
+          {!pollData.length ? (
+            <div className="text-center text-gray-300 text-xl">
+              No polls created yet.
+            </div>
+          ) : (
+            <div className="space-y-8">
+              {pollData.map((poll) => (
+                <div
+                  key={poll._id}
+                  className="bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 p-6"
+                >
+                  <h2 className="text-2xl font-bold text-gray-100 mb-4 border-b pb-2">
+                    {poll.pollName}
+                  </h2>
+                  <div className="space-y-4">
+                    {poll.movies.map((movie) => (
+                      <div
+                        key={movie._id}
+                        className="flex justify-between items-center bg-gray-700 p-4 rounded-md hover:bg-gray-600 transition-colors duration-200"
+                      >
+                        <span className="font-semibold text-gray-200">
+                          {movie.movieName}
+                        </span>
+                        <span className="text-orange-400 font-bold text-lg">
+                          {movie.votes} Votes
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>
