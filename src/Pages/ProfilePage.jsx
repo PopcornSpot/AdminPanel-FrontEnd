@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import profileImage from "../assets/AdminImage.jpg"
 import SidebarComponent from "../Components/SidebarComponent";
+
 
 const ProfilePage = () => {
    const backendURL= "http://localhost:7000"
@@ -15,6 +16,7 @@ const ProfilePage = () => {
   const role ="Admin"
   const authToken = localStorage.getItem("token");
   const lengthOfTheatre = Object.keys(theatre).length;
+  const navigate = useNavigate();
 
 
   const fetchTheatre = async () => {
@@ -26,8 +28,7 @@ const ProfilePage = () => {
             }
         )
         .then((res) => {
-          toast.error(res.data.Error)
-          toast.success(res.data.Message) 
+          toast.error(res.data.Error) 
           const fetchedTheatres = res.data.theatres;
           setTheatre(fetchedTheatres);
           const screensCount = fetchedTheatres.reduce((total, theatre) => {
@@ -36,14 +37,17 @@ const ProfilePage = () => {
           }, 0);
           setTotalScreens(screensCount);
         })
-        .catch((err) =>{
-          if (err.status === 401) {
-              return toast.error("Request to Login Again")
-                }
-          toast.error(err.response.data.Error)
+        .catch ((err)=>{
+          if (err.response?.status === 401) {
+            toast.error("Request to Login Again");
+            navigate("/")
+            return;
+          }
+          console.log(err.message); 
         });
     } catch (error) {
-      toast.error(error.message)
+      console.log(error.message);
+      
     }
   };
 
@@ -63,8 +67,12 @@ const fetchAllReports = async (setReports) => {
         const lengthOfShows = Object.keys(allShow).length;
         setTotalShows(lengthOfShows);
       })
-      .catch((err) => {
-        toast.error(err.response.data.Message)
+      .catch ((err) =>{
+        if (err.response?.status === 401) {
+          navigate("/")
+          return;
+        }
+        console.log(err.message); 
       });
   } catch (error) {
     console.log(error.message);
@@ -84,8 +92,12 @@ const fetchAllReports = async (setReports) => {
           toast.error(res.data.Error);
           setAdmin(res.data.singleAdmin)
         })
-        .catch((err) => {
-          toast.error(err.response.data.Message)
+        .catch ((err) =>{
+          if (err.response?.status === 401) {
+            navigate("/")
+            return;
+          }
+          console.log(err.message); 
         });
     } catch (error) {
       console.log(error.message);

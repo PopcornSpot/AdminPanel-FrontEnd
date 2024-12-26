@@ -1,13 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaEdit, FaTrashAlt, FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import SidebarComponent from "../Components/SidebarComponent";
+import Loader from "../Components/ReusableComponents/LoaderComponent";
+
 
 const MoviesPage = () => {
   const authToken = localStorage.getItem("token");
   const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
 
   const fetchMovie = async () => {
     try {
@@ -16,19 +19,24 @@ const MoviesPage = () => {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((res) => {
-          console.log(res.data.findAllMovies);
           toast.error(res.data.Error);
-          toast.success(res.data.Message);
           setMovies(res.data.findAllMovies);
         })
-        .catch((err) => {
-          if (err.status === 401) {
-            return toast.error("Request to Login Again");
+        .catch ((err) =>{
+          if (err.response?.status === 401) {
+            toast.error("Request to Login Again");
+            navigate("/")
+            return;
           }
-          toast.error(err.response.data.Error);
-        });
-    } catch (error) {
-      toast.error(error.message);
+          console.log(err.message); 
+        })
+    } catch (err) {
+      if (err.response?.status === 401) {
+        toast.error("Request to Login Again");
+        navigate("/")
+        return;
+      }
+      console.log(err.message); 
     }
   };
 
@@ -63,7 +71,7 @@ const MoviesPage = () => {
       <div className="w-full md:w-56 fixed h-full">
         <SidebarComponent />
       </div>
-
+      {movies.length!==0 ?
       <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
         <div className="p-8 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 min-h-screen">
           <div className="max-w-6xl mx-auto">
@@ -136,7 +144,7 @@ const MoviesPage = () => {
                     <div className="flex flex-wrap items-center justify-between mt-6">
                       <div className="flex gap-6 flex-wrap">
                         <Link to={`/updatemovie/${movie._id}`}>
-                          <button className="bg-blue-500 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-400 transition duration-300 flex items-center gap-2">
+                          <button className="bg-blue-500 text-white px-4 py-3 rounded-lg font-medium hover:bg-blue-400 transition duration-300 flex items-center gap-2">
                             <FaEdit  />
                             Edit
                           </button>
@@ -174,6 +182,8 @@ const MoviesPage = () => {
           </div>
         </div>
       </div>
+      :<Loader/>
+            }
     </div>
   );
 };

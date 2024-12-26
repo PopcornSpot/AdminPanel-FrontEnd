@@ -3,11 +3,12 @@ import TheatreCard from "../Components/theatreCardComp";
 import { toast } from "react-toastify";
 import axios from "axios";
 import SidebarComponent from "../Components/SidebarComponent";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const TheatrePage = () => {
   const [theatres, setTheatres] = useState([]);
   const authToken = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const fetchTheatre = async () => {
     try {
@@ -16,20 +17,24 @@ const TheatrePage = () => {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((res) => {
-          console.log(res.data);
-          
           toast.error(res.data.Error);
-          toast.success(res.data.Message);
           setTheatres(res.data.theatres);
         })
-        .catch((err) => {
-          if (err.status === 401) {
-            return toast.error("Request to Login Again");
+        .catch((err)=> {
+          if (err.response?.status === 401) {
+            toast.error("Request to Login Again");
+            navigate("/")
+            return;
           }
-          toast.error(err.response.data.Error);
+          console.log(err.message); 
         });
-    } catch (error) {
-      toast.error(error.message);
+    } catch (err) {
+      if (err.response?.status === 401) {
+        toast.error("Request to Login Again");
+        navigate("/")
+        return;
+      }
+      console.log(err.message); 
     }
   };
 

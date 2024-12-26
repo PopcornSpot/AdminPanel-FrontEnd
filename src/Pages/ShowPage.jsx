@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ShowCard from '../Components/ShowCardComp';
 import SidebarComponent from '../Components/SidebarComponent';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const ShowPage = () => {
   const [shows, setShows] = useState([]);
   const authToken = localStorage.getItem("token");
+  const navigate = useNavigate();
 
   const fetchShow = async () => {
     try {
@@ -17,15 +18,22 @@ const ShowPage = () => {
         })
         .then((res) => {
           toast.error(res.data.Error);
-          toast.success(res.data.Message);
           setShows(res.data.allShows);
         })
-        .catch((err) => {
-          toast.error(err.response.data.Error);
+        .catch((err) =>{
+          if (err.response?.status === 401) {
+            toast.error("Request to Login Again");
+            navigate("/")
+            return;
+          }
+          console.log(err.message); 
         });
-    } catch (error) {
-      console.log(error.message);
-      toast.error(error.message);
+    } catch (err) {
+      if (err.response?.status === 401) {
+        toast.error("Request to Login Again");
+        return;
+      }
+      console.log(err.message); 
     }
   };
 

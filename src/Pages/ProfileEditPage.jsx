@@ -22,7 +22,6 @@ const fetchAdminForUpdate = async (_id, setAdmin) => {
         headers: { Authorization: `Bearer ${authToken}` },
       })
       .then((res) => {
-        toast.success(res.data.Message);
         toast.error(res.data.Error);
         setAdmin(res.data.singleAdmin);
       })

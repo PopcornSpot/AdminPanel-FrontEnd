@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import SidebarComponent from "../Components/SidebarComponent";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const VotingResultsCard = () => {
   const authToken = localStorage.getItem("token");
   const [pollData, setPollData] = useState([]);
+  const navigate = useNavigate();
 
   const fetchPolls = async () => {
     try {
@@ -14,12 +15,14 @@ const VotingResultsCard = () => {
         headers: { Authorization: `Bearer ${authToken}` },
       });
       setPollData(res.data.allPolls);
-    } catch (err) {
+    }
+     catch (err) {
       if (err.response?.status === 401) {
         toast.error("Request to Login Again");
+        navigate("/")
         return;
       }
-      toast.error(err.response?.data?.Error || "Error fetching polls");
+      console.log(err.message); 
     }
   };
 
