@@ -68,8 +68,12 @@ const AddScreenForm = () => {
             setFormData(initialState);
             navigate("/screen");
           })
-          .catch((err) => {
-            toast.error(err.response.data.Message);
+          .catch ((err) =>{
+            if (err.response?.status === 401) {
+              navigate("/")
+              return;
+            }
+            console.log(err.message); 
           })
         : await axios
           .post("http://localhost:7000/screen/create", updatedData, {
@@ -81,8 +85,12 @@ const AddScreenForm = () => {
             setFormData(initialState);
             navigate("/screen");
           })
-          .catch((err) => {
-            toast.error(err.response.data.Message);
+          .catch ((err) =>{
+            if (err.response?.status === 401) {
+              navigate("/")
+              return;
+            }
+            console.log(err.message); 
           });
     } catch (error) {
       console.log(error);

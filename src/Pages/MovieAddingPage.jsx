@@ -17,11 +17,9 @@ const initialState={
   music: "",
   director: "",
   trailerUrl: "",
-  firstClassTicketPrice: "",
-  secondClassTicketPrice:"",
   image: null,
   format: "",
-  screenNo: "",
+  producer: "",
 }
 
 const fetchMovieForUpdate = async (_id,setMovie) => {
@@ -34,7 +32,6 @@ const fetchMovieForUpdate = async (_id,setMovie) => {
         }
       )
       .then((res) => {
-        toast.success(res.data.Message);
         toast.error(res.data.Error)
         setMovie(res.data.movie);
       })
@@ -93,9 +90,12 @@ const AddMovieForm = () => {
             setFormData(initialState);
             navigate("/movies")
           })
-          .catch((err) => {
-            toast.error(err.response.data.Message);
-
+          .catch ((err) =>{
+            if (err.response?.status === 401) {
+              navigate("/")
+              return;
+            }
+            console.log(err.message); 
           }) :
         await axios
           .post("http://localhost:7000/movie/add", uploadData, {
@@ -111,9 +111,12 @@ const AddMovieForm = () => {
             setFormData(initialState);
             navigate("/movies");
           })
-          .catch((err) => {
-            console.log(err);
-            toast.error(err.response.data.Message);
+          .catch ((err) =>{
+            if (err.response?.status === 401) {
+              navigate("/")
+              return;
+            }
+            console.log(err.message); 
           });
     } catch (error) {
       console.log(error);
@@ -130,10 +133,6 @@ const AddMovieForm = () => {
     }
   }, [_id])
 
-
-
-
-
   return (
     <div className="flex h-screen overflow-hidden bg-gray-800">
       <div className="w-56 fixed h-full">
@@ -147,7 +146,7 @@ const AddMovieForm = () => {
           </h2>
           <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block font-medium text-gray-200">Title</label>
+              <label htmlFor="text" className="block font-medium text-gray-200">Title</label>
               <input
                 type="text"
                 name="title"
@@ -160,7 +159,7 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-200">Genre</label>
+              <label htmlFor="genre" className="block font-medium text-gray-200">Genre</label>
               <select
                 name="genre"
                 value={formData.genre}
@@ -178,7 +177,7 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-200">Language</label>
+              <label htmlFor="language" className="block font-medium text-gray-200">Language</label>
               <input
                 type="text"
                 name="language"
@@ -191,7 +190,7 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-200">Duration</label>
+              <label htmlFor="duration" className="block font-medium text-gray-200">Duration</label>
               <input
                 type="text"
                 name="duration"
@@ -204,7 +203,7 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-200">Release Date</label>
+              <label htmlFor="releaseDate" className="block font-medium text-gray-200">Release Date</label>
               <input
                 type="date"
                 name="releaseDate"
@@ -216,7 +215,7 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-200">Certificate</label>
+              <label htmlFor="certificate" className="block font-medium text-gray-200">Certificate</label>
               <select
                 name="certificate"
                 value={formData.certificate}
@@ -234,7 +233,7 @@ const AddMovieForm = () => {
             </div>
 
             <div className="md:col-span-2">
-              <label className="block font-medium text-gray-200">Synopsis</label>
+              <label htmlFor="synopsis" className="block font-medium text-gray-200">Synopsis</label>
               <textarea
                 name="synopsis"
                 value={formData.synopsis}
@@ -247,7 +246,7 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-200">Hero</label>
+              <label htmlFor="hero" className="block font-medium text-gray-200">Hero</label>
               <input
                 type="text"
                 name="hero"
@@ -260,7 +259,7 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-200">Director</label>
+              <label htmlFor="director" className="block font-medium text-gray-200">Director</label>
               <input
                 type="text"
                 name="director"
@@ -273,7 +272,7 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-200">Heroine</label>
+              <label htmlFor="heroine" className="block font-medium text-gray-200">Heroine</label>
               <input
                 type="text"
                 name="heroine"
@@ -286,7 +285,7 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-200">Music Director</label>
+              <label htmlFor="music" className="block font-medium text-gray-200">Music Director</label>
               <input
                 type="text"
                 name="music"
@@ -299,7 +298,7 @@ const AddMovieForm = () => {
             </div>
 
             <div>
-              <label className="block font-medium text-gray-200">Trailer URL</label>
+              <label htmlFor="trailerUrl" className="block font-medium text-gray-200">Trailer URL</label>
               <input
                 type="url"
                 name="trailerUrl"
@@ -311,50 +310,20 @@ const AddMovieForm = () => {
               />
             </div>
 
-            <div>
-              <label className="block font-medium text-gray-200">Screen Number</label>
-              <select
-                name="screenNo"
-                value={formData.screenNo}
-                onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
-                required
-              >
-                <option value="">Select Screen</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block font-medium text-gray-200">Ticket Price</label>
+           <div>
+              <label htmlFor="producer" className="block font-medium text-gray-200">Producer Name</label>
               <input
-                type="number"
-                name="firstClassTicketPrice"
-                value={formData.firstClassTicketPrice}
+                type="text"
+                name="producer"
+                value={formData.producer}
                 onChange={handleChange}
                 className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
-                placeholder="Enter 1st class ticket price"
-                required
+                placeholder="Enter producer name"
               />
             </div>
 
             <div>
-              <label className="block font-medium text-gray-200">Ticket Price</label>
-              <input
-                type="number"
-                name="secondClassTicketPrice"
-                value={formData.secondClassTicketPrice}
-                onChange={handleChange}
-                className="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-orange-500 focus:border-orange-500"
-                placeholder="Enter 2nd class ticket price"
-                required
-              />
-            </div>
-
-            <div>
-              <label className="block font-medium text-gray-200">Poster</label>
+              <label htmlFor="image" className="block font-medium text-gray-200">Poster</label>
               <input
                 type="file"
                 name="image"

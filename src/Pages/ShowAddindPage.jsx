@@ -49,8 +49,6 @@ const AddShow = () => {
   const navigate = useNavigate();
   const { _id } = useParams();
   const [formData, setFormData] = useState(initialState);
-  // let movieList=[];
-  // let screenList=[];
   const [movieList, setMovieList] = useState([]);
   const [screenList, setScreenList] = useState([]);
   const authToken = localStorage.getItem("token");
@@ -76,8 +74,12 @@ const AddShow = () => {
           const movies = filteredMovies.map((movieItem) => movieItem.title);
           setMovieList(movies)
         })
-        .catch((err) => {
-          toast.error(err.response.data.Message)
+        .catch ((err) =>{
+          if (err.response?.status === 401) {
+            navigate("/")
+            return;
+          }
+          console.log(err.message); 
         });
     } catch (error) {
       console.log(error.message);
@@ -98,8 +100,12 @@ const AddShow = () => {
           const Screens = allScreen.map((item) => item.screenNo);
           setScreenList(Screens)
         })
-        .catch((err) => {
-          toast.error(err.response.data.Message)
+        .catch ((err) =>{
+          if (err.response?.status === 401) {
+            navigate("/")
+            return;
+          }
+          console.log(err.message); 
         });
     } catch (error) {
       console.log(error.message);

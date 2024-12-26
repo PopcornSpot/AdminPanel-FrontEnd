@@ -33,8 +33,12 @@ const fetchTheatreForUpdate = async (_id, setMovie) => {
         toast.error(res.data.Error);
         setMovie(res.data.theatres);
       })
-      .catch((err) => {
-        toast.error(err.response.data.Message);
+      .catch ((err) =>{
+        if (err.response?.status === 401) {
+          navigate("/")
+          return;
+        }
+        console.log(err.message); 
       });
   } catch (error) {
     console.log(error.message);
@@ -110,8 +114,12 @@ const AddTheatreForm = () => {
             setFormData(initialState);
             navigate("/theatre");
           })
-          .catch((err) => {
-            toast.error(err.response.data.Message);
+          .catch ((err) =>{
+            if (err.response?.status === 401) {
+              navigate("/")
+              return;
+            }
+            console.log(err.message); 
           });
     } catch (error) {
       console.log(error);
