@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import SidebarComponent from "../Components/SidebarComponent";
 import { Link, useNavigate } from "react-router-dom";
+import { FaPlus } from "react-icons/fa";
 
 const VotingResultsCard = () => {
   const authToken = localStorage.getItem("token");
@@ -43,10 +44,12 @@ const VotingResultsCard = () => {
             </h1>
             <Link
               to="/addvoting"
-              className="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded-lg text-lg font-semibold transition-transform transform hover:scale-105"
+              className="bg-gradient-to-r from-orange-500 to-orange-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-3 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center gap-3"
             >
-              Create Poll
+              <FaPlus className="text-2xl" />
+              <span>Create Poll</span>
             </Link>
+
           </div>
 
           {!pollData.length ? (

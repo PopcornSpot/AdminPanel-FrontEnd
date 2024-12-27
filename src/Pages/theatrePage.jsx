@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import SidebarComponent from "../Components/SidebarComponent";
 import { Link, useNavigate } from "react-router-dom";
+import { FaPlus } from "react-icons/fa";
 
 const TheatrePage = () => {
   const [theatres, setTheatres] = useState([]);
@@ -20,13 +21,13 @@ const TheatrePage = () => {
           toast.error(res.data.Error);
           setTheatres(res.data.theatres);
         })
-        .catch((err)=> {
+        .catch((err) => {
           if (err.response?.status === 401) {
             toast.error("Request to Login Again");
             navigate("/")
             return;
           }
-          console.log(err.message); 
+          console.log(err.message);
         });
     } catch (err) {
       if (err.response?.status === 401) {
@@ -34,7 +35,7 @@ const TheatrePage = () => {
         navigate("/")
         return;
       }
-      console.log(err.message); 
+      console.log(err.message);
     }
   };
 
@@ -70,12 +71,17 @@ const TheatrePage = () => {
         <div className="min-h-screen bg-gray-900 text-white px-4 py-6">
           <div className="flex w-full justify-between items-center mb-6">
             <h1 className="text-3xl font-bold pl-5">Theatre List</h1>
+
+
             <Link
-              className="text-lg px-4 py-2 bg-orange-600 hover:bg-orange-700 rounded-md mr-10"
+              className="text-lg px-4 py-2 bg-gradient-to-r from-orange-600 to-orange-500 text-white font-semibold rounded-md mr-10 flex items-center gap-2 hover:from-orange-700 hover:to-yellow-600 transition-all duration-300 ease-in-out shadow-lg transform hover:scale-105"
               to={"/addtheatre"}
             >
-              Add Theatre
+              <FaPlus className="text-xl" />
+              <span>Add Theatre</span>
             </Link>
+
+
           </div>
           <TheatreCard theatres={theatres} onDelete={handleDelete} />
         </div>

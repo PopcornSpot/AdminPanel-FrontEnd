@@ -3,6 +3,7 @@ import ShowCard from '../Components/ShowCardComp';
 import SidebarComponent from '../Components/SidebarComponent';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { FaPlus } from "react-icons/fa";
 import axios from 'axios';
 
 const ShowPage = () => {
@@ -20,20 +21,20 @@ const ShowPage = () => {
           toast.error(res.data.Error);
           setShows(res.data.allShows);
         })
-        .catch((err) =>{
+        .catch((err) => {
           if (err.response?.status === 401) {
             toast.error("Request to Login Again");
             navigate("/")
             return;
           }
-          console.log(err.message); 
+          console.log(err.message);
         });
     } catch (err) {
       if (err.response?.status === 401) {
         toast.error("Request to Login Again");
         return;
       }
-      console.log(err.message); 
+      console.log(err.message);
     }
   };
 
@@ -72,11 +73,13 @@ const ShowPage = () => {
               Shows List
             </h1>
             <Link
-              className="text-2xl h-[50px] bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-orange-600 transition duration-300 ease-in-out shadow-md"
+              className="text-xl h-[50px] bg-gradient-to-r from-orange-500 to-orange-500 text-white font-semibold py-2 px-4 rounded-lg hover:from-orange-600 hover:to-yellow-600 transition-all duration-300 ease-in-out shadow-lg flex items-center gap-2 transform hover:scale-105"
               to="/addshow"
             >
-              Add Show
+              <FaPlus className="text-2xl" />
+              <span>Add Show</span>
             </Link>
+
           </div>
           <ShowCard shows={shows} onDelete={handleDelete} />
         </div>
