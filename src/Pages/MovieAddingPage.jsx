@@ -139,12 +139,12 @@ const AddMovieForm = () => {
         <SidebarComponent />
       </div>
 
-      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto mt-10">
-        <div className="max-w-5xl mx-auto p-6 bg-gray-800 rounded-md shadow-md">
+      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
+        <div className="max-w-5xl mx-auto p-6 bg-gray-700 rounded-md shadow-md mt-10 mb-10">
           <h2 className="text-2xl font-bold mb-6 text-gray-100">
             {movieEdit ? "Update Movie" : "Add Movie"}
           </h2>
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit} className="grid  grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label htmlFor="text" className="block font-medium text-gray-200">Title</label>
               <input

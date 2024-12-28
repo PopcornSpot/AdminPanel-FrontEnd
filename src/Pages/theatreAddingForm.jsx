@@ -119,7 +119,8 @@ const AddTheatreForm = () => {
               navigate("/")
               return;
             }
-            console.log(err.message); 
+            console.log(err.message);
+            toast.error(err.response.data.Message) 
           });
     } catch (error) {
       console.log(error);
@@ -237,12 +238,12 @@ const AddTheatreForm = () => {
                     Zip Code
                   </label>
                   <input
-                    type="text"
+                    type="number"
                     id="zipCode"
                     name="zipCode"
                     value={formData.zipCode}
                     onChange={handleChange}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                    className="w-full bg-gray-700 no-spinner text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
                     placeholder="Enter zip code"
                     required
                   />
@@ -254,12 +255,12 @@ const AddTheatreForm = () => {
                   Phone Number
                 </label>
                 <input
-                  type="tel"
+                  type="number"
                   id="phone"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                  className="w-full bg-gray-700 no-spinner text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
                   placeholder="Enter phone number"
                   required
                 />
@@ -310,7 +311,7 @@ const AddTheatreForm = () => {
                     name="screens"
                     value={formData.screens}
                     onChange={handleChange}
-                    className="w-full bg-gray-700 text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
+                    className="w-full bg-gray-700 no-spinner text-white border border-gray-600 rounded-lg p-3 focus:ring-2 focus:ring-orange-400 focus:outline-none"
                     placeholder="Enter number of screens"
                     required
                   />

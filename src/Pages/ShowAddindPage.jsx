@@ -70,7 +70,6 @@ const AddShow = () => {
           toast.error(res.data.Error);
           const allMovies = res.data.findAllMovies
           const filteredMovies = allMovies.filter((movies) => movies.status == "Published");
-          console.log(filteredMovies);
           const movies = filteredMovies.map((movieItem) => movieItem.title);
           setMovieList(movies)
         })
@@ -175,7 +174,7 @@ const AddShow = () => {
         <SidebarComponent />
       </div>
       <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
-        <div className="max-w-2xl mx-auto p-6 bg-gray-800 shadow-md rounded-lg mt-10">
+        <div className="max-w-2xl mx-auto p-6 bg-gray-700 shadow-md rounded-lg mt-10">
           <h2 className="text-2xl font-semibold mb-4 text-gray-100">{editShow ? 'Update Show' : 'Add New Show'}</h2>
           <form onSubmit={handleSubmit}>
 
@@ -280,7 +279,7 @@ const AddShow = () => {
                   name="firstClassPrice"
                   value={formData.firstClassPrice}
                   onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block no-spinner w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   required
                 />
               </div>
@@ -294,7 +293,7 @@ const AddShow = () => {
                   name="secondClassPrice"
                   value={formData.secondClassPrice}
                   onChange={handleChange}
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                  className="mt-1 block no-spinner w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   required
                 />
               </div>
@@ -315,7 +314,7 @@ const AddShow = () => {
             </div>
 
 
-            <div className="flex justify-between mt-6">
+            <div className="w-full  flex justify-center items-center mt-6">
               <button
                 type="submit"
                 className="w-1/2 bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"

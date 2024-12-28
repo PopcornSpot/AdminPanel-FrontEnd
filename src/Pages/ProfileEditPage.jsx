@@ -128,7 +128,6 @@ const ProfileEditPage = () => {
               onChange={handleChange}
               className="w-full mt-1 text-gray-200"
               accept="image/*"
-              required
             />
             {formData.fileOriginalName && (
               <p className="text-lg mt-4 text-gray-100 ">{formData.fileOriginalName}</p>
@@ -174,13 +173,13 @@ const ProfileEditPage = () => {
           </label>
           <input
             id="mobileNumber"
-            type="tel"
+            type="number"
             name="mobileNumber"
             value={formData.mobileNumber}
             onChange={handleChange}
             placeholder="Enter your mobile number"
             required
-            className={`border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-orange-400`}
+            className={`border no-spinner border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-orange-400`}
           />
         </div>
 
