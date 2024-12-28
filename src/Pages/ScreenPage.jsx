@@ -14,46 +14,46 @@ const ScreensPage = () => {
     try {
       await axios
         .get("http://localhost:7000/screen/getallscreen",
-           {
-              headers: { Authorization: `Bearer ${authToken}` }
-            }
+          {
+            headers: { Authorization: `Bearer ${authToken}` }
+          }
         )
         .then((res) => {
-          toast.error(res.data.Error) 
+          toast.error(res.data.Error)
           setScreens(res.data.allScreens);
 
         })
-        .catch((err) =>{
+        .catch((err) => {
           toast.error(err.response.data.Error)
         });
     } catch (error) {
       console.log(error.message);
-      
+
       toast.error(error.message)
     }
   };
 
- 
+
   const handleDelete = async (_id) => {
-  
+
     try {
-        await axios
-          .delete(`http://localhost:7000/screen/delete/?_id=${_id}`,
-            {
-                headers: { Authorization: `Bearer ${authToken}` }
-              }
-          )
-          .then( async (res) => {
-            toast.success(res.data.Message);
-            toast.error(res.data.Error);
-            await fetchScreen();
-          })
-          .catch((err) => {
-            toast.error(err.response.data.Message)
-          });
-      } catch (error) {
-        console.log(error.message);
-      }
+      await axios
+        .delete(`http://localhost:7000/screen/delete/?_id=${_id}`,
+          {
+            headers: { Authorization: `Bearer ${authToken}` }
+          }
+        )
+        .then(async (res) => {
+          toast.success(res.data.Message);
+          toast.error(res.data.Error);
+          await fetchScreen();
+        })
+        .catch((err) => {
+          toast.error(err.response.data.Message)
+        });
+    } catch (error) {
+      console.log(error.message);
+    }
 
 
   };
@@ -78,33 +78,33 @@ const ScreensPage = () => {
               Manage Screens
             </h1>
             <Link to={"/addscreen"}>
-            <button 
-               
-              className="flex items-center px-6 py-3 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-all duration-300 shadow-md transform hover:scale-105"
-            >
-              <FaPlus className="mr-2" /> Add Screen
-            </button>
+              <button
+
+                className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-medium flex items-center gap-2 hover:scale-105 transform transition duration-300"
+              >
+                <FaPlus className="mr-2" /> Add Screen
+              </button>
             </Link>
           </div>
 
           {screens.length > 0 ? (
             <div className="flex flex-wrap gap-6">
               {screens.map((screen) => (
-                <div 
-                  key={screen._id} 
+                <div
+                  key={screen._id}
                   className="flex flex-col bg-gray-800 p-6 rounded-lg shadow-lg w-full sm:w-[48%] lg:w-[30%] transition-transform transform hover:scale-105"
                 >
                   <div className="flex justify-between items-center">
                     <h2 className="text-2xl font-bold text-orange-500">Screen: {screen.screenNo}</h2>
                     <div className="flex space-x-2">
-                       <Link to={`/editscreen/${screen._id}`} >
-                      <button 
-                        className="p-2 bg-green-500 rounded-full hover:bg-green-600 transition duration-200"
-                      >
-                        <FaEdit className="text-white" />
-                      </button>
+                      <Link to={`/editscreen/${screen._id}`} >
+                        <button
+                          className="p-2 bg-green-500 rounded-full hover:bg-green-600 transition duration-200"
+                        >
+                          <FaEdit className="text-white" />
+                        </button>
                       </Link>
-                      <button 
+                      <button
                         className="p-2 bg-red-500 rounded-full hover:bg-red-600 transition duration-200"
                         onClick={() => handleDelete(screen._id)}
                       >
@@ -118,7 +118,7 @@ const ScreensPage = () => {
 
                   <p className="mt-4 text-gray-400">
                     <strong>1st Class Seats:</strong> {screen.firstClassSeats}
-                  </p> 
+                  </p>
 
                   <p className="mt-4 text-gray-400">
                     <strong>2nd Class Seats:</strong> {screen.secondClassSeats}
@@ -126,7 +126,7 @@ const ScreensPage = () => {
 
 
                   <div className="mt-6">
-                    <button 
+                    <button
                       className="w-full py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition duration-200"
                       onClick={() => navigate("/theaterlayout")}
                     >

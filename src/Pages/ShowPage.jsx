@@ -73,10 +73,10 @@ const ShowPage = () => {
               Shows List
             </h1>
             <Link
-              className="text-xl h-[50px] bg-gradient-to-r from-orange-500 to-orange-500 text-white font-semibold py-2 px-4 rounded-lg hover:from-orange-600 hover:to-yellow-600 transition-all duration-300 ease-in-out shadow-lg flex items-center gap-2 transform hover:scale-105"
+              className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-medium flex items-center gap-2 hover:scale-105 transform transition duration-300"
               to="/addshow"
             >
-              <FaPlus className="text-2xl" />
+              <FaPlus className="text-white" />
               <span>Add Show</span>
             </Link>
 

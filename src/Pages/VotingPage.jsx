@@ -44,9 +44,9 @@ const VotingResultsCard = () => {
             </h1>
             <Link
               to="/addvoting"
-              className="bg-gradient-to-r from-orange-500 to-orange-500 hover:from-orange-600 hover:to-yellow-600 text-white px-6 py-3 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 shadow-lg flex items-center gap-3"
+              className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-medium flex items-center gap-2 hover:scale-105 transform transition duration-300"
             >
-              <FaPlus className="text-2xl" />
+              <FaPlus className="text-white" />
               <span>Create Poll</span>
             </Link>
 

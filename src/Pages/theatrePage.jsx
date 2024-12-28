@@ -74,10 +74,10 @@ const TheatrePage = () => {
 
 
             <Link
-              className="text-lg px-4 py-2 bg-gradient-to-r from-orange-600 to-orange-500 text-white font-semibold rounded-md mr-10 flex items-center gap-2 hover:from-orange-700 hover:to-yellow-600 transition-all duration-300 ease-in-out shadow-lg transform hover:scale-105"
+              className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-medium flex items-center gap-2 hover:scale-105 transform transition duration-300"
               to={"/addtheatre"}
             >
-              <FaPlus className="text-xl" />
+              <FaPlus className="text-white" />
               <span>Add Theatre</span>
             </Link>
 
