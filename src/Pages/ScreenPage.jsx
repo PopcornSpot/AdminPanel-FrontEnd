@@ -13,7 +13,7 @@ const ScreensPage = () => {
   const fetchScreen = async () => {
     try {
       await axios
-        .get("https://popcornspotbackend-production.up.railway.app/screen/getallscreen", {
+        .get("http://localhost:7000/screen/getallscreen", {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((res) => {
@@ -32,7 +32,7 @@ const ScreensPage = () => {
   const handleDelete = async (_id) => {
     try {
       await axios
-        .delete(`https://popcornspotbackend-production.up.railway.app/screen/delete/?_id=${_id}`, {
+        .delete(`http://localhost:7000/screen/delete/?_id=${_id}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then(async (res) => {
