@@ -67,7 +67,7 @@ const MoviesPage = () => {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex min-h-screen overflow-hidden">
       <div className="w-full md:w-56 fixed h-full">
         <SidebarComponent />
       </div>

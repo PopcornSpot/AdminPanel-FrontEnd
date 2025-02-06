@@ -65,8 +65,9 @@ const ScreensPage = () => {
               Manage Screens
             </h1>
             <Link to={"/addscreen"}>
-              <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-medium flex items-center gap-2 hover:scale-105 transform transition duration-300">
-                <FaPlus className="mr-2" /> Add Screen
+              <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-lg shadow-lg text-sm sm:text-base md:text-lg font-medium flex items-center gap-2 hover:scale-105 transform transition duration-300">
+                <FaPlus className="text-sm sm:text-base md:text-lg" /> Add
+                Screen
               </button>
             </Link>
           </div>
@@ -76,20 +77,41 @@ const ScreensPage = () => {
               <table className="w-full text-left border-collapse border border-gray-600 text-gray-200">
                 <thead>
                   <tr className="bg-gray-700">
-                    <th className="border border-gray-600 px-4 py-2">Screen No</th>
-                    <th className="border border-gray-600 px-4 py-2">Total Capacity</th>
-                    <th className="border border-gray-600 px-4 py-2">1st Class Seats</th>
-                    <th className="border border-gray-600 px-4 py-2">2nd Class Seats</th>
-                    <th className="border border-gray-600 px-4 py-2">Actions</th>
+                    <th className="border border-gray-600 px-4 py-2">
+                      Screen No
+                    </th>
+                    <th className="border border-gray-600 px-4 py-2">
+                      Total Capacity
+                    </th>
+                    <th className="border border-gray-600 px-4 py-2">
+                      1st Class Seats
+                    </th>
+                    <th className="border border-gray-600 px-4 py-2">
+                      2nd Class Seats
+                    </th>
+                    <th className="border border-gray-600 px-4 py-2">
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {screens.map((screen) => (
-                    <tr key={screen._id} className="hover:bg-gray-800 transition duration-200">
-                      <td className="border border-gray-600 px-4 py-2">{screen.screenNo}</td>
-                      <td className="border border-gray-600 px-4 py-2">{screen.totalSeats}</td>
-                      <td className="border border-gray-600 px-4 py-2">{screen.firstClassSeats}</td>
-                      <td className="border border-gray-600 px-4 py-2">{screen.secondClassSeats}</td>
+                    <tr
+                      key={screen._id}
+                      className="hover:bg-gray-800 transition duration-200"
+                    >
+                      <td className="border border-gray-600 px-4 py-2">
+                        {screen.screenNo}
+                      </td>
+                      <td className="border border-gray-600 px-4 py-2">
+                        {screen.totalSeats}
+                      </td>
+                      <td className="border border-gray-600 px-4 py-2">
+                        {screen.firstClassSeats}
+                      </td>
+                      <td className="border border-gray-600 px-4 py-2">
+                        {screen.secondClassSeats}
+                      </td>
                       <td className="border border-gray-600 px-4 py-2">
                         <div className="flex justify-center items-center gap-5">
                           <Link to={`/editscreen/${screen._id}`}>
@@ -113,15 +135,15 @@ const ScreensPage = () => {
                           </button>
                         </div>
                       </td>
-
-
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           ) : (
-            <div className="text-center text-gray-500">No screens available.</div>
+            <div className="text-center text-gray-500">
+              No screens available.
+            </div>
           )}
         </div>
       </div>

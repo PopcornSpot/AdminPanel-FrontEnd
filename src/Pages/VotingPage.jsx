@@ -31,12 +31,12 @@ const VotingResultsCard = () => {
   }, []);
 
   return (
-    <div className="flex h-screen bg-gray-900 text-white">
-      <div className="w-56 fixed h-full bg-gray-800 hidden md:block">
+    <div className="flex min-h-screen bg-gray-900 text-white overflow-hidden">
+      <div className="w-full md:w-56 fixed h-full">
         <SidebarComponent />
       </div>
 
-      <div className="flex-1 md:ml-56 overflow-y-auto p-6">
+      <div className="flex-1 md:ml-56 overflow-y-auto p-6 mt-16">
         <div className="w-full mx-auto px-6">
           <div className="flex w-full md:flex-row justify-between items-center mb-8">
             <h1 className="text-3xl font-bold mb-4 md:mb-0 text-gray-100">
