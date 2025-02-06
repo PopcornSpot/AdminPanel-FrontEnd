@@ -10,7 +10,7 @@ const fetchAllReports = async (setReports) => {
   try {
     const authToken = localStorage.getItem("token");
     await axios
-      .get(`http://localhost:7000/report/getallreports`,
+      .get(`http://popcornspotbackend-production.up.railway.app/report/getallreports`,
         {
           headers: { Authorization: `Bearer ${authToken}` }
         }
@@ -45,7 +45,7 @@ const ReportPage = () => {
     try {
       
       await axios
-        .get(`http://localhost:7000/report/getsinglereport/?_id=${_id}`, {
+        .get(`http://popcornspotbackend-production.up.railway.app/report/getsinglereport/?_id=${_id}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((res) => { 
@@ -72,7 +72,7 @@ const ReportPage = () => {
     try {
       await axios
         .put(
-          `http://localhost:7000/report/updatereport/?_id=${_id}`,
+          `http://popcornspotbackend-production.up.railway.app/report/updatereport/?_id=${_id}`,
           data,
           {
               headers: { Authorization: `Bearer ${authToken}` }

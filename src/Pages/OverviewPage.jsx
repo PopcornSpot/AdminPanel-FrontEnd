@@ -31,7 +31,7 @@ const OverviewPage = () => {
   const fetchTotalUsers = async () => {
     try {
       await axios
-        .get("http://localhost:7000/user/getalluser")
+        .get("http://popcornspotbackend-production.up.railway.app/user/getalluser")
         .then((res) => {
           setTotalUser(res.data.allUsers);
         })
@@ -46,7 +46,7 @@ const OverviewPage = () => {
   const fetchTotalTickets = async (theatreId) => {
     try {
       const response = await axios.get(
-        `http://localhost:7000/payment/getallticketsadmin/?_id=${theatreId}`
+        `http://popcornspotbackend-production.up.railway.app/payment/getallticketsadmin/?_id=${theatreId}`
       );
       setTotalTicket(response.data.allTickets);
     } catch (error) {
@@ -57,7 +57,7 @@ const OverviewPage = () => {
   const fetchTotalMovies = async () => {
     try {
       await axios
-        .get("http://localhost:7000/movie/user/getallmovie")
+        .get("http://popcornspotbackend-production.up.railway.app/movie/user/getallmovie")
         .then((res) => {
           setTotalMovie(res.data.findAllMovies);
         })
@@ -71,7 +71,7 @@ const OverviewPage = () => {
 
   const fetchTheatre = async () => {
     try {
-      const response = await axios.get("http://localhost:7000/theatre/get", {
+      const response = await axios.get("http://popcornspotbackend-production.up.railway.app/theatre/get", {
         headers: { Authorization: `Bearer ${authToken}` },
       });
       const fetchedTheatres = response.data.theatres;

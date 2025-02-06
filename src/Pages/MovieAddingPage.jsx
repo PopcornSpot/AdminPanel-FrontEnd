@@ -26,7 +26,7 @@ const fetchMovieForUpdate = async (_id,setMovie) => {
   try {
     const authToken = localStorage.getItem("token");
     await axios
-      .get(`http://localhost:7000/movie/getmovieforupdate/?_id=${_id}`,
+      .get(`http://popcornspotbackend-production.up.railway.app/movie/getmovieforupdate/?_id=${_id}`,
         {
           headers: { Authorization: `Bearer ${authToken}` }
         }
@@ -75,7 +75,7 @@ const AddMovieForm = () => {
 
     try {
       movieEdit ?
-        await axios.put(`http://localhost:7000/movie/updatemovie/?_id=${_id}`, uploadData,
+        await axios.put(`http://popcornspotbackend-production.up.railway.app/movie/updatemovie/?_id=${_id}`, uploadData,
           {
             headers: {
               "Content-Type": "multipart/form-data",
@@ -98,7 +98,7 @@ const AddMovieForm = () => {
             console.log(err.message); 
           }) :
         await axios
-          .post("http://localhost:7000/movie/add", uploadData, {
+          .post("http://popcornspotbackend-production.up.railway.app/movie/add", uploadData, {
             headers: {
               "Content-Type": "multipart/form-data",
               Authorization: `Bearer ${authToken}`,

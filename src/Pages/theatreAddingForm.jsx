@@ -23,7 +23,7 @@ const fetchTheatreForUpdate = async (_id, setMovie) => {
   try {
     const authToken = localStorage.getItem("token");
     await axios
-      .get(`http://localhost:7000/theatre/getone/?_id=${_id}`,
+      .get(`http://popcornspotbackend-production.up.railway.app/theatre/getone/?_id=${_id}`,
         {
           headers: { Authorization: `Bearer ${authToken}` }
         }
@@ -84,7 +84,7 @@ const AddTheatreForm = () => {
 
     try {
       theatreEdit
-        ? await axios.put(`http://localhost:7000/theatre/update/?_id=${_id}`, uploadData,
+        ? await axios.put(`http://popcornspotbackend-production.up.railway.app/theatre/update/?_id=${_id}`, uploadData,
           {
             headers: {
               "Content-Type": "multipart/form-data",
@@ -102,7 +102,7 @@ const AddTheatreForm = () => {
             toast.error(err.response.data.Message);
           })
         : await axios
-          .post("http://localhost:7000/theatre/create", uploadData, {
+          .post("http://popcornspotbackend-production.up.railway.app/theatre/create", uploadData, {
             headers: {
               "Content-Type": "multipart/form-data",
               Authorization: `Bearer ${authToken}`,

@@ -19,7 +19,7 @@ const fetchAdminForUpdate = async (_id, setAdmin) => {
   try {
     const authToken = localStorage.getItem("token");
     await axios
-      .get(`http://localhost:7000/admin/getprofiledetails/?_id=${_id}`, {
+      .get(`http://popcornspotbackend-production.up.railway.app/admin/getprofiledetails/?_id=${_id}`, {
         headers: { Authorization: `Bearer ${authToken}` },
       })
       .then((res) => {
@@ -39,7 +39,7 @@ const ProfileEditPage = () => {
   const [formData, setFormData] = useState(initialState);
   const navigate = useNavigate();
   const { _id } = useParams();
-   const backendURL= "http://localhost:7000"
+   const backendURL= "http://popcornspotbackend-production.up.railway.app"
 
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -61,7 +61,7 @@ const ProfileEditPage = () => {
     try {
       await axios
         .put(
-          `http://localhost:7000/admin/editprofile/?_id=${_id}`,
+          `http://popcornspotbackend-production.up.railway.app/admin/editprofile/?_id=${_id}`,
           uploadData,
           {
             headers: {
