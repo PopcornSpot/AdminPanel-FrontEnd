@@ -12,7 +12,7 @@ const TheatreCard = ({ theatres, onDelete }) => {
           className="bg-gray-700 border border-gray-300 rounded-lg shadow-md p-4 max-w-sm"
         >
           <img
-            src={"http://popcornspotbackend-production.up.railway.app/upload/" + theatre.fileName || image}
+            src={"https://popcornspotbackend-production.up.railway.app/upload/" + theatre.fileName || image}
             alt={theatre.theatreName}
             className="w-full h-40 object-cover rounded-t-lg mb-4"
           />

@@ -12,7 +12,7 @@ const VotingResultsCard = () => {
 
   const fetchPolls = async () => {
     try {
-      const res = await axios.get("http://popcornspotbackend-production.up.railway.app/poll/getallpoll", {
+      const res = await axios.get("https://popcornspotbackend-production.up.railway.app/poll/getallpoll", {
         headers: { Authorization: `Bearer ${authToken}` },
       });
       setPollData(res.data.allPolls);

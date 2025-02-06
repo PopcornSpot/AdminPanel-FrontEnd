@@ -24,7 +24,7 @@ const ForgotPassword = () => {
 
     try {
       await axios
-        .put("http://popcornspotbackend-production.up.railway.app/admin/resetpassword", formData)
+        .put("https://popcornspotbackend-production.up.railway.app/admin/resetpassword", formData)
         .then((res) => {
           localStorage.setItem("token", res.data.token);
           toast.success(res.data.Message);

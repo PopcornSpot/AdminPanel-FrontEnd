@@ -20,7 +20,7 @@ const fetchShowForUpdate = async (_id, setMovie) => {
   try {
     const authToken = localStorage.getItem("token");
     await axios
-      .get(`http://popcornspotbackend-production.up.railway.app/show/getsingleshow/?_id=${_id}`,
+      .get(`https://popcornspotbackend-production.up.railway.app/show/getsingleshow/?_id=${_id}`,
         {
           headers: { Authorization: `Bearer ${authToken}` }
         }
@@ -64,7 +64,7 @@ const AddShow = () => {
   const getAllMovies = async () => {
     try {
       await axios
-        .get(`http://popcornspotbackend-production.up.railway.app/movie/user/getallmovie`,
+        .get(`https://popcornspotbackend-production.up.railway.app/movie/user/getallmovie`,
         )
         .then((res) => {
           toast.error(res.data.Error);
@@ -88,7 +88,7 @@ const AddShow = () => {
   const getAllScreens = async () => {
     try {
       await axios
-        .get(`http://popcornspotbackend-production.up.railway.app/screen/getallscreen`,
+        .get(`https://popcornspotbackend-production.up.railway.app/screen/getallscreen`,
           {
             headers: { Authorization: `Bearer ${authToken}` }
           }
@@ -119,7 +119,7 @@ const AddShow = () => {
 
     try {
       editShow
-        ? await axios.put(`http://popcornspotbackend-production.up.railway.app/show/update/?_id=${_id}`, formData,
+        ? await axios.put(`https://popcornspotbackend-production.up.railway.app/show/update/?_id=${_id}`, formData,
           {
             headers: {
               Authorization: `Bearer ${authToken}`,
@@ -136,7 +136,7 @@ const AddShow = () => {
             toast.error(err.response.data.Message);
           })
         : await axios
-          .post("http://popcornspotbackend-production.up.railway.app/show/create", formData, {
+          .post("https://popcornspotbackend-production.up.railway.app/show/create", formData, {
             headers: {
               Authorization: `Bearer ${authToken}`,
             },

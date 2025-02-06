@@ -23,7 +23,7 @@ const LoginPage = () => {
 
     try {
       await axios
-        .post("http://popcornspotbackend-production.up.railway.app/admin/login", formData)
+        .post("https://popcornspotbackend-production.up.railway.app/admin/login", formData)
         .then((res) => {
           toast.success(res.data.Message);
           localStorage.clear();

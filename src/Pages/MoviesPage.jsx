@@ -15,7 +15,7 @@ const MoviesPage = () => {
   const fetchMovie = async () => {
     try {
       await axios
-        .get("http://popcornspotbackend-production.up.railway.app/movie/getallmovie", {
+        .get("https://popcornspotbackend-production.up.railway.app/movie/getallmovie", {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((res) => {
@@ -49,7 +49,7 @@ const MoviesPage = () => {
     alert(`Delete : ${title}`);
     try {
       await axios
-        .delete(`http://popcornspotbackend-production.up.railway.app/movie/delete/?_id=${_id}`, {
+        .delete(`https://popcornspotbackend-production.up.railway.app/movie/delete/?_id=${_id}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((res) => {
@@ -92,7 +92,7 @@ const MoviesPage = () => {
                   className="flex flex-col sm:flex-row bg-gray-700 rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-6 gap-8"
                 >
                   <img
-                    src={"http://popcornspotbackend-production.up.railway.app/upload/" + movie.fileName}
+                    src={"https://popcornspotbackend-production.up.railway.app/upload/" + movie.fileName}
                     alt={`${movie.title} Poster`}
                     className="w-full sm:w-48 sm:h-72 object-cover rounded-xl border-4 border-gray-200 mb-4 sm:mb-0"
                   />

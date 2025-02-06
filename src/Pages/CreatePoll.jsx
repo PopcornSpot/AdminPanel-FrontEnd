@@ -20,7 +20,7 @@ const AddVotingPage = () => {
   const getAllMovies = async () => {
     try {
       await axios
-        .get(`http://popcornspotbackend-production.up.railway.app/movie/user/getallmovie`)
+        .get(`https://popcornspotbackend-production.up.railway.app/movie/user/getallmovie`)
         .then((res) => {
           toast.error(res.data.Error);
           const allMovies = res.data.findAllMovies;
@@ -52,7 +52,7 @@ const AddVotingPage = () => {
 
     try {
       await axios
-        .post("http://popcornspotbackend-production.up.railway.app/poll/create", data, {
+        .post("https://popcornspotbackend-production.up.railway.app/poll/create", data, {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },

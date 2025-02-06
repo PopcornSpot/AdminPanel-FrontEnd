@@ -15,7 +15,7 @@ const fetchScreenForUpdate = async (_id, setFormData) => {
   try {
     const authToken = localStorage.getItem('token');
     await axios
-      .get(`http://popcornspotbackend-production.up.railway.app/screen/getsinglescreen/?_id=${_id}`, {
+      .get(`https://popcornspotbackend-production.up.railway.app/screen/getsinglescreen/?_id=${_id}`, {
         headers: { Authorization: `Bearer ${authToken}` },
       })
       .then((res) => {
@@ -56,7 +56,7 @@ const AddScreenForm = () => {
     try {
       editScreen
         ? await axios
-            .put(`http://popcornspotbackend-production.up.railway.app/screen/update/?_id=${_id}`, formData, {
+            .put(`https://popcornspotbackend-production.up.railway.app/screen/update/?_id=${_id}`, formData, {
               headers: { Authorization: `Bearer ${authToken}` },
             })
             .then((res) => {
@@ -73,7 +73,7 @@ const AddScreenForm = () => {
               console.log(err.message);
             })
         : await axios
-            .post('http://popcornspotbackend-production.up.railway.app/screen/create', updatedData, {
+            .post('https://popcornspotbackend-production.up.railway.app/screen/create', updatedData, {
               headers: { Authorization: `Bearer ${authToken}` },
             })
             .then((res) => {

@@ -41,7 +41,7 @@ const ReportForm = () => {
     try {
         await axios
           .post(
-            `http://popcornspotbackend-production.up.railway.app/report/admin/create`,
+            `https://popcornspotbackend-production.up.railway.app/report/admin/create`,
             formData,
             {
                 headers: { Authorization: `Bearer ${authToken}` }

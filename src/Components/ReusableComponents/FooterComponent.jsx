@@ -8,16 +8,16 @@ const Footer = () => {
       <div className="container mx-auto text-center px-4">
         {/* Social Media Icons */}
         <div className="flex justify-center space-x-6 mb-6">
-          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-600">
+          <a href="httpss://facebook.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-600">
             <FaFacebookF size={24} />
           </a>
-          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-400">
+          <a href="httpss://twitter.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-400">
             <FaTwitter size={24} />
           </a>
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-600">
+          <a href="httpss://instagram.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-600">
             <FaInstagram size={24} />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-700">
+          <a href="httpss://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-700">
             <FaLinkedinIn size={24} />
           </a>
         </div>

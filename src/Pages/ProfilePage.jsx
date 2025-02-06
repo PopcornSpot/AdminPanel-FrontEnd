@@ -8,7 +8,7 @@ import SidebarComponent from "../Components/SidebarComponent";
 
 
 const ProfilePage = () => {
-   const backendURL= "http://popcornspotbackend-production.up.railway.app"
+   const backendURL= "https://popcornspotbackend-production.up.railway.app"
   const [admin, setAdmin] = useState({});
   const [theatre, setTheatre] = useState({});
   const [totalScreens, setTotalScreens] = useState(0);
@@ -22,7 +22,7 @@ const ProfilePage = () => {
   const fetchTheatre = async () => {
     try {
       await axios
-        .get("http://popcornspotbackend-production.up.railway.app/theatre/get",
+        .get("https://popcornspotbackend-production.up.railway.app/theatre/get",
            {
               headers: { Authorization: `Bearer ${authToken}` }
             }
@@ -56,7 +56,7 @@ const fetchAllReports = async (setReports) => {
   try {
     const authToken = localStorage.getItem("token");
     await axios
-      .get(`http://popcornspotbackend-production.up.railway.app/show/getallshow`,
+      .get(`https://popcornspotbackend-production.up.railway.app/show/getallshow`,
         {
           headers: { Authorization: `Bearer ${authToken}` }
         }
@@ -83,7 +83,7 @@ const fetchAllReports = async (setReports) => {
   const getAdminDetails = async () => {
     try {
        await axios
-        .get(`http://popcornspotbackend-production.up.railway.app/admin/getprofiledetails`,
+        .get(`https://popcornspotbackend-production.up.railway.app/admin/getprofiledetails`,
           {
             headers: { Authorization: `Bearer ${authToken}`}
           }

@@ -14,7 +14,7 @@ const ShowPage = () => {
   const fetchShow = async () => {
     try {
       await axios
-        .get("http://popcornspotbackend-production.up.railway.app/show/getallshow", {
+        .get("https://popcornspotbackend-production.up.railway.app/show/getallshow", {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((res) => {
@@ -41,7 +41,7 @@ const ShowPage = () => {
   const handleDelete = async (_id) => {
     try {
       await axios
-        .delete(`http://popcornspotbackend-production.up.railway.app/show/delete/?_id=${_id}`, {
+        .delete(`https://popcornspotbackend-production.up.railway.app/show/delete/?_id=${_id}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then(async (res) => {

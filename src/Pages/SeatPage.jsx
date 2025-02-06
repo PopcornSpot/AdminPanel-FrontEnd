@@ -10,7 +10,7 @@ const SeatPage = () => {
   const fetchScreen = async () => {
     try {
       await axios
-        .get("http://popcornspotbackend-production.up.railway.app/screen/getallscreen", {
+        .get("https://popcornspotbackend-production.up.railway.app/screen/getallscreen", {
           headers: { Authorization: `Bearer ${authToken}` },
         })
         .then((res) => {
