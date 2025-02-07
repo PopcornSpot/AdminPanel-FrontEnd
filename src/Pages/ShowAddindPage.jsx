@@ -29,7 +29,7 @@ const fetchShowForUpdate = async (_id, setMovie) => {
         toast.success(res.data.Message);
         toast.error(res.data.Error);
         setMovie(res.data.getsingleShow);
-        console.log(res.data.getsingleShow);
+        // console.log(res.data.getsingleShow);
 
       })
       .catch((err) => {

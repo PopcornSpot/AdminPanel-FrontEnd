@@ -25,7 +25,6 @@ const LoginPage = () => {
       await axios
         .post("https://popcornspotbackend-production.up.railway.app/admin/login", formData)
         .then((res) => {
-          toast.success(res.data.Message);
           localStorage.clear();
           localStorage.setItem("token", res.data.token);
           setFormData(initialState);

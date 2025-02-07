@@ -4,6 +4,7 @@ import SidebarComponent from "../Components/SidebarComponent";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { FaEye } from "react-icons/fa";
 
 const ScreensPage = () => {
   const [screens, setScreens] = useState([]);
@@ -61,20 +62,21 @@ const ScreensPage = () => {
       <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
         <div className="p-6 bg-gray-900 min-h-screen text-gray-200">
           <div className="mb-8 flex justify-between items-center">
-            <h1 className="text-3xl font-extrabold text-gray-200 tracking-wide">
+            <h1 className="text-xl sm:text-3xl font-extrabold text-gray-200 tracking-wide">
               Manage Screens
             </h1>
+
             <Link to={"/addscreen"}>
               <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-lg shadow-lg text-sm sm:text-base md:text-lg font-medium flex items-center gap-2 hover:scale-105 transform transition duration-300">
-                <FaPlus className="text-sm sm:text-base md:text-lg" /> Add
-                Screen
+                <FaPlus className="text-sm sm:text-base md:text-lg" />
+                <span className="hidden sm:inline">Add Screen</span>
               </button>
             </Link>
           </div>
 
           {screens.length > 0 ? (
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse border border-gray-600 text-gray-200">
+              <table className="w-full text-left border-collapse border border-gray-600 text-gray-200 overflow-x-auto">
                 <thead>
                   <tr className="bg-gray-700">
                     <th className="border border-gray-600 px-4 py-2">
@@ -116,22 +118,20 @@ const ScreensPage = () => {
                         <div className="flex justify-center items-center gap-5">
                           <Link to={`/editscreen/${screen._id}`}>
                             <button className="p-3 bg-green-600 rounded-lg shadow-md hover:bg-green-700 hover:shadow-lg transform transition-transform duration-300">
-                              <FaEdit className="inline-block mr-2" />
-                              Edit
+                              <FaEdit />
                             </button>
                           </Link>
                           <button
                             className="p-3 bg-red-600 rounded-lg shadow-md hover:bg-red-700 hover:shadow-lg transform transition-transform duration-300"
                             onClick={() => handleDelete(screen._id)}
                           >
-                            <FaTrash className="inline-block mr-2" />
-                            Delete
+                            <FaTrash />
                           </button>
                           <button
-                            className="px-5 py-3 bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 hover:shadow-lg transform transition-transform duration-300"
+                            className="p-3 bg-orange-500 rounded-lg shadow-md hover:bg-orange-600 hover:shadow-lg transform transition-transform duration-300"
                             onClick={() => navigate("/theaterlayout")}
                           >
-                            View
+                            <FaEye />
                           </button>
                         </div>
                       </td>

@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import profileImage from "../assets/AdminImage.jpg";
 import SidebarComponent from "../Components/SidebarComponent";
 

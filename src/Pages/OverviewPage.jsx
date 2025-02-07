@@ -266,7 +266,7 @@ const OverviewPage = () => {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen overflow-hidden ">
-      <div className="w-full md:w-56 fixed h-full">
+      <div className="w-full md:w-56 fixed h-full z-[1000]">
         <SidebarComponent />
       </div>
 
@@ -277,7 +277,7 @@ const OverviewPage = () => {
               Dashboard Overview
             </h1>
           </div>
-          <div className="w-full flex items-center flex-wrap justify-center gap-6 overflow-y-auto">
+          <div className="w-full flex items-center flex-wrap justify-center gap-6">
             {overviewDetails.map((value, index) => (
               <div
                 key={index}

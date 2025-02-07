@@ -12,9 +12,12 @@ const VotingResultsCard = () => {
 
   const fetchPolls = async () => {
     try {
-      const res = await axios.get("https://popcornspotbackend-production.up.railway.app/poll/getallpoll", {
-        headers: { Authorization: `Bearer ${authToken}` },
-      });
+      const res = await axios.get(
+        "https://popcornspotbackend-production.up.railway.app/poll/getallpoll",
+        {
+          headers: { Authorization: `Bearer ${authToken}` },
+        }
+      );
       setPollData(res.data.allPolls);
     } catch (err) {
       if (err.response?.status === 401) {
@@ -32,7 +35,7 @@ const VotingResultsCard = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-900 text-white overflow-hidden">
-      <div className="w-full md:w-56 fixed h-full">
+      <div className="w-full md:w-56 fixed h-full z-[1000]">
         <SidebarComponent />
       </div>
 
@@ -46,10 +49,9 @@ const VotingResultsCard = () => {
               to="/addvoting"
               className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-medium flex items-center gap-2 hover:scale-105 transform transition duration-300"
             >
-              <FaPlus className="text-white" />
-              <span>Create Poll</span>
+              <FaPlus className="text-white text-sm sm:text-lg" />
+              <span className="hidden sm:inline">Create Poll</span>
             </Link>
-
           </div>
 
           {!pollData.length ? (
