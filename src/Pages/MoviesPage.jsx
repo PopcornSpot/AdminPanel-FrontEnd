@@ -73,7 +73,7 @@ const MoviesPage = () => {
 
   return (
     <div className="flex min-h-screen overflow-hidden">
-      <div className="w-full md:w-56 fixed h-full z-[1000]">
+      <div className="w-full md:w-56 fixed h-20 z-50">
         <SidebarComponent />
       </div>
       {movies.length !== 0 ? (
@@ -81,7 +81,7 @@ const MoviesPage = () => {
           <div className="p-8 bg-gradient-to-b from-gray-900 via-gray-800 to-gray-700 min-h-screen">
             <div className="max-w-6xl mx-auto">
               <div className="text-3xl font-bold text-gray-100 mb-10 flex justify-between items-center">
-                <span className="sm:text-xl">Movies List</span>
+                <span className="text-xl sm:text-3xl  ">Movies List</span>
                 <Link to={"/addmovie"}>
                   <button className="bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-lg shadow-lg text-lg font-medium flex items-center gap-2 hover:scale-105 transform transition duration-300">
                     <span className="hidden sm:inline">Add Movie</span>

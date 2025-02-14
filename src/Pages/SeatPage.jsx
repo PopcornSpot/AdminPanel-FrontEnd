@@ -31,7 +31,7 @@ const SeatPage = () => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="w-56 fixed h-full">
+      <div className="w-56 fixed h-20 z-50">
         <SidebarComponent />
       </div>
 

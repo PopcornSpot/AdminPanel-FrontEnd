@@ -65,11 +65,11 @@ const ReportForm = () => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-900 text-white">
-      <div className="w-56 fixed h-full">
+      <div className="w-56 fixed h-20 z-50">
         <SidebarComponent />
       </div>
 
-      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto p-6">
+      <div className="flex-1 ml-56 max-sm:mt-24 max-md:ml-0 max-md:mt-16 overflow-y-auto p-6">
         <div className="max-w-3xl mx-auto p-8 bg-gray-800 shadow-lg rounded-lg border border-gray-700">
           <h2 className="text-3xl font-bold text-center text-orange-500 mb-6">Submit a Report</h2>
 

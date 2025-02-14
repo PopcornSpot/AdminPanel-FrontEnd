@@ -25,12 +25,12 @@ const TheaterLayout = () => {
   return (
     <div className="flex h-screen bg-gray-900">
 
-      <div className="w-56 fixed h-full bg-gray-700">
+      <div className="w-56 fixed h-20">
         <SidebarComponent />
       </div>
 
 
-      <div className="flex-1 ml-56 p-6 space-y-10 overflow-auto">
+      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 p-6 space-y-10 overflow-auto">
         {rows.map((section, sectionIndex) => (
           <div key={sectionIndex} className="space-y-6">
 

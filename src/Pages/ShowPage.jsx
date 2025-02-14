@@ -11,7 +11,6 @@ const ShowPage = () => {
   const authToken = localStorage.getItem("token");
   const navigate = useNavigate();
 
-  // Fetch all shows from the API
   const fetchShow = async () => {
     if (!authToken) {
       toast.error("You must be logged in!");
@@ -42,7 +41,6 @@ const ShowPage = () => {
     }
   };
 
-  // Handle deleting a show
   const handleDelete = async (_id) => {
     if (!authToken) {
       toast.error("You must be logged in!");
@@ -65,7 +63,7 @@ const ShowPage = () => {
         toast.error(response.data.Error);
       }
 
-      await fetchShow();  // Refresh the list after deletion
+      await fetchShow();
     } catch (err) {
       toast.error(err.response?.data.Message || "An error occurred");
     }
@@ -77,7 +75,7 @@ const ShowPage = () => {
 
   return (
     <div className="flex min-h-screen overflow-hidden bg-gray-900">
-      <div className="w-full md:w-56 fixed h-full z-[1000]">
+      <div className="w-full md:w-56 fixed h-20 z-50">
         <SidebarComponent />
       </div>
       <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-x-auto">
@@ -96,7 +94,6 @@ const ShowPage = () => {
             </Link>
           </div>
 
-          {/* Show Cards container */}
           <div className="flex flex-wrap justify-center gap-4 overflow-x-auto">
             <ShowCard shows={shows} onDelete={handleDelete} />
           </div>

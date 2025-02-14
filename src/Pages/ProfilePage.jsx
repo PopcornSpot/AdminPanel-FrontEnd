@@ -59,11 +59,11 @@ const ProfilePage = () => {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen overflow-hidden">
-      <div className="w-full md:w-56 fixed h-full">
+      <div className="w-full md:w-56 fixed h-20 z-50">
         <SidebarComponent />
       </div>
 
-      <div className="flex-1 ml-0 md:ml-56 overflow-y-auto p-6 bg-gradient-to-b from-gray-700 via-gray-800 to-gray-900">
+      <div className="flex-1 ml-0 md:ml-56 max-sm:mt-16 overflow-y-auto p-6 bg-gradient-to-b from-gray-700 via-gray-800 to-gray-900">
         <div className="max-w-6xl mx-auto">
           <div className="flex justify-between items-center text-gray-200 text-xl md:text-3xl font-extrabold mb-8">
             Admin Profile

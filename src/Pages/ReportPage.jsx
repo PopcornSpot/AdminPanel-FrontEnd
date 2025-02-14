@@ -100,11 +100,11 @@ const ReportPage = () => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <div className="w-56 fixed h-full">
+      <div className="w-56 fixed h-20 z-50">
         <SidebarComponent/>
       </div>
 
-      <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto">
+      <div className="flex-1 ml-56 max-sm:mt-16 max-md:ml-0 max-md:mt-16 overflow-y-auto">
     <div className="p-6 bg-gradient-to-b relative  from-gray-800 to-gray-900 min-h-screen">
       <div className="max-w-6xl mx-auto bg-gray-800 p-8 rounded-xl shadow-xl">
      <div className=" flex items-start justify-between w-full h-full">

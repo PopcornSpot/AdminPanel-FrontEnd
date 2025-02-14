@@ -35,7 +35,7 @@ const VotingResultsCard = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-900 text-white overflow-hidden">
-      <div className="w-full md:w-56 fixed h-full z-[1000]">
+      <div className="w-full md:w-56 fixed h-20 z-50">
         <SidebarComponent />
       </div>
 

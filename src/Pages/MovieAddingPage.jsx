@@ -135,7 +135,7 @@ const AddMovieForm = () => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-800">
-      <div className="w-56 fixed h-full">
+      <div className="w-56 fixed h-20 z-50">
         <SidebarComponent />
       </div>
 

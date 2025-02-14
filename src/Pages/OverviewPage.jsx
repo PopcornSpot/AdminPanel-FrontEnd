@@ -266,7 +266,7 @@ const OverviewPage = () => {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen overflow-hidden ">
-      <div className="w-full md:w-56 fixed h-full z-[1000]">
+      <div className="w-full md:w-56 fixed h-20 z-50">
         <SidebarComponent />
       </div>
 

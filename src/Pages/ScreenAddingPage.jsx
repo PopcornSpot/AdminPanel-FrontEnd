@@ -105,7 +105,7 @@ const AddScreenForm = () => {
 
   return (
     <div className="flex h-screen overflow-hidden bg-gray-900">
-      <div className="w-56 fixed h-full">
+      <div className="w-56 fixed h-20 z-50">
         <SidebarComponent />
       </div>
       <div className="flex-1 ml-56 max-md:ml-0 max-md:mt-16 overflow-y-auto mt-16">

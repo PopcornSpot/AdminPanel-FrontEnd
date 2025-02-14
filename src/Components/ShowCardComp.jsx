@@ -17,23 +17,22 @@ const ShowTable = ({ shows, onDelete }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white px-6 py-8 flex flex-col items-center">
+    <div className="min-h-screen w-full bg-gray-900 text-white px-6 max-sm:px-0  py-8 flex flex-col items-center">
       <div className="w-full overflow-x-auto rounded-lg shadow-lg">
         {shows.length === 0 ? (
           <p className="text-center text-gray-400 py-6">No shows available</p>
         ) : (
-          <div className="min-w-full">
-            <table className="w-full min-w-[1000px] bg-gray-800 border border-gray-700 rounded-lg">
+            <table className="w-full bg-gray-800 border border-gray-700 rounded-lg">
               <thead>
                 <tr className="bg-gray-700 text-gray-100 text-sm">
-                  <th className="px-6 py-4">Movie</th>
-                  <th className="px-6 py-4">Show Date</th>
-                  <th className="px-6 py-4">Show Times</th>
-                  <th className="px-6 py-4">Last Date</th>
-                  <th className="px-6 py-4">Screen</th>
-                  <th className="px-6 py-4">First Class Price</th>
-                  <th className="px-6 py-4">Second Class Price</th>
-                  <th className="px-6 py-4">Actions</th>
+                  <th className="px-6 py-4 whitespace-nowrap">Movie</th>
+                  <th className="px-6 py-4 whitespace-nowrap">Show Date</th>
+                  <th className="px-6 py-4 whitespace-nowrap">Show Times</th>
+                  <th className="px-6 py-4 whitespace-nowrap">Last Date</th>
+                  <th className="px-6 py-4 whitespace-nowrap">Screen</th>
+                  <th className="px-6 py-4 whitespace-nowrap">First Class Price</th>
+                  <th className="px-6 py-4 whitespace-nowrap">Second Class Price</th>
+                  <th className="px-6 py-4 whitespace-nowrap">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -51,12 +50,12 @@ const ShowTable = ({ shows, onDelete }) => {
                     <td className="px-6 py-4">{show.screen || "Not specified"}</td>
                     <td className="px-6 py-4">${show.firstClassPrice || "Not specified"}</td>
                     <td className="px-6 py-4">${show.secondClassPrice || "Not specified"}</td>
-                    <td className="px-6 py-4 flex gap-4 justify-center items-center">
+                    <td className=" w-full max-md:min-h-48 md:min-h-24  px-6 py-4 flex gap-5 items-center justify-center">
                       <button
-                        className="text-blue-400 hover:text-blue-500 transition-all duration-200"
+                        className="text-blue-400 text-center hover:text-blue-500 transition-all duration-200"
                         onClick={() => setSelectedShow(show)}
                       >
-                        <FaEye size={20} />
+                        <FaEye size={20} className="text-center" />
                       </button>
                       <Link to={`/editshow/${show._id}`}>
                         <button className="text-green-400 hover:text-green-500 transition-all duration-200">
@@ -74,7 +73,6 @@ const ShowTable = ({ shows, onDelete }) => {
                 ))}
               </tbody>
             </table>
-          </div>
         )}
       </div>
 

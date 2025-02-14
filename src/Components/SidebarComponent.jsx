@@ -42,7 +42,7 @@ const SidebarComponent = () => {
       </div>
 
       <div
-        className={`fixed top-0 left-0 z-40 w-56 h-screen bg-gradient-to-r from-gray-900 to-gray-800 shadow-xl transition-transform transform ${
+        className={`fixed top-0 left-0 z-40 w-56 max-sm:w-full h-screen bg-gradient-to-r from-gray-900 to-gray-800 shadow-xl transition-transform transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 md:static`}
       >
@@ -60,7 +60,7 @@ const SidebarComponent = () => {
                     ? "bg-gradient-to-r from-orange-500 to-orange-400 text-white"
                     : "hover:bg-gradient-to-r from-orange-500 to-orange-400 hover:text-white text-gray-200"
                 }`}
-                onClick={() => setIsSidebarOpen(false)} // Close sidebar on link click
+                onClick={() => setIsSidebarOpen(false)} 
               >
                 <span className="mr-3 text-lg">{item.icon}</span>
                 {item.value}
@@ -83,7 +83,7 @@ const SidebarComponent = () => {
       {/* Overlay for mobile */}
       {isSidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
+          className="fixed inset-0 bg-opacity-50 z-50 hidden"
           onClick={toggleSidebar}
         ></div>
       )}
